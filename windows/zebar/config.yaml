@@ -1,4 +1,5 @@
 # D:\Workspaces\git\glzr-io\zebar\packages\desktop> pnpm i; pnpm build
+# "dev": "npm run tauri dev -- -- -- open bar -a MONITOR_NAME='\\\\.\\DISPLAY5' MONITOR_X=0 MONITOR_Y=0 MONITOR_WIDTH=3840 MONITOR_HEIGHT=2160 MONITOR_SCALE_FACTOR=1.5",
 # komorebi $Env:RUST_LOG = "debug"; cargo run --package komorebi
 # cargo +stable install --path komorebi --locked; cargo +stable install --path komorebic --locked; cargo +stable install --path komorebic-no-console --locked; cargo +stable install --path komorebi-gui --locked; komorebic stop
 
@@ -56,7 +57,7 @@ window/bar:
   # Allowed values: 'always_on_top', 'always_on_bottom', 'normal'.
   z_order: 'always_on_bottom'
   # Whether the window should be shown in the taskbar.
-  show_in_taskbar: false
+  shown_in_taskbar: false
   # Whether the window should have resize handles.
   resizable: false
   # Styles to apply globally within the window. For example, we can use
@@ -67,23 +68,20 @@ window/bar:
   # CSS/SCSS styles to apply to the root element within the window.
   # 
   styles: |
-    //$fontcolor: #c5a65ecc; // #121826cc;
-    //$backcolor: #1f1d19cc; // #dfe2f3cc;
-    //#f58d56bf: #f58d56bf;
-    //#c5a65e: #c5a65e;
-    //#1f1d19: #1f1d19;
+    --font-color: #c5a65ecc; // #121826cc;
+    --font-color-40: #c5a65e66;
+    --back-color: #1f1d19cc; // #dfe2f3cc;
+    --warn-color: #f58d56bf;
     
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     height: 100%;
-    color: #ffffffe6;
-    color: #cdd6f4;
     font-family: ui-monospace, monospace;
     font-size: 14px;
     padding: 0px 15px;
     border-bottom: 1px solid #222;
-    background: #0000004c;
+    background: linear-gradient(rgb(0 0 0 / 40%), rgb(5 2 20 / 35%));
 
     #right.group .template-block {
         margin-left: 10px;
@@ -96,27 +94,27 @@ window/bar:
     .template-block {
         display: inline-block;
         border-radius: 10px;
-        color: #c5a65ecc;
-        background: #1f1d19cc;
+        color: var(--font-color);
+        background: var(--back-color);
         transition: color 0.3s;
         transition: background 0.3s;
         user-select: none;
-        outline: 2px solid #c5a65ecc;
+        outline: 2px solid var(--font-color);
         font-weight: bold;
     }
     
     .template-block.warning {
-        background: #f58d56bf;
+        background: var(--warn-color);
     }
     
     .template-block:hover, .template-block.active {
-        color: #1f1d19cc;
-        background: #c5a65ecc;
-        //outline: 2px solid #1f1d19cc;
+        color: var(--back-color);
+        background: var(--font-color);
+        //outline: 2px solid var(--back-color);
     }
     
     .template-block:hover .icon-block i, .template-block.active .icon-block i {          
-        color: #1f1d19cc;          
+        color: var(--back-color);          
     }
     
     .icon-block {
@@ -131,7 +129,7 @@ window/bar:
         font-size: 18px;
         top: 2px;
         left: 10px;
-        color: #c5a65ecc;
+        color: var(--font-color);
     }
     
     .icon-block.large {
@@ -149,8 +147,8 @@ window/bar:
     }
     
     #komorebi .template-block:hover {
-        color: #c5a65ecc;
-        background: #c5a65e66;
+        color: var(--font-color);
+        background: var(--font-color-40);
     }
 
     #komorebi .workspace {
@@ -158,17 +156,17 @@ window/bar:
         margin: 1px 2px 1px 2px;
         padding: 2px 10px 2px 10px;
         display: inline-block;
-        background: #c5a65e66;
+        background: var(--font-color-40);
     }
 
     #komorebi .workspace:hover {
-        background: #1f1d19cc;
+        background: var(--back-color);
     }
 
     #komorebi .workspace.active {
         padding: 2px 25px 2px 25px;
-        background: #c5a65ecc;
-        color: #1f1d19cc;
+        background: var(--font-color);
+        color: var(--back-color);
     }
   group/left:
     styles: |
