@@ -1,0 +1,293 @@
+# D:\Workspaces\git\glzr-io\zebar\packages\desktop> pnpm i; pnpm build
+# komorebi $Env:RUST_LOG = "debug"; cargo run --package komorebi
+# cargo +stable install --path komorebi --locked; cargo +stable install --path komorebic --locked; cargo +stable install --path komorebic-no-console --locked; cargo +stable install --path komorebi-gui --locked; komorebic stop
+
+# Opacity %   255 Step        2 digit HEX prefix
+# 0%          0.00            00
+# 5%          12.75           0C
+# 10%         25.50           19
+# 15%         38.25           26
+# 20%         51.00           33
+# 25%         63.75           3F
+# 30%         76.50           4C
+# 35%         89.25           59
+# 40%         102.00          66
+# 45%         114.75          72
+# 50%         127.50          7F
+# 55%         140.25          8C
+# 60%         153.00          99
+# 65%         165.75          A5
+# 70%         178.50          B2
+# 75%         191.25          BF
+# 80%         204.00          CC
+# 85%         216.75          D8
+# 90%         229.50          E5
+# 95%         242.25          F2
+# 100%        255.00          FF
+
+# Yaml is white-space sensitive (use 2 spaces to indent).
+
+###
+# Settings to apply to all windows.
+#
+# Docs regarding global: https://some-future-docs-link.com
+global:
+  # Whether to enable the browser devtools.
+  enable_devtools: true
+
+###
+# Define a new window with an id of 'bar'. This window can then be opened
+# via the Zebar cli by running 'zebar open bar'.
+#
+# Docs regarding window: https://some-future-docs-link.com
+window/bar:
+  providers: ['self']
+#  - type: 'network'
+#      refresh_interval: 1000
+  # Width of the window in physical pixels.
+  width: '{{ self.args.MONITOR_WIDTH }}'
+  # Height of the window in physical pixels.
+  height: '45'
+  # X-position of the window in physical pixels.
+  position_x: '{{ self.args.MONITOR_X }}'
+  # Y-position of the window in physical pixels.
+  position_y: '{{ self.args.MONITOR_Y }}'
+  # Whether to show the window above/below all others.
+  # Allowed values: 'always_on_top', 'always_on_bottom', 'normal'.
+  z_order: 'always_on_bottom'
+  # Whether the window should be shown in the taskbar.
+  show_in_taskbar: false
+  # Whether the window should have resize handles.
+  resizable: false
+  # Styles to apply globally within the window. For example, we can use
+  # this to import the Nerdfonts icon font. Ref 
+  # for a cheatsheet of available Nerdfonts icons.
+  global_styles: |
+    @import "https://www.nerdfonts.com/assets/css/webfont.css";
+  # CSS/SCSS styles to apply to the root element within the window.
+  # 
+  styles: |
+    //$fontcolor: #c5a65ecc; // #121826cc;
+    //$backcolor: #1f1d19cc; // #dfe2f3cc;
+    //#f58d56bf: #f58d56bf;
+    //#c5a65e: #c5a65e;
+    //#1f1d19: #1f1d19;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    height: 100%;
+    color: #ffffffe6;
+    color: #cdd6f4;
+    font-family: ui-monospace, monospace;
+    font-size: 14px;
+    padding: 0px 15px;
+    border-bottom: 1px solid #222;
+    background: #0000004c;
+
+    #right.group .template-block {
+        margin-left: 10px;
+    }
+    
+    #left.group .template-block {
+        margin-right: 10px;
+    }
+
+    .template-block {
+        display: inline-block;
+        border-radius: 10px;
+        color: #c5a65ecc;
+        background: #1f1d19cc;
+        transition: color 0.3s;
+        transition: background 0.3s;
+        user-select: none;
+        outline: 2px solid #c5a65ecc;
+        font-weight: bold;
+    }
+    
+    .template-block.warning {
+        background: #f58d56bf;
+    }
+    
+    .template-block:hover, .template-block.active {
+        color: #1f1d19cc;
+        background: #c5a65ecc;
+        //outline: 2px solid #1f1d19cc;
+    }
+    
+    .template-block:hover .icon-block i, .template-block.active .icon-block i {          
+        color: #1f1d19cc;          
+    }
+    
+    .icon-block {
+        position: relative;
+        display: inline-block;
+        padding: 4px 10px 2px 35px;
+    }
+    
+    .icon-block i {
+        transition: all 0.3s;
+        position: absolute;
+        font-size: 18px;
+        top: 2px;
+        left: 10px;
+        color: #c5a65ecc;
+    }
+    
+    .icon-block.large {
+        padding: 4px 10px 2px 36px;        
+    }
+
+    .icon-block.large i {
+        font-size: 27px;
+        top: -1px;
+        left: 5px;
+    } 
+
+    .icon-block + span {
+        vertical-align: middle;
+    }
+    
+    #komorebi .template-block:hover {
+        color: #c5a65ecc;
+        background: #c5a65e66;
+    }
+
+    #komorebi .workspace {
+        border-radius: 8px;
+        margin: 1px 2px 1px 2px;
+        padding: 2px 10px 2px 10px;
+        display: inline-block;
+        background: #c5a65e66;
+    }
+
+    #komorebi .workspace:hover {
+        background: #1f1d19cc;
+    }
+
+    #komorebi .workspace.active {
+        padding: 2px 25px 2px 25px;
+        background: #c5a65ecc;
+        color: #1f1d19cc;
+    }
+  group/left:
+    styles: |
+      display: flex;
+      align-items: center;
+
+    template/komorebi:
+      providers: ['komorebi']
+      template: |
+        <div class="template-block">
+            @for (monitor of komorebi.allMonitors) {
+              @if (self.args.MONITOR_NAME.endsWith(monitor.name)) {
+                <div title="Self: {{self.args.MONITOR_NAME}} | {{monitor.name}}({{monitor.focusedWorkspaceIndex}})">
+                  @for (workspace of monitor.workspaces) {<div title="{{workspace.layout}}" class="workspace {{monitor.workspaces.indexOf(workspace) === monitor.focusedWorkspaceIndex && 'active'}}">
+                      {{workspace.name || "&nbsp;"}}
+                    </div>}
+                </div>
+              }
+            }
+        </div>
+
+  group/center:
+    styles: |
+      display: flex;
+      justify-self: center;
+
+#    template/clock:
+#      providers: ['date']
+#      # Available date tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
+#      template: |
+#        {{ date.toFormat(date.now, 'EEE	d MMM t') }}
+
+  group/right:
+    styles: |
+      display: flex;
+      justify-self: end;
+
+    template/netactivitydata:
+      providers:
+        - type: 'util'
+        - type: 'network'
+          refresh_interval: 2000
+      template: |
+        <div class="template-block right pad-right-25 {{network.traffic.transmitted > 1000000 && 'active invert'}}">
+          <div class="large icon-block">
+              <i class="nf nf-oct-triangle_down"></i><span>{{util.convertBytes(network.traffic.received, 1, 'iec_bytes')}}/s</span>
+          </div><div class="large icon-block">
+              <i class="nf nf-oct-triangle_up"></i><span>{{util.convertBytes(network.traffic.transmitted, 1, 'iec_bytes')}}/s</span>
+          </div>
+        </div>
+
+    template/memory:
+      providers: ['memory', 'util']
+      template: |
+        <div class="template-block right overlap">
+          <div class="icon-block">
+            <i class="nf nf-fae-chip"></i>
+            <span>{{Math.round(memory.usage)}}% | {{util.convertBytes(memory.usedMemory, 1, 'iec_bytes')}}</span>
+          </div>
+        </div>
+
+    template/cpu:
+      providers: ['cpu']
+      styles: |
+        .high-usage {
+          color: #900029;
+        }
+      template: |
+        <div class="template-block right overlap {{cpu.usage > 50 && 'warning'}}">
+          <div class="icon-block">
+            <i class="nf nf-oct-cpu"></i><span>{{Math.round(cpu.usage)}}%</span>
+          </div>
+        </div>
+
+#    template/battery:
+#      providers: ['battery']
+#      styles: |
+#        position: relative;
+#
+#        .charging-icon {
+#          position: absolute;
+#          font-size: 11px;
+#          left: 7px;
+#          top: 2px;
+#        }
+#      template: |
+#        <!-- Show icon for whether battery is charging. -->
+#        @if (battery.isCharging) {<i class="nf nf-md-power_plug charging-icon"></i>}
+#
+#        <!-- Show icon for how much of the battery is charged. -->
+#        @if (battery.chargePercent > 90) {<i class="nf nf-fa-battery_4"></i>}
+#        @else if (battery.chargePercent > 70) {<i class="nf nf-fa-battery_3"></i>}
+#        @else if (battery.chargePercent > 40) {<i class="nf nf-fa-battery_2"></i>}
+#        @else if (battery.chargePercent > 20) {<i class="nf nf-fa-battery_1"></i>}
+#        @else {<i class="nf nf-fa-battery_0"></i>}
+#
+#        {{ Math.round(battery.chargePercent) }}%
+
+    template/weather:
+      providers: ['weather', 'ip']
+      template: |
+        <div class="template-block {{weather.windSpeed > 40 && 'active'}}" title="{{ip.approxCity}}">
+          <div class="large icon-block">
+            @switch (weather.status) {
+              @case ('clear_day') {<i class="nf nf-weather-day_sunny" title="Sunny"></i>}
+              @case ('clear_night') {<i class="nf nf-weather-night_clear" title="Clear"></i>}
+              @case ('cloudy_day') {<i class="nf nf-weather-day_cloudy" title="Cloudy"></i>}
+              @case ('cloudy_night') {<i class="nf nf-weather-night_alt_cloudy" title="Cloudy"></i>}
+              @case ('light_rain_day') {<i class="nf nf-weather-day_sprinkle" title="Light rain"></i>}
+              @case ('light_rain_night') {<i class="nf nf-weather-night_alt_sprinkle" title="Light rain"></i>}
+              @case ('heavy_rain_day') {<i class="nf nf-weather-day_rain" title="Heavy rain"></i>}
+              @case ('heavy_rain_night') {<i class="nf nf-weather-night_alt_rain" title="Heavy rain"></i>}
+              @case ('snow_day') {<i class="nf nf-weather-day_snow" title="Snow"></i>}
+              @case ('snow_night') {<i class="nf nf-weather-night_alt_snow" title="Snow"></i>}
+              @case ('thunder_day') {<i class="nf nf-weather-day_lightning" title="Thunder"></i>}
+              @case ('thunder_night') {<i class="nf nf-weather-night_alt_lightning" title="Thunder"></i>}
+            }
+            <span>{{ weather.celsiusTemp }}&nbsp;°C</span>
+          </div><div class="icon-block">
+            <i class="nf nf-md-windsock"></i><span>{{ weather.windSpeed }}&nbsp;km/h</span>
+          </div>
+        <div>

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.22/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.yaml",
+  "window_hiding_behaviour": "Cloak",
+  "unmanaged_window_operation_behaviour": "Op",
+  "cross_monitor_move_behaviour": "Insert",
+  "window_container_behaviour": "Create",
+  "mouse_follows_focus": true,
+  "default_workspace_padding": 10,
+  "default_container_padding": 10,
+  "border_padding": 5,
+  "border_width": 3,
+  "border_offset": -1,
+  "border": true,
+  "border_style": "Rounded",
+  "border_colours": {
+    "single": "#c5a65e",
+    "stack": "#c5a65e",
+    "monocle": "#dfe2f3"
+  },
+  "transparency": true,
+  "transparency_alpha": 220, 
+  "stackbar": {
+    "height": 40,
+    "label": "Title",
+    "mode": "OnStack",
+    "tabs": {
+      "width": 300,
+      "focused_text": "#bfaa69",
+      "unfocused_text": "#dfe2f3",
+      "background": "#121826"
+    }
+  }, 
+  "display_index_preferences": {
+    "0": "DEL4279-5&1047835a&1&UID4354",
+    "1": "DEL4277-5&1047835a&1&UID4352"
+  },
+  "animation": {
+    "enabled": true,
+    "duration": 200,
+    "style": "EaseInOutExpo",
+    "fps": 60
+  },
+  "global_work_area_offset":
+  {
+    "bottom": 45,
+    "left": 0,
+    "right": 0,
+    "top": 45
+  },
+  "monitors": [
+    {
+      "workspaces": [
+        { "name": "P1", "layout": "UltrawideVerticalStack" },
+        { "name": "P2", "layout": "UltrawideVerticalStack" },
+        { "name": "P3", "layout": "BSP" }
+      ]
+    },
+    {
+      "workspaces": [
+        { "name": "W1", "layout": "UltrawideVerticalStack" },
+        { "name": "W2", "layout": "BSP" },
+        { "name": "W3", "layout": "BSP" }
+      ]
+    }
+  ],
+  "float_rules": [
+    {
+      "kind": "Exe",
+      "id": "vlc.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "zebar.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "TOTALCMD64.EXE",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Title",
+      "id": "WindowsFormsParkingWindow",
+      "matching_strategy": "Equals"
+    },
+    {
+    "kind": "Exe",
+    "id": "steam",
+      "matching_strategy": "Contains"
+    },
+    {
+      "kind": "Exe",
+      "id": "qbittorrent.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "test-egui.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "Fiddler.exe",
+      "matching_strategy": "Equals"
+    }
+  ]
+}
