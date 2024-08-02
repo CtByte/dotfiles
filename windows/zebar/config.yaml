@@ -69,7 +69,7 @@ window/bar:
   # 
   styles: |
     --font-color: #c5a65ecc; // #121826cc;
-    --font-color-40: #c5a65e66;
+    --font-color-2: #c5a65e26;
     --back-color: #1f1d19cc; // #dfe2f3cc;
     --warn-color: #f58d56bf;
     
@@ -77,11 +77,11 @@ window/bar:
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     height: 100%;
-    font-family: ui-monospace, monospace;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 14px;
     padding: 0px 15px;
     border-bottom: 1px solid #222;
-    background: linear-gradient(rgb(0 0 0 / 40%), rgb(5 2 20 / 35%));
+    background: linear-gradient(rgb(0 0 0 / 40%), rgb(5 2 20 / 25%));
 
     #right.group .template-block {
         margin-left: 10px;
@@ -148,7 +148,7 @@ window/bar:
     
     #komorebi .template-block:hover {
         color: var(--font-color);
-        background: var(--font-color-40);
+        background: var(--font-color-2);
     }
 
     #komorebi .workspace {
@@ -156,7 +156,7 @@ window/bar:
         margin: 1px 2px 1px 2px;
         padding: 2px 10px 2px 10px;
         display: inline-block;
-        background: var(--font-color-40);
+        background: var(--font-color-2);
     }
 
     #komorebi .workspace:hover {
@@ -164,7 +164,7 @@ window/bar:
     }
 
     #komorebi .workspace.active {
-        padding: 2px 25px 2px 25px;
+        padding: 2px 20px 2px 20px;
         background: var(--font-color);
         color: var(--back-color);
     }
@@ -224,7 +224,7 @@ window/bar:
         <div class="template-block right overlap">
           <div class="icon-block">
             <i class="nf nf-fae-chip"></i>
-            <span>{{Math.round(memory.usage)}}% | {{util.convertBytes(memory.usedMemory, 1, 'iec_bytes')}}</span>
+            <span>{{Math.round(memory.usage)}} % | {{util.convertBytes(memory.usedMemory, 1, 'iec_bytes')}}</span>
           </div>
         </div>
 
@@ -237,7 +237,7 @@ window/bar:
       template: |
         <div class="template-block right overlap {{cpu.usage > 50 && 'warning'}}">
           <div class="icon-block">
-            <i class="nf nf-oct-cpu"></i><span>{{Math.round(cpu.usage)}}%</span>
+            <i class="nf nf-oct-cpu"></i><span>{{Math.round(cpu.usage)}} %</span>
           </div>
         </div>
 
