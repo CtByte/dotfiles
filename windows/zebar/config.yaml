@@ -48,10 +48,11 @@ window/bar:
   # Width of the window in physical pixels.
   width: '{{ self.args.MONITOR_WIDTH }}'
   # Height of the window in physical pixels.
-  height: '50'
+  height: '60'
   # X-position of the window in physical pixels.
   position_x: '{{ self.args.MONITOR_X }}'
   # Y-position of the window in physical pixels.
+  # position_y: '{{ parseInt(self.args.MONITOR_HEIGHT) - 50 }}'
   position_y: '{{ self.args.MONITOR_Y }}'
   # Whether to show the window above/below all others.
   # Allowed values: 'always_on_top', 'always_on_bottom', 'normal'.
@@ -151,14 +152,19 @@ window/bar:
   # 
   styles: |
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    //grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     height: 100%;
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 14px;
     padding: 0px 15px;
-    border-bottom: 1px solid #222;
-    background: linear-gradient(rgb(0 0 0 / 40%), rgb(5 2 20 / 25%));
+    padding-left: 350px;
+    padding-right: 350px;
+    //border-bottom: 1px solid #222;
+    //background: linear-gradient(rgb(0 0 0 / 40%), rgb(5 2 20 / 25%));
+    //background: #26201f; // windows bar 38,32,31;
+    background: linear-gradient(to right, rgb(38 32 31 / 50%), rgb(38 32 31 / 100%));;
     
     #right.group .island-block {
         margin-left: 0.5em;
@@ -183,6 +189,7 @@ window/bar:
         color: var(--font-color);
         background: var(--back-color);
         border: 2px solid var(--font-color);
+        box-shadow: 1px 3px 2px var(--back-color);
     }
     
     .island-block .inner-block {
@@ -311,6 +318,14 @@ window/bar:
     .island-block .inner-block.icon-block.alert i    {
         animation: bounce 1.5s infinite;
     }
+    
+    .focused-window {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 350px;
+        -webkit-mask-image: linear-gradient(135deg, #000 80%, transparent);
+    }
   group/left:
     styles: |
       display: flex;
@@ -319,13 +334,6 @@ window/bar:
 #    template/test:
 #      styles: |
 #        
-#        .focused-window {
-#            text-overflow: ellipsis;
-#            //overflow: hidden;
-#            white-space: nowrap;
-#            max-width: 350px;
-#            -webkit-mask-image: linear-gradient(135deg, #000 80%, transparent);
-#        }
 #      template: |
 #        <div class="island-block">
 #            <div class="inner-block button-block active">
@@ -417,10 +425,10 @@ window/bar:
 #          </div>
 #        </div>
 
-  group/center:
-    styles: |
-      display: flex;
-      justify-self: center;
+#  group/center:
+#    styles: |
+#      display: flex;
+#      justify-self: center;
 
 #    template/clock:
 #      providers: ['date']
@@ -472,10 +480,10 @@ window/bar:
           <br>
           <br>
           <div class="inner-block icon-block large pull-up {{network.traffic.received > 2000000 && 'active'}}">
-              <i class="nf nf-oct-triangle_down"></i><span>{{util.convertBytes(network.traffic.received, 1, 'iec_bytes')}}/s</span>
+              <i class="nf nf-oct-triangle_down"></i><span>{{String(util.convertBytes(network.traffic.received, 1, 'iec_bytes')).padStart(10, String.fromCharCode(160))}}/s</span>
           </div>
           <div class="inner-block icon-block large pull-up {{network.traffic.transmitted > 1000000 && 'active'}}">
-              <i class="nf nf-oct-triangle_up"></i><span>{{util.convertBytes(network.traffic.transmitted, 1, 'iec_bytes')}}/s</span>
+              <i class="nf nf-oct-triangle_up"></i><span>{{String(util.convertBytes(network.traffic.transmitted, 1, 'iec_bytes')).padStart(10, String.fromCharCode(160))}}/s</span>
           </div>
         </div>
 
