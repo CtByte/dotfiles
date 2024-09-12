@@ -14,21 +14,23 @@
   "border": true,
   "border_style": "Rounded",
   "border_colours": {
-    "single": "#c5a65e",
-    "stack": "#c5a65e",
+    "single": "#ba9770",
+    "stack": "#ba9770",
     "monocle": "#dfe2f3"
   },
   "transparency": true,
   "transparency_alpha": 220, 
   "stackbar": {
-    "height": 40,
+    "height": 35,
     "label": "Title",
     "mode": "OnStack",
     "tabs": {
       "width": 300,
       "focused_text": "#bfaa69",
       "unfocused_text": "#dfe2f3",
-      "background": "#121826"
+      "background": "#121826",
+	  "font_family": "JetBrains Mono",
+	  "font_size": 34
     }
   }, 
   "display_index_preferences": {
@@ -43,10 +45,10 @@
   },
   "global_work_area_offset":
   {
-    "bottom": 45,
+    "bottom": 0,
     "left": 0,
     "right": 0,
-    "top": 45
+    "top": 0
   },
   "monitors": [
     {
@@ -71,6 +73,11 @@
       "matching_strategy": "Equals"
     },
     {
+	  "kind": "Exe",
+	  "id": "komorebi-bar.exe",
+	  "matching_strategy": "Equals"
+	},
+	{
       "kind": "Exe",
       "id": "zebar.exe",
       "matching_strategy": "Equals"
@@ -86,8 +93,8 @@
       "matching_strategy": "Equals"
     },
     {
-    "kind": "Exe",
-    "id": "steam",
+      "kind": "Exe",
+      "id": "steam",
       "matching_strategy": "Contains"
     },
     {
@@ -104,6 +111,23 @@
       "kind": "Exe",
       "id": "Fiddler.exe",
       "matching_strategy": "Equals"
-    }
+    },
+    {
+      "kind": "Class",
+      "id": "WindowsForms10.Window",
+      "matching_strategy": "StartsWith"
+    },
+	[
+	  {
+	    "kind": "Exe",
+	    "id": "devenv.exe",
+		"matching_strategy": "Equals"
+	  },
+	  {
+	    "kind": "Title",
+	    "id": "Move files to a new location?",
+		"matching_strategy": "Equals"
+	  }
+	]
   ]
 }
