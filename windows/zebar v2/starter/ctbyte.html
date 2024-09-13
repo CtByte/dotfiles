@@ -227,8 +227,8 @@
                 <div className="island-block">
                   {output.komorebi.currentWorkspaces.map(workspace => (
                     <div
-                      className={`inner-block button-block ${workspace.name === output.komorebi.focusedWorkspace.name && 'active'}`}
-                      key={workspace.name}
+                      className={`inner-block button-block ${output.komorebi.currentWorkspaces.indexOf(workspace) === output.komorebi.currentWorkspaces.indexOf(output.komorebi.focusedWorkspace) && 'active'}`}
+                      key={output.komorebi.currentWorkspaces.indexOf(workspace)}
                     >
                       <span>{workspace.name || String.fromCharCode(160)}</span>
                     </div>
