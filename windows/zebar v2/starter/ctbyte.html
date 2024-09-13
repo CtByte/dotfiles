@@ -230,7 +230,7 @@
                       className={`inner-block button-block ${workspace.name === output.komorebi.focusedWorkspace.name && 'active'}`}
                       key={workspace.name}
                     >
-                      <span>{workspace.name || '&nbsp;'}</span>
+                      <span>{workspace.name || String.fromCharCode(160)}</span>
                     </div>
                   ))}
                 </div>
