@@ -1,0 +1,6 @@
+{
+  "$schema": "TODO",
+  "startupConfigs": [
+    "starter/ctbyte.zebar.json"
+  ]
+}

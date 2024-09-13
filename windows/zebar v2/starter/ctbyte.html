@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react?dev",
+          "react-dom/client": "https://esm.sh/react-dom/client?dev",
+		  "byte-size": "https://esm.sh/byte-size",
+          "zebar": "https://esm.sh/zebar"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+      import React, { useState, useEffect } from 'react';
+      import { createRoot } from 'react-dom/client';
+	  import byteSize from 'byte-size';
+      import { init } from 'zebar';
+
+      const zebarCtx = await init();
+
+      const providers = await zebarCtx.createProviderGroup({
+        network: { type: 'network', refreshInterval: 2000 },
+        komorebi: { type: 'komorebi' },
+        cpu: { type: 'cpu' },
+        battery: { type: 'battery' },
+        memory: { type: 'memory' },
+        weather: { type: 'weather' },
+		ip: { type: 'ip' },
+      });
+
+      createRoot(document.getElementById('root')).render(<App />);
+
+      function App() {
+        const [output, setOutput] = useState(providers.outputMap);
+
+        useEffect(() => {
+          providers.onOutput(() => setOutput(providers.outputMap));
+        }, []);
+
+        // Get icon to show for current network status.
+        function getNetworkIcon() {
+          switch (output.network.defaultInterface?.type) {
+            case 'ethernet':
+              return (
+				<i className="nf nf-md-ethernet_cable"></i>
+			  );
+            case 'wifi':
+              if (output.network.defaultGateway?.signalStrength >= 80) {
+                return <i className="nf nf-md-wifi_strength_4"></i>;
+              } else if (
+                output.network.defaultGateway?.signalStrength >= 65
+              ) {
+                return <i className="nf nf-md-wifi_strength_3"></i>;
+              } else if (
+                output.network.defaultGateway?.signalStrength >= 40
+              ) {
+                return <i className="nf nf-md-wifi_strength_2"></i>;
+              } else if (
+                output.network.defaultGateway?.signalStrength >= 25
+              ) {
+                return <i className="nf nf-md-wifi_strength_1"></i>;
+              } else {
+                return <i className="nf nf-md-wifi_strength_outline"></i>;
+              }
+			  
+			  //   <span title="Strength: {{ network.defaultGateway?.signalStrength || "0" }} %">{{ network.defaultGateway?.ssid || "No WiFi" }}</span>
+            default:
+              return (
+                <i className="nf nf-md-wifi_strength_off_outline"></i>
+              );
+          }
+        }
+		
+        // Get icon to show for how much of the battery is charged.
+        function getBatteryIcon() {
+          if (output.battery.chargePercent > 90)
+            return <i className="nf nf-fa-battery_4"></i>;
+          if (output.battery.chargePercent > 70)
+            return <i className="nf nf-fa-battery_3"></i>;
+          if (output.battery.chargePercent > 40)
+            return <i className="nf nf-fa-battery_2"></i>;
+          if (output.battery.chargePercent > 20)
+            return <i className="nf nf-fa-battery_1"></i>;
+          return <i className="nf nf-fa-battery_0"></i>;
+        }
+
+        // Get icon to show for current weather status.
+        function getWeatherIcon() {
+          switch (output.weather.status) {
+            case 'clear_day':
+              return <i className="nf nf-weather-day_sunny"></i>;
+            case 'clear_night':
+              return <i className="nf nf-weather-night_clear"></i>;
+            case 'cloudy_day':
+              return <i className="nf nf-weather-day_cloudy"></i>;
+            case 'cloudy_night':
+              return <i className="nf nf-weather-night_alt_cloudy"></i>;
+            case 'light_rain_day':
+              return <i className="nf nf-weather-day_sprinkle"></i>;
+            case 'light_rain_night':
+              return <i className="nf nf-weather-night_alt_sprinkle"></i>;
+            case 'heavy_rain_day':
+              return <i className="nf nf-weather-day_rain"></i>;
+            case 'heavy_rain_night':
+              return <i className="nf nf-weather-night_alt_rain"></i>;
+            case 'snow_day':
+              return <i className="nf nf-weather-day_snow"></i>;
+            case 'snow_night':
+              return <i className="nf nf-weather-night_alt_snow"></i>;
+            case 'thunder_day':
+              return <i className="nf nf-weather-day_lightning"></i>;
+            case 'thunder_night':
+              return <i className="nf nf-weather-night_alt_lightning"></i>;
+          }
+        }
+		
+		function prettyBytes(bytes) {
+			const { value, unit } = byteSize(bytes, { units: 'iec', precision: 1 });
+			
+			if (unit === 'B') {
+				return String(`0.0 KiB`).padStart(8, String.fromCharCode(160))
+			}
+			
+			return String(`${value} ${unit}`).padStart(8, String.fromCharCode(160));
+		}
+		
+		function cpuClassName() {
+			let value = output.cpu.usage;
+			let className = 'island-block';
+			
+			if (value > 50) {
+				className = `${className} active`;
+			}
+			
+			if (value > 75) {
+				className = `${className} warn`;
+			}
+			
+			if (value > 90) {
+				className = `${className} alert`;
+			}			 
+			
+			return className;
+		}
+		
+		function weatherClassName() {
+			let className = 'inner-block icon-block large';
+			
+			if (output.weather.celsiusTemp > 30) {
+				className = `${className} warn`;
+			}
+			
+			return className;
+		}
+		
+		function windSpeedClassName() {
+			let className = 'inner-block icon-block';
+			
+			if (output.weather.windSpeed > 40) {
+				className = `${className} warn`;
+			}
+		
+			return className;
+		}
+		
+		function weatherStatus() {
+			switch (output.weather.status) {
+			  case ('clear_day'):         return 'Sunny';
+			  case ('clear_night'):       return 'Clear';
+			  case ('cloudy_day'):        return 'Cloudy';
+			  case ('cloudy_night'):      return 'Cloudy';
+			  case ('light_rain_day'):    return 'Light rain';
+			  case ('light_rain_night'):  return 'Light rain';
+			  case ('heavy_rain_day'):    return 'Heavy rain';
+			  case ('heavy_rain_night'):  return 'Heavy rain';
+			  case ('snow_day'):          return 'Snow';
+			  case ('snow_night'):        return 'Snow';
+			  case ('thunder_day'):       return 'Thunder';
+			  case ('thunder_night'):     return 'Thunder';
+			}
+		}
+
+        return (
+          <div className="app">
+            <div className="left">
+			  {output.weather && (
+				<div className="island-block flipper">
+					<div className="inner-block icon-block" title={output.ip.approxCity}>
+						<i className="nf nf-fa-location_dot"></i>
+						<span>{weatherStatus()}</span>
+					</div>
+					<br/>
+					<br/>
+					<div className={weatherClassName()}>
+					  {getWeatherIcon()}
+					  <span>{Math.round(output.weather.celsiusTemp * 100) / 100}&nbsp;°C</span>
+					</div>
+					<div className={windSpeedClassName()}>
+					  <i className="nf nf-md-windsock"></i><span>{Math.round(output.weather.windSpeed * 100) / 100}&nbsp;km/h</span>
+					</div>
+				</div>
+				)}
+				
+				{output.komorebi && (
+				<div class="island-block">
+				  <div class="inner-block focused-window">
+				    <span>{output.komorebi.focusedWorkspace.tilingContainers[output.komorebi.focusedWorkspace.focusedContainerIndex]?.windows[0]?.title ?? "-"}</span>
+				  </div>
+				</div>
+				)}
+            </div>
+			
+            <div className="center">
+				{output.komorebi && (
+                <div className="island-block">
+                  {output.komorebi.currentWorkspaces.map(workspace => (
+                    <div
+                      className={`inner-block button-block ${workspace.name === output.komorebi.focusedWorkspace.name && 'active'}`}
+                      key={workspace.name}
+                    >
+                      <span>{workspace.name || '&nbsp;'}</span>
+                    </div>
+                  ))}
+                </div>
+                )}
+			</div>
+
+            <div className="right">
+				{output.network && (
+				<div className="island-block flipper">
+				  <div className="inner-block icon-block">
+					{getNetworkIcon()}
+					{output.network.defaultGateway?.ssid}
+				  </div>
+				  <br/>
+				  <br/>
+				  <div className="inner-block icon-block large pull-up {{network.traffic.received > 2000000 && 'active'}}">
+					  <i className="nf nf-oct-triangle_down"></i><span>{prettyBytes(output.network.traffic.received)}/s</span>
+				  </div>
+				  <div className="inner-block icon-block large pull-up {{network.traffic.transmitted > 1000000 && 'active'}}">
+					  <i className="nf nf-oct-triangle_up"></i><span>{prettyBytes(output.network.traffic.transmitted)}/s</span>
+				  </div>
+				</div>
+				)}
+
+				<div className="island-block">
+				  <div className="inner-block icon-block">
+					<i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }} title={prettyBytes(output.memory.usedMemory)}></i>
+					<div className="flipper">
+						<span>{Math.round(output.memory.usage)} %</span>
+						<br/>
+						<br/>
+						<div className="bar-block">
+						  <div style={{ width: `calc(${Math.round(output.memory.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
+						</div>
+					</div>
+				  </div>
+				</div>
+
+				<div className={cpuClassName()}>
+				  <div className="inner-block icon-block">
+					<i className="nf nf-oct-cpu"></i>
+					<div className="flipper">
+						<span>{Math.round(output.cpu.usage)} %</span>
+						<br/>
+						<br/>
+						<div className="bar-block">
+						  <div style={{ width: `calc(${Math.round(output.cpu.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
+						</div>
+					</div>
+				  </div>
+				</div>
+
+				{false && output.battery && (
+				<div className="island-block">
+				  <div className="inner-block icon-block">
+					{/* Show icon for whether battery is charging. */}
+				    {output.battery.isCharging && (
+					  <i className="nf nf-md-power_plug charging-icon"></i>
+				    )}
+				    {getBatteryIcon()}
+					<div className="flipper">
+						<span>{Math.round(output.battery.chargePercent)} %</span>
+						<br/>
+						<br/>
+						<div className="bar-block">
+						  <div style={{ width: `calc(${Math.round(output.battery.chargePercent)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
+						</div>
+					</div>
+				  </div>
+				</div>
+				)}
+            </div>
+          </div>
+        );
+      }
+    </script>
+  </body>
+</html>
