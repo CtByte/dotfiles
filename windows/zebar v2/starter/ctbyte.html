@@ -130,10 +130,10 @@
             const { value, unit } = byteSize(bytes, { units: 'iec', precision: 1 });
             
             if (unit === 'B') {
-                return String(`0.0 KiB`).padStart(8, String.fromCharCode(160))
+                return String(`0.0 KiB`).padStart(10, String.fromCharCode(160))
             }
             
-            return String(`${value} ${unit}`).padStart(8, String.fromCharCode(160));
+            return String(`${value} ${unit}`).padStart(10, String.fromCharCode(160));
         }
         
         function cpuClassName() {
