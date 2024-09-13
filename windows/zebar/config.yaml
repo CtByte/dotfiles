@@ -1,4 +1,5 @@
 # D:\Workspaces\git\glzr-io\zebar\packages\desktop> pnpm i; pnpm build
+# "dev": "npm run tauri dev -- -- -- open bar -a MONITOR_NAME='\\\\.\\DISPLAY5' MONITOR_X=0 MONITOR_Y=0 MONITOR_WIDTH=3840 MONITOR_HEIGHT=2160 MONITOR_SCALE_FACTOR=1.5",
 # komorebi $Env:RUST_LOG = "debug"; cargo run --package komorebi
 # cargo +stable install --path komorebi --locked; cargo +stable install --path komorebic --locked; cargo +stable install --path komorebic-no-console --locked; cargo +stable install --path komorebi-gui --locked; komorebic stop
 
@@ -47,159 +48,402 @@ window/bar:
   # Width of the window in physical pixels.
   width: '{{ self.args.MONITOR_WIDTH }}'
   # Height of the window in physical pixels.
-  height: '45'
+  height: '60'
   # X-position of the window in physical pixels.
   position_x: '{{ self.args.MONITOR_X }}'
   # Y-position of the window in physical pixels.
+  # position_y: '{{ parseInt(self.args.MONITOR_HEIGHT) - 50 }}'
   position_y: '{{ self.args.MONITOR_Y }}'
   # Whether to show the window above/below all others.
   # Allowed values: 'always_on_top', 'always_on_bottom', 'normal'.
   z_order: 'always_on_bottom'
   # Whether the window should be shown in the taskbar.
-  show_in_taskbar: false
+  shown_in_taskbar: false
   # Whether the window should have resize handles.
   resizable: false
   # Styles to apply globally within the window. For example, we can use
   # this to import the Nerdfonts icon font. Ref 
   # for a cheatsheet of available Nerdfonts icons.
+  # @import "https://www.nerdfonts.com/assets/css/webfont.css";
   global_styles: |
-    @import "https://www.nerdfonts.com/assets/css/webfont.css";
-  # CSS/SCSS styles to apply to the root element within the window.
+    @import "http://asset.localhost/C%3A%5CUsers%5CCsaba%5C.glzr%5Czebar%5Cwebfont.css";
+    
+    :root {
+        --font-color: #8ba29dcc; // #c5a65ecc; // #121826cc;
+        --font-color-2: #8ba29d26; // #c5a65e26;
+        --back-color: #131510cc; // #1f1d19cc; // #dfe2f3cc;
+        --active-font-color: #131510cc;
+        --active-back-color: #ba9770cc; // #8ba29dcc;
+        --warn-color: #f58d56bf;
+        --alert-color: #900029;
+        
+        --bar-block-margin-offset: 2px;
+        --bar-block-margin-offset-x2: 4px;
+        --inner-border-radius: 0.5em;
+    }
+    
+    @keyframes bounce {
+        70% { transform: translateY(0%); }
+        80% { transform: translateY(-15%); }
+        90% { transform: translateY(0%); }
+        95% { transform: translateY(-7%); }
+        97% { transform: translateY(0%); }
+        99% { transform: translateY(-3%); }
+        100% { transform: translateY(0); }
+    }
+       
+    @keyframes gelatine {
+      from, to { transform: scale(1, 1); }
+      25% { transform: scale(0.9, 1.1); }
+      50% { transform: scale(1.1, 0.9); }
+      75% { transform: scale(0.95, 1.05); }
+    }
+ 
+    @keyframes bounce-in {
+      0% {
+        opacity: 0;
+        transform: scale(.3);
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      70% { 
+        transform: scale(.9); 
+      }
+      100% { 
+        transform: scale(1);
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+    
+    @keyframes flip-up {
+        from { transform: translateY(-2.35em); }
+        to { transform: translateY(0em); }
+        
+        40%  { transform: translateY(0%); }
+        50%  { transform: translateY(-25%); }
+        60%  { transform: translateY(0%); }
+        75%  { transform: translateY(-10%); }
+        87%  { transform: translateY(0%); }
+        99%  { transform: translateY(-5%); }
+        100% { transform: translateY(0%); }
+    }
+    
+    @keyframes flip-down {
+        from { transform: translateY(0); }
+        to { transform: translateY(-2.35em); }
+    }
+    
+    @keyframes scale {
+        50% {
+            transform: scaleX(1.025);
+        }
+        
+        100% {
+            transform: scaleX(1);
+        }
+    }
+    
+  # CSS styles to apply to the root element within the window.
   # 
   styles: |
-    //$fontcolor: #c5a65ecc; // #121826cc;
-    //$backcolor: #1f1d19cc; // #dfe2f3cc;
-    //#f58d56bf: #f58d56bf;
-    //#c5a65e: #c5a65e;
-    //#1f1d19: #1f1d19;
-    
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    //grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     height: 100%;
-    color: #ffffffe6;
-    color: #cdd6f4;
-    font-family: ui-monospace, monospace;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 14px;
     padding: 0px 15px;
-    border-bottom: 1px solid #222;
-    background: #0000004c;
-
-    #right.group .template-block {
-        margin-left: 10px;
+    padding-left: 350px;
+    padding-right: 350px;
+    //border-bottom: 1px solid #222;
+    //background: linear-gradient(rgb(0 0 0 / 40%), rgb(5 2 20 / 25%));
+    //background: #26201f; // windows bar 38,32,31;
+    background: linear-gradient(to right, rgb(38 32 31 / 50%), rgb(38 32 31 / 100%));;
+    
+    #right.group .island-block {
+        margin-left: 0.5em;
     }
     
-    #left.group .template-block {
-        margin-right: 10px;
+    #left.group .island-block {
+        margin-right: 0.5em;
     }
-
-    .template-block {
-        display: inline-block;
-        border-radius: 10px;
-        color: #c5a65ecc;
-        background: #1f1d19cc;
-        transition: color 0.3s;
-        transition: background 0.3s;
+    
+    .island-block {
         user-select: none;
-        outline: 2px solid #c5a65ecc;
+        display: inline-block;
+        border-radius: 0.8em;
+        //height: 100%;
+        padding: 0.2em;
+        overflow: clip;
+        max-height: 1.85em;
+        vertical-align: text-top;
+        //transition: all 0.25s ease-in-out;
+        
         font-weight: bold;
+        color: var(--font-color);
+        background: var(--back-color);
+        border: 2px solid var(--font-color);
+        box-shadow: 1px 3px 2px var(--back-color);
     }
     
-    .template-block.warning {
-        background: #f58d56bf;
-    }
-    
-    .template-block:hover, .template-block.active {
-        color: #1f1d19cc;
-        background: #c5a65ecc;
-        //outline: 2px solid #1f1d19cc;
-    }
-    
-    .template-block:hover .icon-block i, .template-block.active .icon-block i {          
-        color: #1f1d19cc;          
-    }
-    
-    .icon-block {
+    .island-block .inner-block {
         position: relative;
         display: inline-block;
-        padding: 4px 10px 2px 35px;
+        padding: 0em 0.25em;
+        border-radius: var(--inner-border-radius);
     }
     
-    .icon-block i {
-        transition: all 0.3s;
+    .island-block .inner-block.active {
+        background: var(--active-back-color);
+        color: var(--active-font-color);
+    }
+    
+    .island-block .inner-block.warn {
+        background: var(--warn-color);
+        color: var(--active-font-color);
+    }
+    
+    .island-block .inner-block.alert {
+        background: var(--alert-color);
+        color: var(--active-font-color);
+    }
+    
+    .island-block .inner-block.icon-block {
+        padding-left: 2em;
+    }
+    
+    .island-block .inner-block.icon-block i {
         position: absolute;
-        font-size: 18px;
-        top: 2px;
-        left: 10px;
-        color: #c5a65ecc;
+        left: 0.2em;
+        font-size: 1.2em;
     }
     
-    .icon-block.large {
-        padding: 4px 10px 2px 36px;        
+    .island-block .inner-block.icon-block.large i {
+        top: -0.05em;
+        left: 0.15em;
+        font-size: 1.5em;
     }
-
-    .icon-block.large i {
-        font-size: 27px;
-        top: -1px;
-        left: 5px;
-    } 
-
-    .icon-block + span {
+    
+    .island-block .inner-block.icon-block.large.pull-up i {
+        top: -0.1em;
+    }
+    
+    .island-block .inner-block span {
         vertical-align: middle;
     }
     
-    #komorebi .template-block:hover {
-        color: #c5a65ecc;
-        background: #c5a65e66;
+    .island-block .bar-block {
+        border-radius: 0.5em;
+        width: 4em;
+        height: 0.75em;
+        overflow: clip;
+        transform: translateY(25%);
+        border: 1px solid var(--font-color);
+        box-shadow: inset 0px 0px 4px var(--font-color);
+        // background: var(--font-color);
     }
-
-    #komorebi .workspace {
-        border-radius: 8px;
-        margin: 1px 2px 1px 2px;
-        padding: 2px 10px 2px 10px;
-        display: inline-block;
-        background: #c5a65e66;
+    
+    .island-block .bar-block div {
+        border-radius: 0.5em;
+        height: calc(100% - var(--bar-block-margin-offset-x2));
+        margin: var(--bar-block-margin-offset);
+        transition: width 0.25s cubic-bezier(1,-0.52,.57,1.69);
+        background: var(--font-color);
+        // background: var(--back-color);
+        
     }
-
-    #komorebi .workspace:hover {
-        background: #1f1d19cc;
+    
+    .island-block.active {
+        color: var(--active-font-color);
+        background: var(--active-back-color);
+        border: 2px solid var(--active-font-color);
     }
-
-    #komorebi .workspace.active {
-        padding: 2px 25px 2px 25px;
-        background: #c5a65ecc;
-        color: #1f1d19cc;
+    
+    .island-block.warn {
+        background: var(--warn-color);        
+    }
+    
+    .island-block.alert {
+        background: var(--alert-color);        
+    }
+    
+    .island-block.active .bar-block {
+        border: 1px solid var(--active-font-color);
+        box-shadow: inset 0px 0px 4px var(--active-font-color);
+        // background: var(--back-color);
+    }
+    
+    .island-block.active .bar-block div {
+        background: var(--active-font-color);
+        // background: var(--font-color);
+    }
+    
+    .island-block .inner-block.button-block {
+        border-radius: var(--inner-border-radius);
+    }
+    
+    .island-block .inner-block.button-block:not(.active) {
+        padding: 0em 0.5em;
+        outline: 1px outset var(--font-color);
+    }
+    
+    .island-block .inner-block.button-block.active {
+        padding: 0em 1em;
+        color: var(--active-font-color);
+        background: var(--active-back-color);
+        animation: bounce-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    
+    .island-block.flipper:not(:hover) .inner-block, .island-block .inner-block:not(:hover) .flipper {
+        animation: flip-down 0.4s ease both;
+    }
+    
+    .island-block.flipper:hover .inner-block, .island-block .inner-block:hover .flipper {
+        animation: flip-up 0.6s ease both;
+    }
+    
+    .island-block.active {
+        animation: scale 1.5s cubic-bezier(1,-0.52,.57,1.69) 1s infinite;
+    }
+    
+    .island-block.active .icon-block i, 
+    .island-block .inner-block.icon-block.active i,
+    .island-block .inner-block.icon-block.warn i,
+    .island-block .inner-block.icon-block.alert i    {
+        animation: bounce 1.5s infinite;
+    }
+    
+    .focused-window {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 350px;
+        -webkit-mask-image: linear-gradient(135deg, #000 80%, transparent);
     }
   group/left:
     styles: |
       display: flex;
       align-items: center;
 
-    template/komorebi:
-      providers: ['komorebi']
-      template: |
-        <div class="template-block">
-            @for (monitor of komorebi.allMonitors) {
-              @if (self.args.MONITOR_NAME.endsWith(monitor.name)) {
-                <div title="Self: {{self.args.MONITOR_NAME}} | {{monitor.name}}({{monitor.focusedWorkspaceIndex}})">
-                  @for (workspace of monitor.workspaces) {<div title="{{workspace.layout}}" class="workspace {{monitor.workspaces.indexOf(workspace) === monitor.focusedWorkspaceIndex && 'active'}}">
-                      {{workspace.name || "&nbsp;"}}
-                    </div>}
-                </div>
-              }
-            }
-        </div>
+#    template/test:
+#      styles: |
+#        
+#      template: |
+#        <div class="island-block">
+#            <div class="inner-block button-block active">
+#                <span>Private</span>
+#            </div>
+#            <div class="inner-block button-block">
+#                <span>Work</span>
+#            </div>
+#        </div>
+#        <div class="island-block flipper_">
+#            <!--div class="inner-block large">
+#                <i class="nf nf-weather-night_clear"></i><span>island</span>
+#            </div>
+#            <br><br-->
+#            <div class="inner-block icon-block large pull-up">
+#                <i class="nf nf-oct-triangle_down"></i>
+#                <div class="flipper">
+#                    <span>34 %</span>
+#                    <br>
+#                    <br>
+#                    <span>0.0 KiB/s</span>
+#                </div>
+#            </div>
+#            <div class="inner-block icon-block large pull-up">
+#                <i class="nf nf-oct-triangle_up"></i>
+#                <div class="flipper">
+#                    <span>34 %</span>
+#                    <br>
+#                    <br>
+#                    <span>0.0 KiB/s</span>
+#                </div>
+#            </div>
+#        </div>
+#        <div class="island-block flipper">
+#            <div class="inner-block icon-block large">
+#                <i class="nf nf-weather-night_clear"></i><span>island</span>
+#            </div>
+#            <br><br>
+#            <div class="inner-block icon-block large">
+#                <i class="nf nf-weather-day_cloudy"></i><span>island</span>
+#            </div>
+#        </div>
+#        <div class="island-block">
+#            <div class="inner-block icon-block">
+#                <i class="nf nf-oct-cpu"></i>
+#                <div class="flipper">
+#                    <span>34 %</span>
+#                    <br>
+#                    <br>
+#                    <div class="bar-block"><div style="width: 34%;">&nbsp;</div></div>
+#                </div>
+#            </div>
+#        </div>
 
-  group/center:
-    styles: |
-      display: flex;
-      justify-self: center;
+#    template/workspaces:
+#      providers: ['komorebi']
+#      template: |
+#        <div class="island-block">
+#            @for (workspace of komorebi.currentWorkspaces) {
+#                <div class="inner-block button-block {{ workspace === komorebi.focusedWorkspace && 'active' }}">
+#                    <span>{{workspace.name || "&nbsp;"}}</span>
+#                </div>
+#            }
+#        </div>
+
+#    template/workspaces:
+#      providers: ['komorebi']
+#      template: |
+#        <div class="island-block">
+#            @for (monitor of komorebi.allMonitors) {
+#              @if (self.args.MONITOR_NAME.endsWith(monitor.name)) {
+#                <div title="Self: {{self.args.MONITOR_NAME}} | {{monitor.name}}({{monitor.focusedWorkspaceIndex}})">
+#                  @for (workspace of monitor.workspaces) {
+#                    <div title="{{workspace.layout}}" class="inner-block button-block {{monitor.workspaces.indexOf(workspace) === monitor.focusedWorkspaceIndex && 'active'}}" id={{monitor.workspaces.indexOf(workspace)}}>
+#                      <span>{{workspace.name || "&nbsp;"}}</span>
+#                    </div>
+#                  }
+#                </div>
+#              }
+#            }
+#        </div>
+
+#    template/komorebi-focused-window:
+#      providers: ['komorebi']
+#      template: |
+#        <div class="island-block">
+#          <div class="inner-block focused-window">
+#            <span>{{ komorebi.focusedWorkspace.tilingContainers[komorebi.focusedWorkspace.focusedContainerIndex]?.windows[0]?.title ?? "-" }}</span>
+#          </div>
+#        </div>
+
+#  group/center:
+#    styles: |
+#      display: flex;
+#      justify-self: center;
 
 #    template/clock:
 #      providers: ['date']
 #      # Available date tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
 #      template: |
-#        {{ date.toFormat(date.now, 'EEE	d MMM t') }}
+#        <div class="island-block flipper">
+#            <div class="inner-block icon-block">
+#                <i class="nf nf-fa-calendar"></i><span>{{ date.toFormat(date.now, 'LLL dd') }}</span>
+#            </div>
+#            <br>
+#            <br>
+#            <div class="inner-block icon-block">
+#                <i class="nf nf-fa-clock"></i><span>{{ date.toFormat(date.now, 't') }}</span>
+#            </div>
+#        </div>
 
   group/right:
     styles: |
@@ -211,35 +455,73 @@ window/bar:
         - type: 'util'
         - type: 'network'
           refresh_interval: 2000
+      events:
+        - type: click
+          fn_path: 'script.js#testClick'
+          selector: '.template-block'
       template: |
-        <div class="template-block right pad-right-25 {{network.traffic.transmitted > 1000000 && 'active invert'}}">
-          <div class="large icon-block">
-              <i class="nf nf-oct-triangle_down"></i><span>{{util.convertBytes(network.traffic.received, 1, 'iec_bytes')}}/s</span>
-          </div><div class="large icon-block">
-              <i class="nf nf-oct-triangle_up"></i><span>{{util.convertBytes(network.traffic.transmitted, 1, 'iec_bytes')}}/s</span>
+        <div class="island-block flipper">
+          <div class="inner-block icon-block">
+            @if (network.defaultInterface?.type === 'ethernet') {
+              <i class="nf nf-md-ethernet_cable"></i>
+              <span>Ethernet</span>
+            } @else if (network.defaultInterface?.type === 'wifi') {
+              @if (network.defaultGateway?.signalStrength >= 80) {<i class="nf nf-md-wifi_strength_4"></i>}
+              @else if (network.defaultGateway?.signalStrength >= 65) {<i class="nf nf-md-wifi_strength_3"></i>}
+              @else if (network.defaultGateway?.signalStrength >= 40) {<i class="nf nf-md-wifi_strength_2"></i>}
+              @else if (network.defaultGateway?.signalStrength >= 25) {<i class="nf nf-md-wifi_strength_1"></i>}
+              @else {<i class="nf nf-md-wifi_strength_outline"></i>}
+              <span title="Strength: {{ network.defaultGateway?.signalStrength || "0" }} %">{{ network.defaultGateway?.ssid || "No WiFi" }}</span>
+            } @else {
+              <i class="nf nf-md-wifi_strength_off_outline"></i>
+              <span>Not connected</span>
+            }
+          </div>
+          <br>
+          <br>
+          <div class="inner-block icon-block large pull-up {{network.traffic.received > 2000000 && 'active'}}">
+              <i class="nf nf-oct-triangle_down"></i><span>{{String(util.convertBytes(network.traffic.received, 1, 'iec_bytes')).padStart(10, String.fromCharCode(160))}}/s</span>
+          </div>
+          <div class="inner-block icon-block large pull-up {{network.traffic.transmitted > 1000000 && 'active'}}">
+              <i class="nf nf-oct-triangle_up"></i><span>{{String(util.convertBytes(network.traffic.transmitted, 1, 'iec_bytes')).padStart(10, String.fromCharCode(160))}}/s</span>
           </div>
         </div>
 
     template/memory:
       providers: ['memory', 'util']
+      styles: |
+        i {
+            transform: rotate(180deg);
+        }
       template: |
-        <div class="template-block right overlap">
-          <div class="icon-block">
-            <i class="nf nf-fae-chip"></i>
-            <span>{{Math.round(memory.usage)}}% | {{util.convertBytes(memory.usedMemory, 1, 'iec_bytes')}}</span>
+        <div class="island-block">
+          <div class="inner-block icon-block">
+            <i class="nf nf-fa-ruler_horizontal" title="{{util.convertBytes(memory.usedMemory, 1, 'iec_bytes')}}"></i>
+            <div class="flipper">
+                <span>{{Math.round(memory.usage)}} %</span>
+                <br>
+                <br>
+                <div class="bar-block">
+                  <div style="width: calc({{Math.round(memory.usage)}}% - var(--bar-block-margin-offset-x2));">&nbsp;</div>
+                </div>
+            </div>
           </div>
         </div>
 
     template/cpu:
       providers: ['cpu']
-      styles: |
-        .high-usage {
-          color: #900029;
-        }
       template: |
-        <div class="template-block right overlap {{cpu.usage > 50 && 'warning'}}">
-          <div class="icon-block">
-            <i class="nf nf-oct-cpu"></i><span>{{Math.round(cpu.usage)}}%</span>
+        <div class="island-block {{cpu.usage > 50 && 'active'}} {{cpu.usage > 75 && 'warn'}} {{cpu.usage > 90 && 'alert'}}">
+          <div class="inner-block icon-block">
+            <i class="nf nf-oct-cpu"></i>
+            <div class="flipper">
+                <span>{{Math.round(cpu.usage)}} %</span>
+                <br>
+                <br>
+                <div class="bar-block">
+                  <div style="width: calc({{Math.round(cpu.usage)}}% - var(--bar-block-margin-offset-x2));">&nbsp;</div>
+                </div>
+            <div>
           </div>
         </div>
 
@@ -255,39 +537,64 @@ window/bar:
 #          top: 2px;
 #        }
 #      template: |
-#        <!-- Show icon for whether battery is charging. -->
-#        @if (battery.isCharging) {<i class="nf nf-md-power_plug charging-icon"></i>}
+#        <div class="island-block">
+#            <div class="inner-block icon-block">
+#                <!-- Show icon for whether battery is charging. -->
+#                @if (battery.isCharging) {<i class="nf nf-md-power_plug charging-icon"></i>}
 #
-#        <!-- Show icon for how much of the battery is charged. -->
-#        @if (battery.chargePercent > 90) {<i class="nf nf-fa-battery_4"></i>}
-#        @else if (battery.chargePercent > 70) {<i class="nf nf-fa-battery_3"></i>}
-#        @else if (battery.chargePercent > 40) {<i class="nf nf-fa-battery_2"></i>}
-#        @else if (battery.chargePercent > 20) {<i class="nf nf-fa-battery_1"></i>}
-#        @else {<i class="nf nf-fa-battery_0"></i>}
+#                <!-- Show icon for how much of the battery is charged. -->
+#                @if (battery.chargePercent > 90) {<i class="nf nf-fa-battery_4"></i>}
+#                @else if (battery.chargePercent > 70) {<i class="nf nf-fa-battery_3"></i>}
+#                @else if (battery.chargePercent > 40) {<i class="nf nf-fa-battery_2"></i>}
+#                @else if (battery.chargePercent > 20) {<i class="nf nf-fa-battery_1"></i>}
+#                @else {<i class="nf nf-fa-battery_0"></i>}
 #
-#        {{ Math.round(battery.chargePercent) }}%
+#                <span>{{ Math.round(battery.chargePercent) }}%</span>
+#            </div>
+#        </div>
 
     template/weather:
       providers: ['weather', 'ip']
       template: |
-        <div class="template-block {{weather.windSpeed > 40 && 'active'}}" title="{{ip.approxCity}}">
-          <div class="large icon-block">
-            @switch (weather.status) {
-              @case ('clear_day') {<i class="nf nf-weather-day_sunny" title="Sunny"></i>}
-              @case ('clear_night') {<i class="nf nf-weather-night_clear" title="Clear"></i>}
-              @case ('cloudy_day') {<i class="nf nf-weather-day_cloudy" title="Cloudy"></i>}
-              @case ('cloudy_night') {<i class="nf nf-weather-night_alt_cloudy" title="Cloudy"></i>}
-              @case ('light_rain_day') {<i class="nf nf-weather-day_sprinkle" title="Light rain"></i>}
-              @case ('light_rain_night') {<i class="nf nf-weather-night_alt_sprinkle" title="Light rain"></i>}
-              @case ('heavy_rain_day') {<i class="nf nf-weather-day_rain" title="Heavy rain"></i>}
-              @case ('heavy_rain_night') {<i class="nf nf-weather-night_alt_rain" title="Heavy rain"></i>}
-              @case ('snow_day') {<i class="nf nf-weather-day_snow" title="Snow"></i>}
-              @case ('snow_night') {<i class="nf nf-weather-night_alt_snow" title="Snow"></i>}
-              @case ('thunder_day') {<i class="nf nf-weather-day_lightning" title="Thunder"></i>}
-              @case ('thunder_night') {<i class="nf nf-weather-night_alt_lightning" title="Thunder"></i>}
-            }
-            <span>{{ weather.celsiusTemp }}&nbsp;°C</span>
-          </div><div class="icon-block">
-            <i class="nf nf-md-windsock"></i><span>{{ weather.windSpeed }}&nbsp;km/h</span>
-          </div>
-        <div>
+        <div class="island-block flipper">
+            <div class="inner-block icon-block" title="{{ip.approxCity}}">
+                <i class="nf nf-fa-location_dot"></i>
+                <span>@switch (weather.status) {
+                  @case ('clear_day') {         Sunny }
+                  @case ('clear_night') {       Clear }
+                  @case ('cloudy_day') {        Cloudy }
+                  @case ('cloudy_night') {      Cloudy }
+                  @case ('light_rain_day') {    Light rain }
+                  @case ('light_rain_night') {  Light rain }
+                  @case ('heavy_rain_day') {    Heavy rain }
+                  @case ('heavy_rain_night') {  Heavy rain }
+                  @case ('snow_day') {          Snow }
+                  @case ('snow_night') {        Snow }
+                  @case ('thunder_day') {       Thunder }
+                  @case ('thunder_night') {     Thunder }
+                }</span>
+                <!--marquee>{{ip.approxCity}}</marquee-->
+            </div>
+            <br>
+            <br>
+            <div class="inner-block icon-block large {{ weather.celsiusTemp > 30 && 'warn' }}">
+              @switch (weather.status) {
+                @case ('clear_day') {           <i class="nf nf-weather-day_sunny"></i>}
+                @case ('clear_night') {         <i class="nf nf-weather-night_clear"></i>}
+                @case ('cloudy_day') {          <i class="nf nf-weather-day_cloudy"></i>}
+                @case ('cloudy_night') {        <i class="nf nf-weather-night_alt_cloudy"></i>}
+                @case ('light_rain_day') {      <i class="nf nf-weather-day_sprinkle"></i>}
+                @case ('light_rain_night') {    <i class="nf nf-weather-night_alt_sprinkle"></i>}
+                @case ('heavy_rain_day') {      <i class="nf nf-weather-day_rain"></i>}
+                @case ('heavy_rain_night') {    <i class="nf nf-weather-night_alt_rain"></i>}
+                @case ('snow_day') {            <i class="nf nf-weather-day_snow"></i>}
+                @case ('snow_night') {          <i class="nf nf-weather-night_alt_snow"></i>}
+                @case ('thunder_day') {         <i class="nf nf-weather-day_lightning"></i>}
+                @case ('thunder_night') {       <i class="nf nf-weather-night_alt_lightning"></i>}
+              }
+              <span>{{ weather.celsiusTemp }}&nbsp;°C</span>
+            </div>
+            <div class="inner-block icon-block {{ weather.windSpeed > 40 && 'warn' }}">
+              <i class="nf nf-md-windsock"></i><span>{{ weather.windSpeed }}&nbsp;km/h</span>
+            </div>
+        </div>
