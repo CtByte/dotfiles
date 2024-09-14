@@ -253,7 +253,7 @@ body,
 
 .island-block .inner-block.button-block {
     border-radius: var(--inner-border-radius);
-    margin-left: 0.5em;
+    margin-left: 0.75em;
     
     &:first-child {
         margin-left: 0em;
@@ -261,13 +261,15 @@ body,
     
     &:not(.active) {
         padding: 0em 0.5em;
-        outline: 1px outset var(--font-color);
+        //outline: 1px outset var(--font-color);
+		box-shadow: inset 0px 0px 4px var(--font-color);
     }
     
     &.active {
         padding: 0em 1em;
         color: var(--active-font-color);
         background: var(--active-back-color);
+		box-shadow: inset 0px 0px 4px var(--back-color);
         animation: bounce-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 }
