@@ -136,45 +136,6 @@
             return String(`${value} ${unit}`).padStart(10, String.fromCharCode(160));
         }
         
-        function cpuClassName() {
-            let value = output.cpu.usage;
-            let className = 'island-block';
-            
-            if (value > 50) {
-                className = `${className} active`;
-            }
-            
-            if (value > 75) {
-                className = `${className} warn`;
-            }
-            
-            if (value > 90) {
-                className = `${className} alert`;
-            }
-            
-            return className;
-        }
-        
-        function weatherClassName() {
-            let className = 'inner-block icon-block large';
-            
-            if (output.weather.celsiusTemp > 30) {
-                className = `${className} warn`;
-            }
-            
-            return className;
-        }
-        
-        function windSpeedClassName() {
-            let className = 'inner-block icon-block';
-            
-            if (output.weather.windSpeed > 40) {
-                className = `${className} warn`;
-            }
-        
-            return className;
-        }
-        
         function weatherStatus() {
             switch (output.weather.status) {
               case ('clear_day'):         return 'Sunny';
@@ -203,11 +164,11 @@
                     </div>
                     <br/>
                     <br/>
-                    <div className={weatherClassName()}>
+                    <div className={`inner-block icon-block large ${output.weather.celsiusTemp > 30 && 'warn'}`}>
                       {getWeatherIcon()}
                       <span>{Math.round(output.weather.celsiusTemp * 100) / 100}&nbsp;°C</span>
                     </div>
-                    <div className={windSpeedClassName()}>
+                    <div className={`inner-block icon-block ${output.weather.windSpeed > 40 && 'warn'}`}>
                       <i className="nf nf-md-windsock"></i><span>{Math.round(output.weather.windSpeed * 100) / 100}&nbsp;km/h</span>
                     </div>
                 </div>
@@ -223,6 +184,19 @@
             </div>
             
             <div className="center">
+				{false && output.komorebi && (
+                <div className="island-block">
+                  {output.komorebi.currentWorkspaces.map(workspace => (
+                    <div
+                      className={`inner-block button-block ${workspace.name === output.komorebi.focusedWorkspace.name && 'active'}`}
+                      key={workspace.name}
+                    >
+                      <span>{workspace.name || String.fromCharCode(160)}</span>
+                    </div>
+                  ))}
+                </div>
+                )}
+			
                 {output.komorebi && (
                 <div className="island-block">
                   {output.komorebi.currentWorkspaces.map(workspace => (
@@ -240,7 +214,7 @@
             <div className="right">
                 {output.network && (
                 <div className="island-block flipper">
-                  <div className="inner-block icon-block">
+                  <div className="inner-block icon-block" title={`Strength: ${output.network.defaultGateway?.signalStrength || "0"} %`}>
                     {getNetworkIcon()}
                     {output.network.defaultGateway?.ssid}
                   </div>
@@ -269,7 +243,7 @@
                   </div>
                 </div>
 
-                <div className={cpuClassName()}>
+                <div className={`island-block ${output.cpu.usage > 50 && 'active'} ${output.cpu.usage > 75 && 'warn'} ${output.cpu.usage > 90 && 'alert'}`}>
                   <div className="inner-block icon-block">
                     <i className="nf nf-oct-cpu"></i>
                     <div className="flipper">
