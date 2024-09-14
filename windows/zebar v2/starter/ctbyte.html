@@ -220,10 +220,10 @@
                   </div>
                   <br/>
                   <br/>
-                  <div className="inner-block icon-block large pull-up {{network.traffic.received > 2000000 && 'active'}}">
+                  <div className={`inner-block icon-block large pull-up ${output.network.traffic.received > 2000000 && 'active'}`}>
                       <i className="nf nf-oct-triangle_down"></i><span>{prettyBytes(output.network.traffic.received)}/s</span>
                   </div>
-                  <div className="inner-block icon-block large pull-up {{network.traffic.transmitted > 1000000 && 'active'}}">
+                  <div className={`inner-block icon-block large pull-up ${output.network.traffic.transmitted > 1000000 && 'active'}`}>
                       <i className="nf nf-oct-triangle_up"></i><span>{prettyBytes(output.network.traffic.transmitted)}/s</span>
                   </div>
                 </div>
