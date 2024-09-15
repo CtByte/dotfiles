@@ -177,11 +177,11 @@ body,
     }
 
     &.warn {
-        background: var(--warn-color);        
+        background: var(--warn-color);
     }
 
     &.alert {
-        background: var(--alert-color);        
+        background: var(--alert-color);
     }
     
     .inner-block {
@@ -193,6 +193,7 @@ body,
         &.active {
             background: var(--active-back-color);
             color: var(--active-font-color);
+			box-shadow: inset 0px 0px 4px var(--back-color);
         }
         
         &.warn {
@@ -254,22 +255,25 @@ body,
 .island-block .inner-block.button-block {
     border-radius: var(--inner-border-radius);
     margin-left: 0.75em;
-    
+
     &:first-child {
         margin-left: 0em;
     }
-    
+
     &:not(.active) {
         padding: 0em 0.5em;
         //outline: 1px outset var(--font-color);
         box-shadow: inset 0px 0px 4px var(--font-color);
     }
-    
-    &.active {
-        padding: 0em 1em;
+
+    &.active, &:hover {
         color: var(--active-font-color);
         background: var(--active-back-color);
         box-shadow: inset 0px 0px 4px var(--back-color);
+    }
+
+    &.active {
+        padding: 0em 1em;
         animation: bounce-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 }
@@ -291,7 +295,7 @@ body,
 .island-block.active .icon-block i, 
 .island-block .inner-block.icon-block.active i,
 .island-block .inner-block.icon-block.warn i,
-.island-block .inner-block.icon-block.alert i    {
+.island-block .inner-block.icon-block.alert i {
     animation: bounce 1.5s infinite;
 }
 
