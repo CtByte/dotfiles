@@ -184,7 +184,7 @@
             </div>
             
             <div className="center">
-				{false && output.komorebi && (
+                {false && output.komorebi && (
                 <div className="island-block">
                   {output.komorebi.currentWorkspaces.map(workspace => (
                     <div
@@ -196,7 +196,7 @@
                   ))}
                 </div>
                 )}
-			
+
                 {output.komorebi && (
                 <div className="island-block">
                   {output.komorebi.currentWorkspaces.map(workspace => (
@@ -230,8 +230,8 @@
                 )}
 
                 <div className="island-block">
-                  <div className="inner-block icon-block">
-                    <i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }} title={prettyBytes(output.memory.usedMemory)}></i>
+                  <div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
+                    <i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
                     <div className="flipper">
                         <span>{Math.round(output.memory.usage)} %</span>
                         <br/>
