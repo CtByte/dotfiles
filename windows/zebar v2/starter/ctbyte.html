@@ -152,35 +152,86 @@
               case ('thunder_night'):     return 'Thunder';
             }
         }
+        
+        function workspaceName(workspace) {
+			let window = null;
+			
+			if (workspace.monocleContainer !== null && workspace.monocleContainer.windows.length > 0) {
+				window = workspace.monocleContainer.windows[0];
+			} else if (workspace.tilingContainers.length > 0 && workspace.tilingContainers[0].windows.length > 0) {
+                window = workspace.tilingContainers[workspace.focusedContainerIndex].windows[0];			
+			}
+			
+			if (window) {
+				let exe = window.exe;
+                
+                if (exe) {
+                    exe = exe.toLowerCase().replace('.exe', '');
+                    switch (exe) {
+						case 'devenv':
+							return window.title.replace(' - Microsoft Visual Studio', '');
+                        default:
+                            return exe.charAt(0).toUpperCase() + exe.slice(1);
+                    }
+                }
+			}
+			
+            // workspace.name
+            return String.fromCharCode(160);
+        }
 
         return (
           <div className="app">
             <div className="left">
-              {output.weather && (
-                <div className="island-block flipper">
-                    <div className="inner-block icon-block" title={output.ip.approxCity}>
-                        <i className="nf nf-fa-location_dot"></i>
-                        <span>{weatherStatus()}</span>
-                    </div>
-                    <br/>
-                    <br/>
-                    <div className={`inner-block icon-block large ${output.weather.celsiusTemp > 30 && 'warn'}`}>
-                      {getWeatherIcon()}
-                      <span>{Math.round(output.weather.celsiusTemp * 100) / 100}&nbsp;°C</span>
-                    </div>
-                    <div className={`inner-block icon-block ${output.weather.windSpeed > 40 && 'warn'}`}>
-                      <i className="nf nf-md-windsock"></i><span>{Math.round(output.weather.windSpeed * 100) / 100}&nbsp;km/h</span>
-                    </div>
-                </div>
-                )}
-                
-                {output.komorebi && (
+                {false && output.komorebi && (
                 <div className="island-block">
                   <div className="inner-block focused-window">
                     <span>{output.komorebi.focusedWorkspace.tilingContainers[output.komorebi.focusedWorkspace.focusedContainerIndex]?.windows[0]?.title ?? "-"}</span>
                   </div>
                 </div>
                 )}
+				
+				{false && (
+                <div className="island-block">
+                  <div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
+                    <i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
+                    <div className="flipper">
+                        <span>{Math.round(output.memory.usage)} %</span>
+                        <br/>
+                        <br/>
+                        <div className="bar-block">
+                          <div style={{ width: `calc(${Math.round(output.memory.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
+                        </div>
+                    </div>
+                  </div>
+				  <div className="inner-block icon-block">
+                    <i className="nf nf-oct-cpu"></i>
+                    <div className="flipper">
+                        <span>{Math.round(output.cpu.usage)} %</span>
+                        <br/>
+                        <br/>
+                        <div className="bar-block">
+                          <div style={{ width: `calc(${Math.round(output.cpu.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+				)}
+				{false && (
+                <div className={`island-block ${output.cpu.usage > 50 && 'active'} ${output.cpu.usage > 75 && 'warn'} ${output.cpu.usage > 90 && 'alert'}`}>
+                  <div className="inner-block">
+                    <div className="flipper">
+						<i className="nf nf-oct-cpu"></i>
+                        <span>{Math.round(output.cpu.usage)} %</span>
+                        <br/>
+                        <br/>
+                        <div className="bar-block icon-block">
+                          <div style={{ width: `calc(${Math.round(output.cpu.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+				)}
             </div>
             
             <div className="center">
@@ -201,10 +252,11 @@
                 <div className="island-block">
                   {output.komorebi.currentWorkspaces.map(workspace => (
                     <div
-                      className={`inner-block button-block ${output.komorebi.currentWorkspaces.indexOf(workspace) === output.komorebi.currentWorkspaces.indexOf(output.komorebi.focusedWorkspace) && 'active'}`}
+                      className={`inner-block button-block ${output.komorebi.currentWorkspaces.indexOf(workspace) === output.komorebi.currentWorkspaces.indexOf(output.komorebi.focusedWorkspace) && 'active focused'}`}
+                      title={workspace.layout}
                       key={output.komorebi.currentWorkspaces.indexOf(workspace)}
                     >
-                      <span>{workspace.name || String.fromCharCode(160)}</span>
+                      <span>{workspaceName(workspace)}</span>
                     </div>
                   ))}
                 </div>
@@ -220,11 +272,11 @@
                   </div>
                   <br/>
                   <br/>
-                  <div className={`inner-block icon-block large pull-up ${output.network.traffic.received > 2000000 && 'active'}`}>
-                      <i className="nf nf-oct-triangle_down"></i><span>{prettyBytes(output.network.traffic.received)}/s</span>
+                  <div className={`inner-block icon-block large pull-up ${output.network.traffic.received.bytes > 2000000 && 'active'}`}>
+                      <i className="nf nf-oct-triangle_down"></i><span>{prettyBytes(output.network.traffic.received.bytes)}/s</span>
                   </div>
-                  <div className={`inner-block icon-block large pull-up ${output.network.traffic.transmitted > 1000000 && 'active'}`}>
-                      <i className="nf nf-oct-triangle_up"></i><span>{prettyBytes(output.network.traffic.transmitted)}/s</span>
+                  <div className={`inner-block icon-block large pull-up ${output.network.traffic.transmitted.bytes > 1000000 && 'active'}`}>
+                      <i className="nf nf-oct-triangle_up"></i><span>{prettyBytes(output.network.traffic.transmitted.bytes)}/s</span>
                   </div>
                 </div>
                 )}
@@ -256,6 +308,20 @@
                     </div>
                   </div>
                 </div>
+
+                {output.weather && (
+                <div className="island-block flipper">
+                    <div className={`inner-block icon-block ${output.weather.windSpeed > 40 && 'warn'}`} title={`${output.ip.approxCity}, ${weatherStatus()}`}>
+                        <i className="nf nf-md-windsock"></i><span>{Math.round(output.weather.windSpeed * 100) / 100}&nbsp;km/h</span>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div className={`inner-block icon-block large ${output.weather.celsiusTemp > 30 && 'warn'}`}>
+                      {getWeatherIcon()}
+                      <span>{Math.round(output.weather.celsiusTemp * 100) / 100}&nbsp;°C</span>
+                    </div>
+                </div>
+                )}
 
                 {false && output.battery && (
                 <div className="island-block">
