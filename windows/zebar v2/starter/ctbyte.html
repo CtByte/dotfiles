@@ -154,28 +154,28 @@
         }
         
         function workspaceName(workspace) {
-			let window = null;
-			
-			if (workspace.monocleContainer !== null && workspace.monocleContainer.windows.length > 0) {
-				window = workspace.monocleContainer.windows[0];
-			} else if (workspace.tilingContainers.length > 0 && workspace.tilingContainers[0].windows.length > 0) {
-                window = workspace.tilingContainers[workspace.focusedContainerIndex].windows[0];			
-			}
-			
-			if (window) {
-				let exe = window.exe;
+            let window = null;
+            
+            if (workspace.monocleContainer !== null && workspace.monocleContainer.windows.length > 0) {
+                window = workspace.monocleContainer.windows[0];
+            } else if (workspace.tilingContainers.length > 0 && workspace.tilingContainers[0].windows.length > 0) {
+                window = workspace.tilingContainers[workspace.focusedContainerIndex].windows[0];            
+            }
+            
+            if (window) {
+                let exe = window.exe;
                 
                 if (exe) {
                     exe = exe.toLowerCase().replace('.exe', '');
                     switch (exe) {
-						case 'devenv':
-							return window.title.replace(' - Microsoft Visual Studio', '');
+                        case 'devenv':
+                            return window.title.replace(' - Microsoft Visual Studio', '');
                         default:
                             return exe.charAt(0).toUpperCase() + exe.slice(1);
                     }
                 }
-			}
-			
+            }
+            
             // workspace.name
             return String.fromCharCode(160);
         }
@@ -190,8 +190,8 @@
                   </div>
                 </div>
                 )}
-				
-				{false && (
+                
+                {false && (
                 <div className="island-block">
                   <div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
                     <i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
@@ -204,7 +204,7 @@
                         </div>
                     </div>
                   </div>
-				  <div className="inner-block icon-block">
+                  <div className="inner-block icon-block">
                     <i className="nf nf-oct-cpu"></i>
                     <div className="flipper">
                         <span>{Math.round(output.cpu.usage)} %</span>
@@ -216,12 +216,12 @@
                     </div>
                   </div>
                 </div>
-				)}
-				{false && (
+                )}
+                {false && (
                 <div className={`island-block ${output.cpu.usage > 50 && 'active'} ${output.cpu.usage > 75 && 'warn'} ${output.cpu.usage > 90 && 'alert'}`}>
                   <div className="inner-block">
                     <div className="flipper">
-						<i className="nf nf-oct-cpu"></i>
+                        <i className="nf nf-oct-cpu"></i>
                         <span>{Math.round(output.cpu.usage)} %</span>
                         <br/>
                         <br/>
@@ -231,7 +231,7 @@
                     </div>
                   </div>
                 </div>
-				)}
+                )}
             </div>
             
             <div className="center">
