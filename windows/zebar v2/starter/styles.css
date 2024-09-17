@@ -156,8 +156,10 @@ body,
     font-weight: bold;
     color: var(--font-color);
     background: var(--back-color);
-    border: 2px solid var(--font-color);
-    box-shadow: 1px 3px 2px var(--back-color);
+    //border: 2px solid var(--font-color);
+    //box-shadow: 1px 3px 2px var(--back-color);
+    border: 2px solid transparent;
+    box-shadow: inset 0px 1px 5px var(--font-color);
     
     &.active {
         color: var(--active-font-color);
@@ -193,7 +195,11 @@ body,
         &.active {
             background: var(--active-back-color);
             color: var(--active-font-color);
-			box-shadow: inset 0px 0px 4px var(--back-color);
+            box-shadow: inset 0px 0px 4px var(--back-color);
+            
+            &.focused {
+                background: var(--font-color) !important;
+            }
         }
         
         &.warn {
@@ -233,7 +239,7 @@ body,
     
     .bar-block {
         border-radius: 0.5em;
-        width: 4em;
+        width: 3em;
         height: 0.75em;
         overflow: clip;
         transform: translateY(25%);
@@ -255,6 +261,7 @@ body,
 .island-block .inner-block.button-block {
     border-radius: var(--inner-border-radius);
     margin-left: 0.75em;
+    max-width: 10em;
 
     &:first-child {
         margin-left: 0em;
@@ -300,9 +307,12 @@ body,
 }
 
 .focused-window {
+    max-width: 20em;
+}
+
+.focused-window, .island-block .inner-block.button-block {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: 300px;
-    -webkit-mask-image: linear-gradient(135deg, #000 80%, transparent);
+    //-webkit-mask-image: linear-gradient(135deg, #000 80%, transparent);
 }
