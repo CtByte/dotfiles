@@ -85,7 +85,7 @@
         
         // Get icon to show for how much of the battery is charged.
         function getBatteryIcon() {
-		  if (output.battery.isCharging)
+          if (output.battery.isCharging)
             return <i className="nf nf-md-power_plug charging-icon"></i>;
           if (output.battery.chargePercent > 90)
             return <i className="nf nf-fa-battery_4"></i>;
@@ -185,7 +185,7 @@
         return (
           <div className="app">
             <div className="left">
-				{output.battery && output.battery.isCharging && (
+                {output.battery && output.battery.isCharging && (
                 <div className="island-block">
                   <div className="inner-block icon-block">                    
                     {getBatteryIcon()}
@@ -200,7 +200,7 @@
                   </div>
                 </div>
                 )}
-			
+            
                 {false && output.komorebi && (
                 <div className="island-block">
                   <div className="inner-block focused-window">
@@ -240,65 +240,65 @@
                 )}
 
                 {output.komorebi && (
-				<div className="island-blocks">
-					<div className="island-block">
-					  {output.komorebi.currentWorkspaces.map(workspace => (
-						<div
-						  className={`inner-block button-block ${output.komorebi.currentWorkspaces.indexOf(workspace) === output.komorebi.currentWorkspaces.indexOf(output.komorebi.focusedWorkspace) && 'active focused'}`}
-						  title={workspace.layout}
-						  key={output.komorebi.currentWorkspaces.indexOf(workspace)}
-						>
-						  <span>{workspaceName(workspace)}</span>
-						</div>
-					  ))}
-					</div>
-				</div>
+                <div className="island-blocks">
+                    <div className="island-block">
+                      {output.komorebi.currentWorkspaces.map(workspace => (
+                        <div
+                          className={`inner-block button-block ${output.komorebi.currentWorkspaces.indexOf(workspace) === output.komorebi.currentWorkspaces.indexOf(output.komorebi.focusedWorkspace) && 'active focused'}`}
+                          title={workspace.layout}
+                          key={output.komorebi.currentWorkspaces.indexOf(workspace)}
+                        >
+                          <span>{workspaceName(workspace)}</span>
+                        </div>
+                      ))}
+                    </div>
+                </div>
                 )}
             </div>
 
             <div className="right">
                 {output.network && (
-				<div className="island-blocks">
-					<div className="island-block flipper">
-					  <div className="inner-block icon-block" title={`Strength: ${output.network.defaultGateway?.signalStrength || "0"} %`}>
-						{getNetworkIcon()}
-						{output.network.defaultGateway?.ssid}
-					  </div>
-					  <br/>
-					  <br/>
-					  <div className={`inner-block icon-block large pull-up ${output.network.traffic.received.bytes > 2000000 && 'active'}`}>
-						  <i className="nf nf-oct-triangle_down"></i><span>{prettyBytes(output.network.traffic.received.bytes)}/s</span>
-					  </div>
-					  <div className={`inner-block icon-block large pull-up ${output.network.traffic.transmitted.bytes > 1000000 && 'active'}`}>
-						  <i className="nf nf-oct-triangle_up"></i><span>{prettyBytes(output.network.traffic.transmitted.bytes)}/s</span>
-					  </div>
-					</div>
-				</div>
+                <div className="island-blocks">
+                    <div className="island-block flipper">
+                      <div className="inner-block icon-block" title={`Strength: ${output.network.defaultGateway?.signalStrength || "0"} %`}>
+                        {getNetworkIcon()}
+                        {output.network.defaultGateway?.ssid}
+                      </div>
+                      <br/>
+                      <br/>
+                      <div className={`inner-block icon-block large pull-up ${output.network.traffic.received.bytes > 2000000 && 'active'}`}>
+                          <i className="nf nf-oct-triangle_down"></i><span>{prettyBytes(output.network.traffic.received.bytes)}/s</span>
+                      </div>
+                      <div className={`inner-block icon-block large pull-up ${output.network.traffic.transmitted.bytes > 1000000 && 'active'}`}>
+                          <i className="nf nf-oct-triangle_up"></i><span>{prettyBytes(output.network.traffic.transmitted.bytes)}/s</span>
+                      </div>
+                    </div>
+                </div>
                 )}
 
-				{false && (
-				<div className="island-block flipper">
-					<div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
-						
-					</div>
-					<br/>
-					<br/>
-					<div className="inner-block icon-block">
-						<i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
-						<div className="bar-block">
+                {false && (
+                <div className="island-block flipper">
+                    <div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
+                        
+                    </div>
+                    <br/>
+                    <br/>
+                    <div className="inner-block icon-block">
+                        <i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
+                        <div className="bar-block">
                           <div style={{ width: `calc(${Math.round(output.memory.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
                         </div>
-					</div>
-					<div className="inner-block icon-block">
-						<i className="nf nf-oct-cpu"></i>
-						<div className="bar-block">
+                    </div>
+                    <div className="inner-block icon-block">
+                        <i className="nf nf-oct-cpu"></i>
+                        <div className="bar-block">
                           <div style={{ width: `calc(${Math.round(output.cpu.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
                         </div>
-					</div>
+                    </div>
                 </div>
-				)}
+                )}
 
-				{false && (
+                {false && (
                 <div className="island-block">
                   <div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
                     <i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
@@ -312,9 +312,9 @@
                     </div>
                   </div>
                 </div>
-				)}
-				
-				{false && (
+                )}
+                
+                {false && (
                 <div className={`island-block ${output.cpu.usage > 50 && 'active'} ${output.cpu.usage > 75 && 'warn'} ${output.cpu.usage > 90 && 'alert'}`}>
                   <div className="inner-block icon-block">
                     <i className="nf nf-oct-cpu"></i>
@@ -328,54 +328,54 @@
                     </div>
                   </div>
                 </div>
-				)}
-				
-				{true && (
-				<div className="island-blocks">
-					<div className="island-block">
-					  <div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
-						<i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
-						<div className="flipper">
-							<span>{Math.round(output.memory.usage)} %</span>
-							<br/>
-							<br/>
-							<div className="bar-block">
-							  <div style={{ width: `calc(${Math.round(output.memory.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
-							</div>
-						</div>
-					  </div>
-					</div>
-					<div className={`island-block ${output.cpu.usage > 50 && 'active'} ${output.cpu.usage > 75 && 'warn'} ${output.cpu.usage > 90 && 'alert'}`}>
-					  <div className="inner-block icon-block">
-						<i className="nf nf-oct-cpu"></i>
-						<div className="flipper">
-							<span>{Math.round(output.cpu.usage)} %</span>
-							<br/>
-							<br/>
-							<div className="bar-block">
-							  <div style={{ width: `calc(${Math.round(output.cpu.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
-							</div>
-						</div>
-					  </div>
-					</div>
-				</div>
+                )}
+                
+                {true && (
+                <div className="island-blocks">
+                    <div className="island-block">
+                      <div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
+                        <i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
+                        <div className="flipper">
+                            <span>{Math.round(output.memory.usage)} %</span>
+                            <br/>
+                            <br/>
+                            <div className="bar-block">
+                              <div style={{ width: `calc(${Math.round(output.memory.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`island-block ${output.cpu.usage > 50 && 'active'} ${output.cpu.usage > 75 && 'warn'} ${output.cpu.usage > 90 && 'alert'}`}>
+                      <div className="inner-block icon-block">
+                        <i className="nf nf-oct-cpu"></i>
+                        <div className="flipper">
+                            <span>{Math.round(output.cpu.usage)} %</span>
+                            <br/>
+                            <br/>
+                            <div className="bar-block">
+                              <div style={{ width: `calc(${Math.round(output.cpu.usage)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
                 )}
 
                 {output.weather && (
                 <div className="island-blocks">
-					<div className="island-block flipper">
-						<div className={`inner-block icon-block ${output.weather.windSpeed > 40 && 'warn'}`} title={`${output.ip.approxCity}, ${weatherStatus()}`}>
-							<i className="nf nf-md-windsock"></i><span>{Math.round(output.weather.windSpeed * 100) / 100}&nbsp;km/h</span>
-						</div>
-						<br/>
-						<br/>
-						<div className={`inner-block icon-block large ${output.weather.celsiusTemp > 30 && 'warn'}`}>
-						  {getWeatherIcon()}
-						  <span>{Math.round(output.weather.celsiusTemp * 100) / 100}&nbsp;°C</span>
-						</div>
-					</div>
+                    <div className="island-block flipper">
+                        <div className={`inner-block icon-block ${output.weather.windSpeed > 40 && 'warn'}`} title={`${output.ip.approxCity}, ${weatherStatus()}`}>
+                            <i className="nf nf-md-windsock"></i><span>{Math.round(output.weather.windSpeed * 100) / 100}&nbsp;km/h</span>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div className={`inner-block icon-block large ${output.weather.celsiusTemp > 30 && 'warn'}`}>
+                          {getWeatherIcon()}
+                          <span>{Math.round(output.weather.celsiusTemp * 100) / 100}&nbsp;°C</span>
+                        </div>
+                    </div>
                 </div>
-				)}               
+                )}               
             </div>
           </div>
         );
