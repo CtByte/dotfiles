@@ -1,0 +1,88 @@
+{
+  // this is the bit that gets you autocompletions!
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.bar.json",
+  "monitor": {
+    // the bar only targets a single monitor
+    "index": 0,
+    // you can automatically apply a work area offset for the monitor when the bar is launched
+    "work_area_offset": {
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0
+    }
+  },
+  // run komorebi-bar --fonts to list fonts installed on your system
+  // remember to only use the family here, not the weight (bold, light etc)
+  "font_family": "JetBrains Mono",
+  // we have some pre-bundled themes!
+  "theme": {
+    "palette": "Catppuccin",
+    "name": "Mocha",
+	"accent": "Mauve"
+  },
+  // laid out left to right
+  "left_widgets": [
+    {
+      "Komorebi": {
+        "workspaces": {
+          "enable": true,
+          "hide_empty_workspaces": false
+        },
+        "layout": {
+          "enable": true
+        },
+        "focused_window": {
+          "enable": true,
+          "show_icon": true
+        }
+      }
+    }
+  ],
+  // laid out left to right
+  "right_widgets": [
+    {
+      "Media": {
+        "enable": true
+      }
+    },
+    {
+      "Storage": {
+        "enable": true
+      }
+    },
+    {
+      "Memory": {
+        "enable": true
+      }
+    },
+    {
+      "Network": {
+        "enable": true,
+		"data_refresh_interval": 2,
+        "show_total_data_transmitted": true,
+        "show_network_activity": true,
+		"network_activity_fill_characters": 10
+      }
+    },
+    {
+      "Date": {
+        "enable": true,
+        // you can also use a custom chrono format string here
+        "format": "DayDateMonthYear"
+      }
+    },
+    {
+      "Time": {
+        "enable": true,
+        // you can also use a custom chrono format string here
+        "format": "TwentyFourHour"
+      }
+    },
+    {
+      "Battery": {
+        "enable": true
+      }
+    }
+  ]
+}
