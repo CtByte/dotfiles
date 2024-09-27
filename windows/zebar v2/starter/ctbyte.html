@@ -138,6 +138,16 @@
             return String(`${value} ${unit}`).padStart(10, String.fromCharCode(160));
         }
         
+        function formatData(data, padding) {
+            if (data.iecUnit === 'B') {
+                return String(`0.0 KiB`).padStart(10, String.fromCharCode(160))
+            }
+            
+            data.iecValue = Math.round(data.iecValue * 10) / 10;
+            
+            return String(`${data.iecValue} ${data.iecUnit}`).padStart(padding, String.fromCharCode(160));
+        }
+        
         function weatherStatus() {
             switch (output.weather.status) {
               case ('clear_day'):         return 'Sunny';
@@ -168,13 +178,15 @@
                 let exe = window.exe;
                 
                 if (exe) {
-                    exe = exe.toLowerCase().replace('.exe', '');
-                    switch (exe) {
+                    let name = exe.toLowerCase().replace('.exe', '');
+                    switch (name) {
                         case 'devenv':
-                            return window.title.replace(' - Microsoft Visual Studio', '');
+                            name = window.title.replace(' - Microsoft Visual Studio', '');
+                            break;
                         default:
-                            return exe.charAt(0).toUpperCase() + exe.slice(1);
+                            break;
                     }
+                    return name.charAt(0).toUpperCase() + name.slice(1);
                 }
             }
             
@@ -196,7 +208,7 @@
                 )}
             </div>
             
-            <div className="center">
+            <div className="float-center">
                 {output.komorebi && (
                 <div className="island-blocks">
                     <div className="island-block">
@@ -215,7 +227,7 @@
             </div>
 
             <div className="right">
-                {output.network && (
+                {false && output.network && (
                 <div className="island-blocks">
                     <div className="island-block flipper">
                       <div className="inner-block icon-block" title={`Strength: ${output.network.defaultGateway?.signalStrength || "0"} %`}>
@@ -233,13 +245,56 @@
                     </div>
                 </div>
                 )}
+                
+                {true && output.network && (
+                <div className="island-blocks">
+                    <div className="island-block">
+                        <div className={`inner-block icon-block large pull-up ${output.network.traffic.received.bytes > 2000000 && 'active'}`}>
+                            <i className="nf nf-oct-triangle_down"></i>
+                            <div className="flipper">                             
+                                <span>{formatData(output.network.traffic.totalReceived, 12)}</span>
+                                <br/>
+                                <br/>
+                              <span>{formatData(output.network.traffic.received, 10)}/s</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="island-block">
+                        <div className={`inner-block icon-block large pull-up ${output.network.traffic.transmitted.bytes > 1000000 && 'active'}`}>
+                            <i className="nf nf-oct-triangle_down"></i>
+                            <div className="flipper">                             
+                                <span>{formatData(output.network.traffic.totalTransmitted, 12)}</span>
+                                <br/>
+                                <br/>
+                              <span>{formatData(output.network.traffic.transmitted, 10)}/s</span>
+                            </div>
+                        </div>
+                    </div>
+                    {output.network.defaultGateway && (
+                    <div className={`island-block`}>
+                      <div className="inner-block _icon-block" title={`${output.network.defaultGateway.ssid}\nStrength: ${Math.round(output.network.defaultGateway.signalStrength)} %`}>
+                        {getNetworkIcon()}
+                        {false && (<div className={`flipper ${output.network.defaultGateway.signalStrength < 50 && 'flipped'}`}>
+                            <span>{Math.round(output.network.defaultGateway.signalStrength)} %</span>
+                            <br/>
+                            <br/>
+                            <div className="bar-block">
+                              <div style={{ width: `calc(${Math.round(output.network.defaultGateway.signalStrength)}% - var(--bar-block-margin-offset-x2))` }}>&nbsp;</div>
+                            </div>
+                        </div>
+                        )}
+                      </div>
+                    </div>
+                    )}
+                </div>
+                )}
 
                 {true && (
                 <div className="island-blocks">
                     <div className={`island-block ${output.memory.usage > 50 && 'active'}`}>
                       <div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
                         <i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
-                        <div className={`flipper ${output.memory.usage > 30 && 'flipped'}`}>
+                        <div className={`flipper ${output.memory.usage < 30 && 'flipped'}`}>
                             <span>{Math.round(output.memory.usage)} %</span>
                             <br/>
                             <br/>
@@ -252,7 +307,7 @@
                     <div className={`island-block ${output.cpu.usage > 50 && 'active'} ${output.cpu.usage > 75 && 'warn'} ${output.cpu.usage > 90 && 'alert'}`}>
                       <div className="inner-block icon-block">
                         <i className="nf nf-oct-cpu"></i>
-                        <div className={`flipper ${output.cpu.usage > 10 && 'flipped'}`}>
+                        <div className={`flipper ${output.cpu.usage < 20 && 'flipped'}`}>
                             <span>{Math.round(output.cpu.usage)} %</span>
                             <br/>
                             <br/>
@@ -288,7 +343,7 @@
                         </div>
                         <br/>
                         <br/>
-                        <div className={`inner-block icon-block large ${output.weather.celsiusTemp > 30 && 'warn'}`}>
+                        <div className={`inner-block icon-block large pull-up ${output.weather.celsiusTemp > 30 && 'warn'}`}>
                           {getWeatherIcon()}
                           <span>{Math.round(output.weather.celsiusTemp)}&nbsp;°C</span>
                         </div>
