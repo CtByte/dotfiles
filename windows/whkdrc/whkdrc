@@ -20,61 +20,61 @@ alt + shift + o         : komorebic reload-configuration
 # alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
 
 # Focus windows
-alt + left              : komorebic focus left
-alt + down              : komorebic focus down
-alt + up                : komorebic focus up
-alt + right             : komorebic focus right
-alt + u                 : komorebic cycle-focus previous # oem_4 is [
-alt + o                 : komorebic cycle-focus next # oem_6 is ]
+alt + left                : komorebic focus left
+alt + down                : komorebic focus down
+alt + up                  : komorebic focus up
+alt + right               : komorebic focus right
+alt + z                   : komorebic cycle-workspace previous
+alt + x                   : komorebic cycle-workspace next
 
 # Move windows
-alt + control + left    : komorebic move left
-alt + control + down    : komorebic move down
-alt + control + up      : komorebic move up
-alt + control + right   : komorebic move right
-alt + control + p       : komorebic promote
+alt + control + left      : komorebic move left
+alt + control + down      : komorebic move down
+alt + control + up        : komorebic move up
+alt + control + right     : komorebic move right
+alt + control + p         : komorebic promote
+alt + control + z         : komorebic cycle-move-to-workspace previous
+alt + control + x         : komorebic cycle-move-to-workspace next
 
 # Stack windows
-alt + control + l       : komorebic stack left
-alt + control + k       : komorebic stack down
-alt + control + i       : komorebic stack up
-alt + control + j       : komorebic stack right
-alt + control + m       : komorebic unstack # oem_1 is ;
-alt + control + return  : komorebic stack-all
-alt + control + n       : komorebic unstack-all
-alt + control + u       : komorebic cycle-stack previous # oem_4 is [
-alt + control + o       : komorebic cycle-stack next # oem_6 is ]
-
-
+alt + control + l         : komorebic stack left
+alt + control + k         : komorebic stack down
+alt + control + i         : komorebic stack up
+alt + control + j         : komorebic stack right
+alt + control + m         : komorebic unstack
+alt + control + return    : komorebic stack-all
+alt + control + n         : komorebic unstack-all
+alt + control + u         : komorebic cycle-stack previous
+alt + control + o         : komorebic cycle-stack next
 
 # Resize
-alt + shift + l         : komorebic resize-axis horizontal increase
-alt + shift + j         : komorebic resize-axis horizontal decrease
-alt + shift + i         : komorebic resize-axis vertical increase
-alt + shift + k         : komorebic resize-axis vertical decrease
+alt + shift + l           : komorebic resize-axis horizontal increase
+alt + shift + j           : komorebic resize-axis horizontal decrease
+alt + shift + i           : komorebic resize-axis vertical increase
+alt + shift + k           : komorebic resize-axis vertical decrease
 
 # Manipulate windows
-alt + f                 : komorebic toggle-float
-alt + shift + f         : komorebic toggle-monocle
+alt + f                   : komorebic toggle-float
+alt + shift + f           : komorebic toggle-monocle
 
 # Window manager options
-alt + shift + r         : komorebic retile
-alt + p                 : komorebic toggle-pause
+alt + shift + r           : komorebic retile
+alt + p                   : komorebic toggle-pause
 
 # Layouts
-alt + x                 : komorebic flip-layout horizontal
-alt + y                 : komorebic flip-layout vertical
+#alt + x                   : komorebic flip-layout horizontal
+#alt + y                   : komorebic flip-layout vertical
 
 # Workspaces
-alt + shift + 1         : komorebic focus-workspace 0
-alt + shift + 2         : komorebic focus-workspace 1
-alt + shift + 3         : komorebic focus-workspace 2
-alt + shift + 4         : komorebic focus-workspace 3
-alt + shift + 5         : komorebic focus-workspace 4
+alt + shift + 1           : komorebic focus-workspace 0
+alt + shift + 2           : komorebic focus-workspace 1
+alt + shift + 3           : komorebic focus-workspace 2
+alt + shift + 4           : komorebic focus-workspace 3
+alt + shift + 5           : komorebic focus-workspace 4
 
 # Move windows across workspaces
-alt + control + 1       : komorebic move-to-workspace 0
-alt + control + 2       : komorebic move-to-workspace 1
-alt + control + 3       : komorebic move-to-workspace 2
-alt + control + 4       : komorebic move-to-workspace 3
-alt + control + 5       : komorebic move-to-workspace 4
+alt + control + 1         : komorebic move-to-workspace 0
+alt + control + 2         : komorebic move-to-workspace 1
+alt + control + 3         : komorebic move-to-workspace 2
+alt + control + 4         : komorebic move-to-workspace 3
+alt + control + 5         : komorebic move-to-workspace 4

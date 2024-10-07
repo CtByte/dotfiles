@@ -6,15 +6,16 @@
 
     <link rel="stylesheet" type="text/css" href="../normalize.css" />
     <link rel="stylesheet" type="text/css" href="./styles.css" />
+	<link rel="icon" href="data:;base64,=" />
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
     <script type="importmap">
       {
         "imports": {
-          "react": "https://esm.sh/react?dev",
-          "react-dom/client": "https://esm.sh/react-dom/client?dev",
-          "byte-size": "https://esm.sh/byte-size",
-          "zebar": "https://esm.sh/zebar"
+          "react": "https://esm.sh/react@18?dev",
+          "react-dom/client": "https://esm.sh/react-dom@18/client?dev",
+          "zebar": "https://esm.sh/zebar@2",
+		  "byte-size": "https://esm.sh/byte-size"
         }
       }
     </script>
@@ -25,12 +26,10 @@
     <script type="text/babel" data-type="module">
       import React, { useState, useEffect } from 'react';
       import { createRoot } from 'react-dom/client';
-      import byteSize from 'byte-size';
-      import { init } from 'zebar';
+      import * as zebar from 'zebar';
+	  import byteSize from 'byte-size';
 
-      const zebarCtx = await init();
-
-      const providers = await zebarCtx.createProviderGroup({
+      const providers = await zebar.createProviderGroup({
         network: { type: 'network', refreshInterval: 2000 },
         komorebi: { type: 'komorebi' },
         cpu: { type: 'cpu' },
@@ -82,11 +81,9 @@
               );
           }
         }
-        
+
         // Get icon to show for how much of the battery is charged.
         function getBatteryIcon() {
-          if (output.battery.isCharging)
-            return <i className="nf nf-md-power_plug charging-icon"></i>;
           if (output.battery.chargePercent > 90)
             return <i className="nf nf-fa-battery_4"></i>;
           if (output.battery.chargePercent > 70)
@@ -127,8 +124,8 @@
               return <i className="nf nf-weather-night_alt_lightning"></i>;
           }
         }
-        
-        function prettyBytes(bytes) {
+		
+		function prettyBytes(bytes) {
             const { value, unit } = byteSize(bytes, { units: 'iec', precision: 1 });
             
             if (unit === 'B') {
@@ -137,18 +134,8 @@
             
             return String(`${value} ${unit}`).padStart(10, String.fromCharCode(160));
         }
-        
-        function formatData(data, padding) {
-            if (data.iecUnit === 'B') {
-                return String(`0.0 KiB`).padStart(10, String.fromCharCode(160))
-            }
-            
-            data.iecValue = Math.round(data.iecValue * 10) / 10;
-            
-            return String(`${data.iecValue} ${data.iecUnit}`).padStart(padding, String.fromCharCode(160));
-        }
-        
-        function weatherStatus() {
+		
+		function weatherStatus() {
             switch (output.weather.status) {
               case ('clear_day'):         return 'Sunny';
               case ('clear_night'):       return 'Clear';
@@ -164,8 +151,8 @@
               case ('thunder_night'):     return 'Thunder';
             }
         }
-        
-        function workspaceName(workspace) {
+		
+		function workspaceName(workspace) {
             let window = null;
             
             if (workspace.monocleContainer !== null && workspace.monocleContainer.windows.length > 0) {
@@ -193,11 +180,21 @@
             // workspace.name
             return String.fromCharCode(160);
         }
+		
+		function formatData(data, padding) {
+            if (data.iecUnit === 'B') {
+                return String(`0.0 KiB`).padStart(10, String.fromCharCode(160))
+            }
+            
+            data.iecValue = Math.round(data.iecValue * 10) / 10;
+            
+            return String(`${data.iecValue} ${data.iecUnit}`).padStart(padding, String.fromCharCode(160));
+        }
 
         return (
           <div className="app">
             <div className="left">
-                {false && output.komorebi && (
+              {false && output.komorebi && (
                 <div className="island-blocks">
                     <div className="island-block">
                       <div className="inner-block focused-window">
@@ -207,46 +204,27 @@
                 </div>
                 )}
             </div>
-            
+
             <div className="float-center">
-                {output.komorebi && (
-                <div className="island-blocks">
-                    <div className="island-block">
-                      {output.komorebi.currentWorkspaces.map(workspace => (
-                        <div
-                          className={`inner-block button-block ${output.komorebi.currentWorkspaces.indexOf(workspace) === output.komorebi.currentWorkspaces.indexOf(output.komorebi.focusedWorkspace) && 'active focused'}`}
-                          title={workspace.layout}
-                          key={output.komorebi.currentWorkspaces.indexOf(workspace)}
-                        >
-                          <span>{workspaceName(workspace)}</span>
-                        </div>
-                      ))}
-                    </div>
-                </div>
-                )}
-            </div>
+				{output.komorebi && (
+					<div className="island-blocks">
+						<div className="island-block">
+						{output.komorebi.currentWorkspaces.map(workspace => (
+							<div
+							  className={`inner-block button-block ${output.komorebi.currentWorkspaces.indexOf(workspace) === output.komorebi.currentWorkspaces.indexOf(output.komorebi.focusedWorkspace) && 'active focused'}`}
+							  title={workspace.layout}
+							  key={workspace.name}
+							>
+								<span>{workspaceName(workspace)}</span>
+							</div>
+						))}
+						</div>
+					</div>
+				  )}
+			</div>			
 
             <div className="right">
-                {false && output.network && (
-                <div className="island-blocks">
-                    <div className="island-block flipper">
-                      <div className="inner-block icon-block" title={`Strength: ${output.network.defaultGateway?.signalStrength || "0"} %`}>
-                        {getNetworkIcon()}
-                        {output.network.defaultGateway?.ssid}
-                      </div>
-                      <br/>
-                      <br/>
-                      <div className={`inner-block icon-block large pull-up ${output.network.traffic.received.bytes > 2000000 && 'active'}`}>
-                          <i className="nf nf-oct-triangle_down"></i><span>{prettyBytes(output.network.traffic.received.bytes)}/s</span>
-                      </div>
-                      <div className={`inner-block icon-block large pull-up ${output.network.traffic.transmitted.bytes > 1000000 && 'active'}`}>
-                          <i className="nf nf-oct-triangle_up"></i><span>{prettyBytes(output.network.traffic.transmitted.bytes)}/s</span>
-                      </div>
-                    </div>
-                </div>
-                )}
-                
-                {true && output.network && (
+              {output.network && (
                 <div className="island-blocks">
                     <div className="island-block">
                         <div className={`inner-block icon-block large pull-up ${output.network.traffic.received.bytes > 2000000 && 'active'}`}>
@@ -289,9 +267,10 @@
                 </div>
                 )}
 
-                {true && (
+              {true && (
                 <div className="island-blocks">
-                    <div className={`island-block ${output.memory.usage > 50 && 'active'}`}>
+                    {output.memory && (
+					<div className={`island-block ${output.memory.usage > 50 && 'active'}`}>
                       <div className="inner-block icon-block" title={prettyBytes(output.memory.usedMemory)}>
                         <i className="nf nf-fa-ruler_horizontal" style={{ transform: 'rotate(180deg)' }}></i>
                         <div className={`flipper ${output.memory.usage < 30 && 'flipped'}`}>
@@ -304,6 +283,8 @@
                         </div>
                       </div>
                     </div>
+					)}
+					{output.cpu && (
                     <div className={`island-block ${output.cpu.usage > 50 && 'active'} ${output.cpu.usage > 75 && 'warn'} ${output.cpu.usage > 90 && 'alert'}`}>
                       <div className="inner-block icon-block">
                         <i className="nf nf-oct-cpu"></i>
@@ -317,6 +298,7 @@
                         </div>
                       </div>
                     </div>
+					)}
                     {output.battery && 100 > output.battery.chargePercent && (
                     <div className="island-block">
                       <div className="inner-block icon-block">                    
@@ -338,7 +320,7 @@
                 {output.weather && (
                 <div className="island-blocks">
                     <div className={`island-block flipper ${output.weather.windSpeed > 40 && 'flipped'}`}>
-                        <div className={`inner-block icon-block ${output.weather.windSpeed > 40 && 'warn'}`} title={`${output.ip.approxCity}, ${weatherStatus()}`}>
+                        <div className={`inner-block icon-block ${output.weather.windSpeed > 40 && 'warn'}`} title={`${output.ip?.approxCity}, ${weatherStatus()}`}>
                             <i className="nf nf-md-windsock"></i><span>{Math.round(output.weather.windSpeed)}&nbsp;km/h</span>
                         </div>
                         <br/>
@@ -349,7 +331,7 @@
                         </div>
                     </div>
                 </div>
-                )}               
+                )}
             </div>
           </div>
         );

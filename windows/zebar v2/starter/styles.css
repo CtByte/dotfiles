@@ -5,8 +5,8 @@
 @import 'https://www.nerdfonts.com/assets/css/webfont.css';
 
 :root {
-    --font-color: #8ba29dcc; // #c5a65ecc; // #121826cc;
-    --font-color-2: #8ba29d26; // #c5a65e26;
+    --font-color: #6d99d5cc; // #72b3bbcc; // #c5a65ecc; // #121826cc;
+    --font-color-2: #6d99d526; // #72b3bb26; // #c5a65e26;
     --back-color: #131510cc; // #1f1d19cc; // #dfe2f3cc;
     --active-font-color: #131510cc;
     --active-back-color: #ba9770cc; // #8ba29dcc;
@@ -83,6 +83,7 @@
         transform: scaleX(1);
     }
 }
+
 
 body {
     color: rgb(255 255 255 / 90%);
