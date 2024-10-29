@@ -19,6 +19,9 @@ alt + shift + o         : komorebic reload-configuration
 # alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
 # alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
 
+alt + return              : start wt
+alt + q                   : komorebic close
+
 # Focus windows
 alt + left                : komorebic focus left
 alt + down                : komorebic focus down
