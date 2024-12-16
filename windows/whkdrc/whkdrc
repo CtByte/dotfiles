@@ -40,15 +40,17 @@ alt + control + z         : komorebic cycle-move-to-workspace previous
 alt + control + x         : komorebic cycle-move-to-workspace next
 
 # Stack windows
-alt + control + l         : komorebic stack left
-alt + control + k         : komorebic stack down
-alt + control + i         : komorebic stack up
-alt + control + j         : komorebic stack right
+#alt + control + l         : komorebic stack left
+#alt + control + k         : komorebic stack down
+#alt + control + i         : komorebic stack up
+#alt + control + j         : komorebic stack right
 alt + control + m         : komorebic unstack
 alt + control + return    : komorebic stack-all
 alt + control + n         : komorebic unstack-all
 alt + control + u         : komorebic cycle-stack previous
 alt + control + o         : komorebic cycle-stack next
+alt + control + l         : komorebic cycle-stack-index next
+alt + control + j         : komorebic cycle-stack-index previous
 
 # Resize
 alt + shift + l           : komorebic resize-axis horizontal increase
