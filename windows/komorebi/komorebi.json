@@ -1,15 +1,16 @@
 {
-  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.22/schema.json",
-  "app_specific_configuration_path": "$Env:USERPROFILE/applications.yaml",
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.31/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "unmanaged_window_operation_behaviour": "Op",
   "cross_monitor_move_behaviour": "Insert",
   "window_container_behaviour": "Create",
   "mouse_follows_focus": true,
-  "default_workspace_padding": 10,
-  "default_container_padding": 10,
+  "default_workspace_padding": 5,
+  "default_container_padding": 5,
+  "border_implementation":"Komorebi",
   "border_padding": 5,
-  "border_width": 3,
+  "border_width": 5,
   "border_offset": -1,
   "border": true,
   "border_style": "Rounded",
@@ -19,87 +20,140 @@
     "monocle": "#dfe2f3"
   },
   "transparency": true,
-  "transparency_alpha": 220, 
+  "transparency_alpha": 245,
+  "resize_delta": 100,
   "stackbar": {
     "height": 35,
     "label": "Title",
-    "mode": "OnStack",
+    "mode": "Never",
     "tabs": {
       "width": 300,
       "focused_text": "#bfaa69",
       "unfocused_text": "#dfe2f3",
       "background": "#121826",
-	  "font_family": "JetBrains Mono",
-	  "font_size": 34
+      "font_family": "JetBrains Mono",
+      "font_size": 34
     }
-  }, 
+  },
   "display_index_preferences": {
     "0": "DEL4279-5&1047835a&1&UID4354",
     "1": "DEL4277-5&1047835a&1&UID4352"
   },
+  //"animation": {
+  //  "enabled": true,
+  //  "duration": 200, 
+  //  "style": "EaseInOutExpo",
+  //  "fps": 60
+  //},
   "animation": {
     "enabled": true,
-    "duration": 200,
-    "style": "EaseInOutExpo",
-    "fps": 60
+    "fps": 165,
+    "duration": {
+      "movement": 250,
+      "transparency": 150
+    },
+    "style": {
+      "movement": "EaseOutExpo",
+      "transparency": "Linear"
+    }
   },
-  "global_work_area_offset":
-  {
+  "global_work_area_offset": {
     "bottom": 0,
     "left": 0,
     "right": 0,
     "top": 0
   },
+  "bar_configurations": [
+    "$Env:USERPROFILE/komorebi.bar.json",
+    "$Env:USERPROFILE/komorebi.bar.2.json"
+  ],
+//  "theme": {
+//    "palette": "Base16",
+//    "name": "Ashes",
+//    "unfocused_border": "Base03",
+//    "bar_accent": "Base0D"
+//  },
   "monitors": [
     {
       "workspaces": [
-        { "name": "P1", "layout": "UltrawideVerticalStack" },
-        { "name": "P2", "layout": "UltrawideVerticalStack" },
-        { "name": "P3", "layout": "BSP" }
+        {
+          "name": "Personal",
+          "layout_rules": {
+            "0": "UltrawideVerticalStack",
+            "5": "Grid"
+          }
+        },
+        {
+          "name": "Work",
+          "layout_rules": {
+            "0": "UltrawideVerticalStack",
+            "5": "Grid"
+          }
+        },
+        {
+          "name": "Other",
+          "layout_rules": {
+            "0": "UltrawideVerticalStack",
+            "5": "Grid"
+          }
+        }
       ]
     },
     {
       "workspaces": [
-        { "name": "W1", "layout": "UltrawideVerticalStack" },
-        { "name": "W2", "layout": "BSP" },
-        { "name": "W3", "layout": "BSP" }
+        {
+          "name": "Code",
+          "layout": "UltrawideVerticalStack"
+        },
+        {
+          "name": "Code 2",
+          "layout": "BSP"
+        },
+        {
+          "name": "Chat",
+          "layout": "Columns"
+        }
       ]
     }
   ],
-  "float_rules": [
+  "transparency_ignore_rules": [
     {
-      "kind": "Exe",
-      "id": "vlc.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-	  "kind": "Exe",
-	  "id": "komorebi-bar.exe",
-	  "matching_strategy": "Equals"
-	},
-	{
-      "kind": "Exe",
-      "id": "zebar.exe",
-      "matching_strategy": "Equals"
-    },
+      "kind": "Title",
+      "id": "YouTube",
+      "matching_strategy": "Contains"
+    }
+  ],
+  "floating_applications": [
     {
       "kind": "Exe",
       "id": "TOTALCMD64.EXE",
       "matching_strategy": "Equals"
     },
     {
-      "kind": "Title",
-      "id": "WindowsFormsParkingWindow",
+      "kind": "Exe",
+      "id": "qbittorrent.exe",
       "matching_strategy": "Equals"
     },
     {
       "kind": "Exe",
       "id": "steam",
       "matching_strategy": "Contains"
+    }
+  ],
+  "ignore_rules": [
+//    {
+//      "kind": "Exe",
+//      "id": "vlc.exe",
+//      "matching_strategy": "Equals"
+//    },
+    {
+      "kind": "Exe",
+      "id": "komorebi-bar.exe",
+      "matching_strategy": "Equals"
     },
     {
       "kind": "Exe",
-      "id": "qbittorrent.exe",
+      "id": "zebar.exe",
       "matching_strategy": "Equals"
     },
     {
@@ -109,25 +163,25 @@
     },
     {
       "kind": "Exe",
-      "id": "Fiddler.exe",
+      "id": "catppuccin_demo.exe",
       "matching_strategy": "Equals"
     },
     {
-      "kind": "Class",
-      "id": "WindowsForms10.Window",
-      "matching_strategy": "StartsWith"
+      "kind": "Exe",
+      "id": "Fiddler.exe",
+      "matching_strategy": "Equals"
     },
-	[
-	  {
-	    "kind": "Exe",
-	    "id": "devenv.exe",
-		"matching_strategy": "Equals"
-	  },
-	  {
-	    "kind": "Title",
-	    "id": "Move files to a new location?",
-		"matching_strategy": "Equals"
-	  }
-	]
+    [
+      {
+        "kind": "Exe",
+        "id": "Ssms.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Class",
+        "id": "WindowsForms10.Window.8.app",
+        "matching_strategy": "StartsWith"
+      }
+    ]
   ]
 }
