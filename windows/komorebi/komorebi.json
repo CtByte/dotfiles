@@ -8,7 +8,7 @@
   "mouse_follows_focus": true,
   "default_workspace_padding": 5,
   "default_container_padding": 5,
-  "border_implementation":"Komorebi",
+  "border_implementation": "Komorebi",
   "border_padding": 5,
   "border_width": 5,
   "border_offset": -1,
@@ -67,12 +67,12 @@
     "$Env:USERPROFILE/komorebi.bar.json",
     "$Env:USERPROFILE/komorebi.bar.2.json"
   ],
-//  "theme": {
-//    "palette": "Base16",
-//    "name": "Ashes",
-//    "unfocused_border": "Base03",
-//    "bar_accent": "Base0D"
-//  },
+  //  "theme": {
+  //    "palette": "Base16",
+  //    "name": "Ashes",
+  //    "unfocused_border": "Base03",
+  //    "bar_accent": "Base0D"
+  //  },
   "monitors": [
     {
       "workspaces": [
@@ -141,11 +141,16 @@
     }
   ],
   "ignore_rules": [
-//    {
-//      "kind": "Exe",
-//      "id": "vlc.exe",
-//      "matching_strategy": "Equals"
-//    },
+    //    {
+    //      "kind": "Exe",
+    //      "id": "vlc.exe",
+    //      "matching_strategy": "Equals"
+    //    },
+    {
+      "kind": "Exe",
+      "id": "KeePass.exe",
+      "matching_strategy": "Equals"
+    },
     {
       "kind": "Exe",
       "id": "komorebi-bar.exe",
