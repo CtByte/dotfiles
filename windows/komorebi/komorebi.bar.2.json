@@ -15,12 +15,6 @@
   // run komorebi-bar --fonts to list fonts installed on your system
   // remember to only use the family here, not the weight (bold, light etc)
   "font_family": "JetBrains Mono",
-  // we have some pre-bundled themes!
-  "theme": {
-    "palette": "Base16",
-    "name": "Ashes",
-    "accent": "Base09"
-  },
   "frame": {
     "inner_margin": {
       "x": 10,
@@ -29,10 +23,9 @@
   },
   "max_label_width": 200.0,
   "transparency_alpha": 150,
-  //"widget_spacing": 10.0,
   "grouping": {
     "kind": "Widget",
-    "style": "DefaultWithShadowB4O1S3",
+    "style": "DefaultWithShadow",
     "transparency_alpha": 170,
     "rounding": 10
   },
@@ -51,38 +44,13 @@
         },
         "focused_window": {
           "enable": true,
-          "display": "IconAndText"
+          "display": "IconAndTextOnSelected"
         }
       }
     }
   ],
-  //  "center_widgets": [
-  //    {
-  //      "Date": {
-  //        "enable": true,
-  //        "format": "DayDateMonthYear",
-  //        "label_prefix": "Icon"
-  //      }
-  //    },
-  //    {
-  //      "Time": {
-  //        "enable": true,
-  //        "format": { "Custom": "%H:%M" },
-  //        "label_prefix": "Icon"
-  //      }
-  //    }
-  //  ],
   // laid out left to right
   "right_widgets": [
-    //{
-    //  "Network": {
-    //    "enable": true,
-    //    "data_refresh_interval": 2,
-    //    "show_network_activity": true,
-    //    "network_activity_fill_characters": 10,
-    //    "label_prefix": "Icon"
-    //  }
-    //}, 
     {
       "Cpu": {
         "enable": true,
@@ -102,20 +70,5 @@
         "enable": true
       }
     }
-    //	,
-    //    {
-    //      "Date": {
-    //        "enable": true,
-    //        "format": "DayDateMonthYear",
-    //        "label_prefix": "Icon"
-    //      }
-    //    },
-    //    {
-    //      "Time": {
-    //        "enable": true,
-    //        "format": "TwelveHour",
-    //        "label_prefix": "Icon"
-    //      }
-    //    }
   ]
 }
