@@ -16,26 +16,6 @@
   // remember to only use the family here, not the weight (bold, light etc)
   "font_family": "JetBrains Mono",
   // we have some pre-bundled themes!
-  //"theme": {
-  //  "palette": "Catppuccin",
-  //  "name": "Mocha",
-  //  "accent": "Mauve"
-  //},
-  //"theme": {
-  //  "palette": "Catppuccin",
-  //  "name": "Latte",
-  //  "accent": "Blue"
-  //},
-  //"theme": {
-  //  "palette": "Base16",
-  //  "name": "CatppuccinLatte",
-  //  "accent": "Base0D"
-  //},
-  "theme": {
-    "palette": "Base16",
-    "name": "Ashes",
-    "accent": "Base09"
-  },
   "frame": {
     "inner_margin": {
       "x": 10,
@@ -43,11 +23,11 @@
     }
   },
   "max_label_width": 200.0,
-  "transparency_alpha": 150,
+  "transparency_alpha": 0,
   //"widget_spacing": 5.0,
   "grouping": {
     "kind": "Widget",
-    "style": "DefaultWithShadowB4O1S3",
+    "style": "DefaultWithShadow",
     "transparency_alpha": 200,
     "rounding": 10
   },
@@ -73,7 +53,7 @@
         },
         "focused_window": {
           "enable": true,
-          "display": "IconAndText"
+          "display": "IconAndTextOnSelected"
         }
       }
     }
@@ -101,17 +81,12 @@
         "enable": true
       }
     },
-    //{
-    //  "Storage": {
-    //    "enable": true
-    //  }
-    //},
     {
       "Network": {
         "enable": true,
         "data_refresh_interval": 2,
         "show_default_interface": false,
-        "show_total_data_transmitted": true,
+        "show_total_data_transmitted": false,
         "show_network_activity": true,
         "network_activity_fill_characters": 10
       }
@@ -130,11 +105,5 @@
         "label_prefix": "Icon"
       }
     }
-    //,
-    //{
-    //  "Battery": {
-    //    "enable": true
-    //  }
-    //}
   ]
 }
