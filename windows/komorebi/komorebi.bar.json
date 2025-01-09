@@ -1,37 +1,29 @@
 {
-  // this is the bit that gets you autocompletions!
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.bar.json",
   "monitor": {
-    // the bar only targets a single monitor
     "index": 0,
-    // you can automatically apply a work area offset for the monitor when the bar is launched
     "work_area_offset": {
       "left": 0,
-      "top": 60,
+      "top": 50,
       "right": 0,
-      "bottom": 60
+      "bottom": 50
     }
   },
-  // run komorebi-bar --fonts to list fonts installed on your system
-  // remember to only use the family here, not the weight (bold, light etc)
   "font_family": "JetBrains Mono",
-  // we have some pre-bundled themes!
   "frame": {
     "inner_margin": {
       "x": 10,
       "y": 5
     }
   },
-  "max_label_width": 200.0,
+  "max_label_width": 250.0,
   "transparency_alpha": 0,
-  //"widget_spacing": 5.0,
   "grouping": {
     "kind": "Widget",
     "style": "DefaultWithShadow",
     "transparency_alpha": 200,
     "rounding": 10
   },
-  // laid out left to right
   "left_widgets": [
     {
       "Komorebi": {
@@ -74,7 +66,6 @@
       }
     }
   ],
-  // laid out left to right
   "right_widgets": [
     {
       "Media": {
