@@ -1,0 +1,118 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.bar.json",
+  "monitor": {
+    "index": 0
+    //,
+    //"work_area_offset": {
+    //  "left": 0,
+    //  "top": 60,
+    //  "right": 0,
+    //  "bottom": 60
+    //}
+  },
+  //"position": {
+  //  "start": {
+  //    "x": 0,
+  //    "y": 100
+  //  },
+  //  "end": {
+  //    "x": 3840,
+  //    "y": 60
+  //  }
+  //},
+  //"frame": {
+  //  "inner_margin": {
+  //    "x": 10,
+  //    "y": 5
+  //  }
+  //},
+  "height": 60,
+  "horizontal_margin": 0,
+  "vertical_margin": 0,
+  "horizontal_padding": 10,
+  "vertical_padding": 15,
+  //"font_size": 32.0,
+  "font_family": "JetBrains Mono",
+  //"icon_scale": 0.1,
+  "max_label_width": 200.0,
+  "transparency_alpha": 150,
+  //"widget_spacing": 30,
+  "grouping": {
+    "kind": "Widget",
+    "style": "DefaultWithShadowB4O0S3",
+    "rounding": 10
+  },
+  "left_widgets": [
+    {
+      "Komorebi": {
+        "workspaces": {
+          "enable": true,
+          "hide_empty_workspaces": false,
+          "display": "Icon"
+        },
+        "layout": {
+          "enable": true,
+          "display": "Icon",
+          "options": [
+            "BSP",
+            "UltrawideVerticalStack",
+            "Monocle",
+            "Floating",
+            "Paused"
+          ]
+        },
+        "focused_window": {
+          "enable": true,
+          "display": "IconAndText"
+        }
+      }
+    }
+  ],
+  "center_widgets": [
+    {
+      "Time": {
+        "enable": true,
+        "format": "TwentyFourHour",
+        "label_prefix": "Icon"
+      }
+    }
+  ],
+  "right_widgets": [
+    {
+      "Media": {
+        "enable": true
+      }
+    },
+    {
+      "Network": {
+        "enable": true,
+        //"label_prefix": "None",
+        "data_refresh_interval": 2,
+        "show_default_interface": false,
+        "show_total_data_transmitted": false,
+        "show_network_activity": true,
+        "network_activity_fill_characters": 10
+      }
+    },
+    {
+      "Cpu": {
+        "enable": true,
+        "data_refresh_interval": 5,
+        "label_prefix": "Icon"
+      }
+    },
+    {
+      "Memory": {
+        "enable": true,
+        "data_refresh_interval": 5,
+        "label_prefix": "Icon"
+      }
+    },
+    {
+      "Battery": {
+        "enable": true,
+        "hide_on_full_charge": false
+      }
+    }
+  ]
+}
