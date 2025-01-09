@@ -88,8 +88,8 @@
         "enable": true,
         //"label_prefix": "None",
         "data_refresh_interval": 2,
-        "show_default_interface": false,
-        "show_total_data_transmitted": false,
+        "show_default_interface": true,
+        "show_total_data_transmitted": true,
         "show_network_activity": true,
         "network_activity_fill_characters": 10
       }
