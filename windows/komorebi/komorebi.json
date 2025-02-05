@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.31/schema.json",
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.33/schema.json",
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "unmanaged_window_operation_behaviour": "Op",
@@ -8,7 +8,7 @@
   "mouse_follows_focus": true,
   "default_workspace_padding": 5,
   "default_container_padding": 5,
-  "border_implementation":"Komorebi",
+  "border_implementation": "Komorebi",
   "border_padding": 5,
   "border_width": 5,
   "border_offset": -1,
@@ -21,6 +21,7 @@
   },
   "transparency": true,
   "transparency_alpha": 245,
+  //"floating_window_aspect_ratio": [16, 9],
   "resize_delta": 100,
   "stackbar": {
     "height": 35,
@@ -39,6 +40,10 @@
     "0": "DEL4279-5&1047835a&1&UID4354",
     "1": "DEL4277-5&1047835a&1&UID4352"
   },
+  "bar_configurations": [
+    "$Env:USERPROFILE/komorebi.bar.json",
+    "$Env:USERPROFILE/komorebi.bar.2.json"
+  ],
   //"animation": {
   //  "enabled": true,
   //  "duration": 200,
@@ -63,10 +68,6 @@
     "right": 0,
     "top": 0
   },
-  "bar_configurations": [
-    "$Env:USERPROFILE/komorebi.bar.json",
-    "$Env:USERPROFILE/komorebi.bar.2.json"
-  ],
   "theme": {
     "palette": "Base16",
     "name": "Ashes",
@@ -84,24 +85,19 @@
       "workspaces": [
         {
           "name": "Personal",
-          "layout_rules": {
-            "0": "UltrawideVerticalStack",
-            "5": "Grid"
+          "layout": "UltrawideVerticalStack",
+          "window_container_behaviour_rules": {
+            "0": "Create",
+            "4": "Append"
           }
         },
         {
           "name": "Work",
-          "layout_rules": {
-            "0": "UltrawideVerticalStack",
-            "5": "Grid"
-          }
+          "layout": "UltrawideVerticalStack"
         },
         {
           "name": "Other",
-          "layout_rules": {
-            "0": "UltrawideVerticalStack",
-            "5": "Grid"
-          }
+          "layout": "BSP"
         }
       ]
     },
@@ -132,77 +128,20 @@
   "floating_applications": [
     {
       "kind": "Exe",
-      "id": "TOTALCMD64.EXE",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "qbittorrent.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
       "id": "steam",
       "matching_strategy": "Contains"
     }
   ],
   "ignore_rules": [
-//    {
-//      "kind": "Exe",
-//      "id": "vlc.exe",
-//      "matching_strategy": "Equals"
-//    },
-    {
-      "kind": "Exe",
-      "id": "KeePass.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "komorebi-bar.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "zebar.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "test-egui.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "catppuccin_demo.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "Fiddler.exe",
-      "matching_strategy": "Equals"
-    },
     [
       {
         "kind": "Exe",
-        "id": "Ssms.exe",
-        "matching_strategy": "Equals"
-      },
-      {
-        "kind": "Class",
-        "id": "WindowsForms10.Window.8.app",
-        "matching_strategy": "StartsWith"
-      }
-    ],
-    [
-      {
-        "kind": "Exe",
-        "id": "Lens.exe",
-        "matching_strategy": "Equals"
+        "id": "msedgewebview2.exe",
+        "matching_startegy": "Equals"
       },
       {
         "kind": "Title",
-        "id": "Loading",
+        "id": "Untitled",
         "matching_strategy": "Equals"
       }
     ]
