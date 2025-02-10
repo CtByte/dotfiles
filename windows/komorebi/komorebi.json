@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.33/schema.json",
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.32/schema.json",
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "unmanaged_window_operation_behaviour": "Op",
@@ -36,13 +36,20 @@
       "font_size": 34
     }
   },
+  //"monitor_usr_idx_map": {
+  //  0: 1,
+  //  1: 2,
+  //  2: 3
+  //},
   "display_index_preferences": {
     "0": "DEL4279-5&1047835a&1&UID4354",
-    "1": "DEL4277-5&1047835a&1&UID4352"
+    "1": "DEL4277-5&1047835a&1&UID4352",
+    "2": "AUOC199-4&3138360a&0&UID8388688"
   },
   "bar_configurations": [
     "$Env:USERPROFILE/komorebi.bar.json",
-    "$Env:USERPROFILE/komorebi.bar.2.json"
+    "$Env:USERPROFILE/komorebi.bar.2.json",
+    "$Env:USERPROFILE/komorebi.bar.3.json"
   ],
   //"animation": {
   //  "enabled": true,
@@ -133,6 +140,89 @@
     }
   ],
   "ignore_rules": [
+    //[
+    //  {
+    //    "kind": "Exe",
+    //    "id": "vlc.exe",
+    //    "matching_strategy": "Equals"
+    //  },
+    //  {
+    //    "kind": "Title",
+    //    "id": "Building font cache",
+    //    "matching_strategy": "Equals"
+    //  }
+    //],
+    {
+      "kind": "Exe",
+      "id": "KeePass.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "komorebi-bar.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "zebar.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "test-egui.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "catppuccin_demo.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "Fiddler.exe",
+      "matching_strategy": "Equals"
+    },
+	{
+      "kind": "Exe",
+      "id": "whkd.exe",
+      "matching_strategy": "Equals"
+    },
+    [
+      {
+        "kind": "Exe",
+        "id": "Ssms.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Class",
+        "id": "WindowsForms10.Window.8.app",
+        "matching_strategy": "StartsWith"
+      }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "ms-teams.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "SharePoint",
+        "matching_strategy": "Equals"
+      }
+    ],
+	[
+      {
+        "kind": "Exe",
+        "id": "ms-teams.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Class",
+        "id": "TeamsNrc",
+        "matching_strategy": "Equals"
+      }
+    ],
     [
       {
         "kind": "Exe",
