@@ -1,0 +1,37 @@
+PS D:\Workspaces\git\alex-ds13\komorebi> cargo run --bin komorebi-bar -- --config $Env:USERPROFILE/komorebi.bar.json
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.37s
+     Running `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.json`
+2025-02-10T21:32:46.911791Z  INFO komorebi_bar: found configuration file: C:\Users\[username]/komorebi.bar.json
+2025-02-10T21:32:46.917697Z  INFO komorebi_bar: watching configuration file for changes
+2025-02-10T21:32:47.095859Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:32:47.123542Z  INFO komorebi_bar::bar: work area offset applied to monitor: 0
+2025-02-10T21:32:47.123613Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:32:47.123678Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:32:47.149379Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:32:47.151446Z  INFO komorebi_bar: subscribed to komorebi notifications: "komorebi-bar-querists"
+2025-02-10T21:32:47.169565Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:32:47.197651Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:32:47.246295Z  INFO komorebi_bar::bar: updated bar position
+2025-02-10T21:34:19.426276Z  INFO komorebi_bar: disconnected from komorebi
+error: process didn't exit successfully: `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.json` (exit code: 0xc000013a, STATUS_CONTROL_C_EXIT)
+PS D:\Workspaces\git\alex-ds13\komorebi>
+
+
+
+PS D:\Workspaces\git\alex-ds13\komorebi> cargo run --bin komorebi-bar -- --config $Env:USERPROFILE/komorebi.bar.2.json
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.39s
+     Running `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.2.json`
+2025-02-10T21:32:52.243169Z  INFO komorebi_bar: found configuration file: C:\Users\[username]/komorebi.bar.2.json
+2025-02-10T21:32:52.254354Z  INFO komorebi_bar: watching configuration file for changes
+2025-02-10T21:32:52.444560Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:32:52.460552Z  INFO komorebi_bar::bar: work area offset applied to monitor: 1
+2025-02-10T21:32:52.460710Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:32:52.460917Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:32:52.474800Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:32:52.493202Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:32:52.506326Z  INFO komorebi_bar: subscribed to komorebi notifications: "komorebi-bar-brasiers"
+2025-02-10T21:32:52.510296Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:32:52.534880Z  INFO komorebi_bar::bar: updated bar position
+2025-02-10T21:34:19.426167Z  INFO komorebi_bar: disconnected from komorebi
+error: process didn't exit successfully: `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.2.json` (exit code: 0xc000013a, STATUS_CONTROL_C_EXIT)
+PS D:\Workspaces\git\alex-ds13\komorebi>
