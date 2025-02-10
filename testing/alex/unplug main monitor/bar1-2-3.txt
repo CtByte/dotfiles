@@ -1,0 +1,74 @@
+PS D:\Workspaces\git\alex-ds13\komorebi> cargo run --bin komorebi-bar -- --config $Env:USERPROFILE/komorebi.bar.json
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.39s
+     Running `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.json`
+2025-02-10T21:13:55.576031Z  INFO komorebi_bar: found configuration file: C:\Users\[username]/komorebi.bar.json
+2025-02-10T21:13:55.581626Z  INFO komorebi_bar: watching configuration file for changes
+2025-02-10T21:13:55.756676Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:13:55.787318Z  INFO komorebi_bar::bar: work area offset applied to monitor: 0
+2025-02-10T21:13:55.787452Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:13:55.787535Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:13:55.808958Z  INFO komorebi_bar: subscribed to komorebi notifications: "komorebi-bar-scups"
+2025-02-10T21:13:55.811381Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:13:55.827475Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:13:55.855362Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:13:55.892265Z  INFO komorebi_bar::bar: updated bar position
+2025-02-10T21:14:17.386365Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:14:17.428828Z  INFO komorebi_bar::bar: work area offset applied to monitor: 0
+2025-02-10T21:14:17.428979Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:14:33.048233Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:14:33.094596Z  INFO komorebi_bar::bar: work area offset applied to monitor: 0
+2025-02-10T21:14:33.094776Z  INFO komorebi_bar::bar: widget configuration options applied
+error: process didn't exit successfully: `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.json` (exit code: 0xc000013a, STATUS_CONTROL_C_EXIT)
+PS D:\Workspaces\git\alex-ds13\komorebi>
+
+
+
+PS D:\Workspaces\git\alex-ds13\komorebi> cargo run --bin komorebi-bar -- --config $Env:USERPROFILE/komorebi.bar.2.json
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.38s
+     Running `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.2.json`
+2025-02-10T21:13:59.127285Z  INFO komorebi_bar: found configuration file: C:\Users\[username]/komorebi.bar.2.json
+2025-02-10T21:13:59.139806Z  INFO komorebi_bar: watching configuration file for changes
+2025-02-10T21:13:59.320565Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:13:59.337447Z  INFO komorebi_bar::bar: work area offset applied to monitor: 1
+2025-02-10T21:13:59.337670Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:13:59.337934Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:13:59.352122Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:13:59.365899Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:13:59.378242Z  INFO komorebi_bar: subscribed to komorebi notifications: "komorebi-bar-idiomaticnesses"
+2025-02-10T21:13:59.381038Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:13:59.382450Z  INFO komorebi_bar::bar: updated bar position
+2025-02-10T21:14:15.754950Z  INFO komorebi_bar::bar: updated bar position
+2025-02-10T21:14:17.433384Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:14:17.456226Z  INFO komorebi_bar::bar: work area offset applied to monitor: 0
+2025-02-10T21:14:17.456404Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:14:33.049187Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:14:33.075149Z  INFO komorebi_bar::bar: work area offset applied to monitor: 1
+2025-02-10T21:14:33.075343Z  INFO komorebi_bar::bar: widget configuration options applied
+error: process didn't exit successfully: `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.2.json` (exit code: 0xc000013a, STATUS_CONTROL_C_EXIT)
+PS D:\Workspaces\git\alex-ds13\komorebi>
+
+
+
+PS D:\Workspaces\git\alex-ds13\komorebi> cargo run --bin komorebi-bar -- --config $Env:USERPROFILE/komorebi.bar.3.json
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.38s
+     Running `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.3.json`
+2025-02-10T21:14:02.871631Z  INFO komorebi_bar: found configuration file: C:\Users\[username]/komorebi.bar.3.json
+2025-02-10T21:14:02.884716Z  INFO komorebi_bar: watching configuration file for changes
+2025-02-10T21:14:03.083079Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:14:03.098769Z  INFO komorebi_bar::bar: work area offset applied to monitor: 2
+2025-02-10T21:14:03.100702Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:14:03.100757Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:14:03.114417Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:14:03.127598Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:14:03.140897Z  INFO komorebi_bar: subscribed to komorebi notifications: "komorebi-bar-crushed"
+2025-02-10T21:14:03.143012Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:14:03.148991Z  INFO komorebi_bar::bar: updated bar position
+2025-02-10T21:14:15.739334Z  INFO komorebi_bar::bar: updated bar position
+2025-02-10T21:14:17.380892Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:14:17.405265Z  INFO komorebi_bar::bar: work area offset applied to monitor: 1
+2025-02-10T21:14:17.405402Z  INFO komorebi_bar::bar: widget configuration options applied
+2025-02-10T21:14:33.123863Z  INFO komorebi_bar::bar: attempting to add custom font family: JetBrains Mono
+2025-02-10T21:14:33.146335Z  INFO komorebi_bar::bar: work area offset applied to monitor: 2
+2025-02-10T21:14:33.146454Z  INFO komorebi_bar::bar: widget configuration options applied
+error: process didn't exit successfully: `target\debug\komorebi-bar.exe --config C:\Users\[username]/komorebi.bar.3.json` (exit code: 0xc000013a, STATUS_CONTROL_C_EXIT)
+PS D:\Workspaces\git\alex-ds13\komorebi>

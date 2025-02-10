@@ -1,0 +1,154 @@
+PS D:\Workspaces\git\alex-ds13\komorebi> cargo run --bin komorebi -- --clean-state
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.38s
+     Running `target\debug\komorebi.exe --clean-state`
+2025-02-10T21:32:39.531351Z  INFO foreground_lock_timeout: komorebi::windows_api: current value of ForegroundLockTimeout is 0
+2025-02-10T21:32:39.534025Z  INFO komorebi: creating window manager from static configuration file: C:\Users\[username]\komorebi.json
+2025-02-10T21:32:39.535604Z  INFO komorebi::border_manager: purging known borders: []
+2025-02-10T21:32:39.536233Z  INFO komorebi::static_config: loading applications.json from: C:\Users\[username]\applications.json
+2025-02-10T21:32:39.539951Z  INFO init: komorebi::window_manager: initialising
+2025-02-10T21:32:39.767989Z  INFO init:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:32:39.768177Z  INFO init:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:32:39.791707Z  INFO init:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:32:39.791822Z  INFO init:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:32:39.791886Z  INFO init:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:32:39.791948Z  INFO init:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:32:39.792016Z  INFO init:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:32:39.792101Z  INFO init:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:32:39.794287Z  INFO komorebi::process_command: listening on komorebi.sock
+2025-02-10T21:32:39.794580Z  INFO komorebi::border_manager: listening
+2025-02-10T21:32:39.794586Z  INFO komorebi::workspace_reconciliator: listening
+2025-02-10T21:32:39.794619Z  INFO komorebi::process_event: listening
+2025-02-10T21:32:39.794651Z  INFO komorebi::stackbar_manager: listening
+2025-02-10T21:32:39.794775Z  INFO komorebi::transparency_manager: listening
+2025-02-10T21:32:39.801986Z  INFO komorebi::monitor_reconciliator: created hidden window to listen for monitor-related e
+ents
+2025-02-10T21:32:39.803255Z  INFO komorebi::monitor_reconciliator: listening
+2025-02-10T21:32:39.803548Z  INFO komorebi::reaper: watching
+2025-02-10T21:32:39.803703Z  INFO komorebi::focus_manager: listening
+2025-02-10T21:32:44.355347Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=527652}:update_focused_workspace{follow_focus=true trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:32:44.357115Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=527652}:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:32:44.357429Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=527652}:focus_container{idx=2}: komorebi::workspace: focusing container
+2025-02-10T21:32:44.359800Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=527652}: komorebi::process_event: processed: (hwnd: 527652, title: bar1, exe: WindowsTerminal.exe, class: CASCADIA_HOSTING_WINDOW_CLASS)
+2025-02-10T21:32:46.914883Z  INFO process_command{State}: komorebi::process_command: replying to state
+2025-02-10T21:32:46.915538Z  INFO process_command{State}: komorebi::process_command: replying to state done
+2025-02-10T21:32:46.916190Z  INFO process_command{State}: komorebi::process_command: processed
+2025-02-10T21:32:47.125005Z  INFO process_command{MonitorWorkAreaOffset(0, Rect { left: 0, top: 60, right: 0, bottom: 60 })}: komorebi::process_command: processed
+2025-02-10T21:32:47.154314Z  INFO process_command{AddSubscriberSocketWithOptions("komorebi-bar-querists", SubscribeOptions { filter_state_changes: true })}: komorebi::process_command: processed
+2025-02-10T21:32:49.380928Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=459226}:update_focused_workspace{follow_focus=true trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:32:49.382816Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=459226}:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:32:49.383513Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=459226}:focus_container{idx=1}: komorebi::workspace: focusing container
+2025-02-10T21:32:49.385535Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=459226}: komorebi::process_event: processed: (hwnd: 459226, title: bar2, exe: WindowsTerminal.exe, class: CASCADIA_HOSTING_WINDOW_CLASS)
+2025-02-10T21:32:52.245424Z  INFO process_command{State}: komorebi::process_command: replying to state
+2025-02-10T21:32:52.245933Z  INFO process_command{State}: komorebi::process_command: replying to state done
+2025-02-10T21:32:52.247030Z  INFO process_command{State}: komorebi::process_command: processed
+2025-02-10T21:32:52.461973Z  INFO process_command{MonitorWorkAreaOffset(1, Rect { left: 0, top: 60, right: 0, bottom: 60 })}: komorebi::process_command: processed
+2025-02-10T21:32:52.507489Z  INFO process_command{AddSubscriberSocketWithOptions("komorebi-bar-brasiers", SubscribeOptions { filter_state_changes: true })}: komorebi::process_command: processed
+2025-02-10T21:33:09.555892Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=1706062}:focus_monitor{idx=1}: komorebi::window_manager: focusing monitor
+2025-02-10T21:33:09.556840Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=1706062}:update_focused_workspace{follow_focus=true trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:33:09.557961Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=1706062}:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:33:09.558383Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=1706062}:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:33:09.560758Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=1706062}: komorebi::process_event: processed: (hwnd: 1706062, title: komorebi - Microsoft Visual Studio, exe: devenv.exe, class: HwndWrapper[DefaultDomain;;bfbb6d90-3bad-40dc-b523-567fa9886d6b])
+2025-02-10T21:33:09.614510Z  INFO process_event{event="Minimize" winevent="SystemMinimizeStart" hwnd=1706062}:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:33:09.614760Z  INFO process_event{event="Minimize" winevent="SystemMinimizeStart" hwnd=1706062}:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:33:09.614936Z  INFO process_event{event="Minimize" winevent="SystemMinimizeStart" hwnd=1706062}:update_focused_workspace{follow_focus=false trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:33:09.624728Z  INFO process_event{event="Minimize" winevent="SystemMinimizeStart" hwnd=1706062}: komorebi::process_event: processed: (hwnd: 1706062, title: komorebi - Microsoft Visual Studio, exe: devenv.exe, class: HwndWrapper[DefaultDomain;;bfbb6d90-3bad-40dc-b523-567fa9886d6b])
+2025-02-10T21:33:17.755478Z  INFO process_event{event="Uncloak" winevent="ObjectUncloaked" hwnd=31197318}:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:33:17.757277Z  INFO process_event{event="Uncloak" winevent="ObjectUncloaked" hwnd=31197318}:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:33:17.760834Z  INFO process_event{event="Uncloak" winevent="ObjectUncloaked" hwnd=31197318}:update_focused_workspace{follow_focus=false trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:33:17.764930Z  INFO process_event{event="Uncloak" winevent="ObjectUncloaked" hwnd=31197318}: komorebi::process_event: processed: (hwnd: 31197318, title: Settings, exe: ApplicationFrameHost.exe, class: ApplicationFrameWindow)
+2025-02-10T21:33:30.903511Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=17042622}: komorebi::process_event: processed: (hwnd: 17042622)
+2025-02-10T21:33:31.086313Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=17108158}: komorebi::process_event: processed: (hwnd: 17108158)
+2025-02-10T21:33:31.183365Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=1641408}: komorebi::process_event: processed: (hwnd: 1641408)
+2025-02-10T21:33:34.252670Z  INFO process_event{event="Minimize" winevent="SystemMinimizeStart" hwnd=31197318}:focus_window{idx=0}:
+ komorebi::container: focusing window
+2025-02-10T21:33:34.252926Z  INFO process_event{event="Minimize" winevent="SystemMinimizeStart" hwnd=31197318}:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:33:34.253093Z  INFO process_event{event="Minimize" winevent="SystemMinimizeStart" hwnd=31197318}:update_focused_workspace{follow_focus=false trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:33:34.261373Z  INFO process_event{event="Minimize" winevent="SystemMinimizeStart" hwnd=31197318}: komorebi::process_event: processed: (hwnd: 31197318, title: Settings, exe: ApplicationFrameHost.exe, class: ApplicationFrameWindow)
+2025-02-10T21:33:34.304699Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=459226}:focus_monitor{idx=0}: komorebi::window_manager: focusing monitor
+2025-02-10T21:33:34.305633Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=459226}:update_focused_workspace{follow_focus=true trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:33:34.306532Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=459226}:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:33:34.306974Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=459226}:focus_container{idx=1}: komorebi::workspace: focusing container
+2025-02-10T21:33:34.308067Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=459226}: komorebi::process_event: processed: (hwnd: 459226, title: bar2, exe: WindowsTerminal.exe, class: CASCADIA_HOSTING_WINDOW_CLASS)
+2025-02-10T21:33:46.282510Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=593372}:update_focused_workspace{follow_focus=true trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:33:46.286145Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=593372}:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:33:46.286298Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=593372}:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:33:46.288464Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=593372}: komorebi::process_event: processed: (hwnd: 593372, title: komorebi, exe: WindowsTerminal.exe, class: CASCADIA_HOSTING_WINDOW_CLASS)
+2025-02-10T21:33:52.659292Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=31197318}:update_focused_workspace{follow_focus=true trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:33:52.668767Z ERROR komorebi::process_event:
+   0: there is no container/window
+
+Location:
+   komorebi\src\workspace.rs:566
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ BACKTRACE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                ⋮ 11 frames hidden ⋮
+  12: komorebi::workspace::impl$1::focus_container_by_window::closure$0<unknown>
+      at D:\Workspaces\git\alex-ds13\komorebi\komorebi\src\workspace.rs:566
+  13: enum2$<core::option::Option<usize> >::ok_or_else<usize,eyre::Report,komorebi::workspace::impl$1::focus_container_by_window::closure_env$0><unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\core\src\option.rs:1277
+  14: komorebi::workspace::Workspace::focus_container_by_window<unknown>
+      at D:\Workspaces\git\alex-ds13\komorebi\komorebi\src\workspace.rs:564
+  15: komorebi::window_manager::WindowManager::process_event<unknown>
+      at D:\Workspaces\git\alex-ds13\komorebi\komorebi\src\process_event.rs:283
+  16: komorebi::process_event::listen_for_events::closure$0<unknown>
+      at D:\Workspaces\git\alex-ds13\komorebi\komorebi\src\process_event.rs:51
+  17: core::hint::black_box<unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\core\src\hint.rs:389
+  18: std::sys::backtrace::__rust_begin_short_backtrace<komorebi::process_event::listen_for_events::closure_env$0,tuple$<> ><unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\std\src\sys\backtrace.rs:154
+  19: std::thread::impl$0::spawn_unchecked_::closure$1::closure$0<komorebi::process_event::listen_for_events::closure_env$0,tuple$<> ><unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\std\src\thread\mod.rs:561
+  20: core::panic::unwind_safe::impl$25::call_once<tuple$<>,std::thread::impl$0::spawn_unchecked_::closure$1::closure_env$0<komorebi::process_event::listen_for_events::closure_env$0,tuple$<> > ><unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\core\src\panic\unwind_safe.rs:272
+  21: std::panicking::try::do_call<core::panic::unwind_safe::AssertUnwindSafe<std::thread::impl$0::spawn_unchecked_::closure$1::closure_env$0<komorebi::process_event::listen_for_events::closure_env$0,tuple$<> > >,tuple$<> ><unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\std\src\panicking.rs:557
+  22: std::thread::impl$7::drop::closure$0<enum2$<core::result::Result<tuple$<>,eyre::Report> > ><unknown>
+      at <unknown source file>:<unknown line>
+  23: std::panicking::try<unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\std\src\panicking.rs:520
+  24: std::panic::catch_unwind<unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\std\src\panic.rs:358
+  25: std::thread::impl$0::spawn_unchecked_::closure$1<komorebi::process_event::listen_for_events::closure_env$0,tuple$<> ><unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\std\src\thread\mod.rs:559
+  26: core::ops::function::FnOnce::call_once<std::thread::impl$0::spawn_unchecked_::closure_env$1<komorebi::process_event::listen_for_events::closure_env$0,tuple$<> >,tuple$<> ><unknown>
+      at C:\Users\[username]\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\core\src\ops\function.rs:250
+  27: alloc::boxed::impl$28::call_once<unknown>
+      at /rustc/9fc6b43126469e3858e2fe86cafb4f0fd5068869\library/alloc\src\boxed.rs:1972
+  28: alloc::boxed::impl$28::call_once<unknown>
+      at /rustc/9fc6b43126469e3858e2fe86cafb4f0fd5068869\library/alloc\src\boxed.rs:1972
+  29: std::sys::pal::windows::thread::impl$0::new::thread_start<unknown>
+      at /rustc/9fc6b43126469e3858e2fe86cafb4f0fd5068869\library/std\src\sys\pal\windows\thread.rs:55
+  30: BaseThreadInitThunk<unknown>
+      at <unknown source file>:<unknown line>
+  31: RtlUserThreadStart<unknown>
+      at <unknown source file>:<unknown line>
+
+Run with COLORBT_SHOW_HIDDEN=1 environment variable to disable frame filtering.
+Run with RUST_BACKTRACE=full to include source snippets.
+Warning: SpanTrace capture is Unsupported.
+Ensure that you've setup a tracing-error ErrorLayer and the semver versions are compatible
+2025-02-10T21:33:52.675912Z  INFO process_event{event="Show" winevent="SystemMinimizeEnd" hwnd=31197318}:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:33:52.676154Z  INFO process_event{event="Show" winevent="SystemMinimizeEnd" hwnd=31197318}:focus_container{idx=1}: komorebi::workspace: focusing container
+2025-02-10T21:33:52.676441Z  INFO process_event{event="Show" winevent="SystemMinimizeEnd" hwnd=31197318}:update_focused_workspace{follow_focus=false trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:33:52.679243Z  INFO process_event{event="Show" winevent="SystemMinimizeEnd" hwnd=31197318}: komorebi::process_event: processed: (hwnd: 31197318, title: Settings, exe: ApplicationFrameHost.exe, class: ApplicationFrameWindow)
+2025-02-10T21:33:56.900120Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=197316}: komorebi::process_event: processed: (hwnd: 197316)
+2025-02-10T21:33:57.132402Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=262584}: komorebi::process_event: processed: (hwnd: 262584)
+2025-02-10T21:33:57.175763Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=393924}: komorebi::process_event: processed: (hwnd: 393924)
+2025-02-10T21:33:59.680104Z ERROR komorebi: panicked at C:\Users\[username]\.cargo\git\checkouts\win32-display-data-237dc9ef8228c078\75286e7\src\device.rs:145:22:
+attempt to subtract with overflow panic.file="C:\\Users\\[username]\\.cargo\\git\\checkouts\\win32-display-data-237dc9ef8228c078\\75286e7\\src\\device.rs" panic.line=145 panic.column=22
+2025-02-10T21:34:01.229198Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=328356}: komorebi::process_event: processed: (hwnd: 328356)
+2025-02-10T21:34:01.535745Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=1903552}: komorebi::process_event: processed: (hwnd: 1903552)
+2025-02-10T21:34:01.690091Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=524964}: komorebi::process_event: processed: (hwnd: 524964)
+2025-02-10T21:34:01.748449Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=2034624}: komorebi::process_event: processed: (hwnd: 2034624)
+2025-02-10T21:34:01.771180Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=656036}: komorebi::process_event: processed: (hwnd: 656036)
+2025-02-10T21:34:01.839399Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=2165696}: komorebi::process_event: processed: (hwnd: 2165696)
+2025-02-10T21:34:01.907253Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=852644}: komorebi::process_event: processed: (hwnd: 852644)
+2025-02-10T21:34:01.961720Z  INFO process_event{event="Destroy" winevent="ObjectDestroy" hwnd=2296768}: komorebi::process_event: processed: (hwnd: 2296768)
+2025-02-10T21:34:14.733057Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=593372}:update_focused_workspace{follow_focus=true trigger_focus=false}: komorebi::window_manager: updating
+2025-02-10T21:34:14.733789Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=593372}:focus_window{idx=0}: komorebi::container: focusing window
+2025-02-10T21:34:14.734225Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=593372}:focus_container{idx=0}: komorebi::workspace: focusing container
+2025-02-10T21:34:14.735314Z  INFO process_event{event="FocusChange" winevent="SystemForeground" hwnd=593372}: komorebi::process_event: processed: (hwnd: 593372, title: komorebi, exe: WindowsTerminal.exe, class: CASCADIA_HOSTING_WINDOW_CLASS)
+2025-02-10T21:34:19.408484Z ERROR komorebi: received ctrl-c, restoring all hidden windows and terminating process
+2025-02-10T21:34:19.409881Z  INFO restore_all_windows{ignore_restore=false}: komorebi::window_manager: restoring all hidden windows
+error: process didn't exit successfully: `target\debug\komorebi.exe --clean-state` (exit code: 130)
+PS D:\Workspaces\git\alex-ds13\komorebi>
