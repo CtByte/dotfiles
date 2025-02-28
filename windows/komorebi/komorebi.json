@@ -36,11 +36,6 @@
       "font_size": 34
     }
   },
-  //"monitor_usr_idx_map": {
-  //  0: 1,
-  //  1: 2,
-  //  2: 3
-  //},
   "display_index_preferences": {
     "0": "DEL4279-5&1047835a&1&UID4354",
     "1": "DEL4277-5&1047835a&1&UID4352",
@@ -75,11 +70,23 @@
     "right": 0,
     "top": 0
   },
+  //"theme": {
+  //  "palette": "Base16",
+  //  "name": "Ashes",
+  //  "unfocused_border": "Base03",
+  //  "bar_accent": "Base09"
+  //},
+  //"theme": {
+  //  "palette": "Base16",
+  //  "name": "AyuMirage",
+  //  "unfocused_border": "Base03",
+  //  "bar_accent": "Base0D"
+  //},
   "theme": {
-    "palette": "Base16",
-    "name": "Ashes",
-    "unfocused_border": "Base03",
-    "bar_accent": "Base09"
+    "palette": "Catppuccin",
+    "name": "Frappe",
+    "bar_accent": "Maroon",
+    "unfocused_border": "Crust"
   },
   //"theme": {
   //  "palette": "Base16",
@@ -135,105 +142,20 @@
   "floating_applications": [
     {
       "kind": "Exe",
+      "id": "TOTALCMD64.EXE",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "qbittorrent.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
       "id": "steam",
       "matching_strategy": "Contains"
     }
   ],
   "ignore_rules": [
-    //[
-    //  {
-    //    "kind": "Exe",
-    //    "id": "vlc.exe",
-    //    "matching_strategy": "Equals"
-    //  },
-    //  {
-    //    "kind": "Title",
-    //    "id": "Building font cache",
-    //    "matching_strategy": "Equals"
-    //  }
-    //],
-    {
-      "kind": "Exe",
-      "id": "KeePass.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "komorebi-bar.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "zebar.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "test-egui.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "catppuccin_demo.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "Fiddler.exe",
-      "matching_strategy": "Equals"
-    },
-	{
-      "kind": "Exe",
-      "id": "whkd.exe",
-      "matching_strategy": "Equals"
-    },
-    [
-      {
-        "kind": "Exe",
-        "id": "Ssms.exe",
-        "matching_strategy": "Equals"
-      },
-      {
-        "kind": "Class",
-        "id": "WindowsForms10.Window.8.app",
-        "matching_strategy": "StartsWith"
-      }
-    ],
-    [
-      {
-        "kind": "Exe",
-        "id": "ms-teams.exe",
-        "matching_strategy": "Equals"
-      },
-      {
-        "kind": "Title",
-        "id": "SharePoint",
-        "matching_strategy": "Equals"
-      }
-    ],
-	[
-      {
-        "kind": "Exe",
-        "id": "ms-teams.exe",
-        "matching_strategy": "Equals"
-      },
-      {
-        "kind": "Class",
-        "id": "TeamsNrc",
-        "matching_strategy": "Equals"
-      }
-    ],
-    [
-      {
-        "kind": "Exe",
-        "id": "msedgewebview2.exe",
-        "matching_startegy": "Equals"
-      },
-      {
-        "kind": "Title",
-        "id": "Untitled",
-        "matching_strategy": "Equals"
-      }
-    ]
   ]
 }
