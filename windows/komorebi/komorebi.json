@@ -140,21 +140,6 @@
     }
   ],
   "floating_applications": [
-    {
-      "kind": "Exe",
-      "id": "TOTALCMD64.EXE",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "qbittorrent.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "steam",
-      "matching_strategy": "Contains"
-    }
   ],
   "ignore_rules": [
   ]
