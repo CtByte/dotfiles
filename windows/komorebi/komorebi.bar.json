@@ -25,11 +25,16 @@
   "height": 60,
   "padding": { "vertical": 15 },
   "font_family": "JetBrains Mono",
+  //"theme": {
+  //  "palette": "Catppuccin",
+  //  "name": "Latte",
+  //  "accent": "Blue"
+  //},
   "max_label_width": 500.0,
-  "transparency_alpha": 70,
+  "transparency_alpha": 150,
   "grouping": {
     "kind": "Widget",
-    "style": "DefaultWithShadowB4O1S3",
+    "style": "DefaultWithShadow",
     "transparency_alpha": 200,
     "rounding": 10
   },
@@ -49,22 +54,32 @@
       }
     },
     {
+      "Battery": {
+        "enable": true,
+        "hide_on_full_charge": true
+      }
+    },
+    {
       "Komorebi": {
         "workspaces": {
           "enable": true,
           "hide_empty_workspaces": false,
-          "display": "Icon"
+          "display": "AllIcons"
         },
         "layout": {
           "enable": true,
-          "display": "Icon",
-          "options": [
-            "BSP",
-            "UltrawideVerticalStack",
-            "Monocle",
-            "Floating",
-            "Paused"
-          ]
+          "display": "Icon" //,
+          //"options": [
+          //  "BSP",
+          //  "UltrawideVerticalStack",
+          //  "Grid",
+          //  "Monocle",
+          //  "Floating",
+          //  "Paused"
+          //]
+        },
+        "workspace_layer": {
+          "enable": false
         },
         "focused_window": {
           "enable": false,
@@ -75,12 +90,6 @@
   ],
   "center_widgets": [
     {
-      "Battery": {
-        "enable": true,
-        "hide_on_full_charge": true
-      }
-    },
-    {
       "Komorebi": {
         "workspaces": {
           "enable": false,
@@ -94,6 +103,13 @@
         "focused_window": {
           "enable": true,
           "display": "IconAndTextOnSelected"
+        },
+        "configuration_switcher": {
+          "enable": false,
+          "configurations": {
+            "home": "C:/Users/Csaba/komorebi.json",
+            "work": "C:/Users/Csaba/komorebi.work.json"
+          }
         }
       }
     }
