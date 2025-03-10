@@ -19,6 +19,7 @@ alt + shift + o                 : komorebic reload-configuration
 #alt + f                           : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
 #alt + b                           : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
 
+alt + control + v                 : start "C:\Program Files\VideoLAN\VLC\vlc.exe"
 alt + return                      : start wt
 alt + q                           : komorebic close
 
@@ -61,6 +62,7 @@ alt + shift + f                   : komorebic toggle-monocle
 # Window manager options
 alt + shift + r                   : komorebic retile
 alt + p                           : komorebic toggle-pause
+alt + l                           : komorebic toggle-workspace-layer
 
 # Layouts
 #alt + x                           : komorebic flip-layout horizontal
@@ -94,3 +96,5 @@ alt + shift + control + 4         : komorebic send-to-workspace 3
 alt + shift + control + 5         : komorebic send-to-workspace 4
 alt + shift + control + z         : komorebic cycle-send-to-workspace previous
 alt + shift + control + x         : komorebic cycle-send-to-workspace next
+
+alt + shift + b                   : komorebic stop --bar; komorebic start --bar # komorebic kill --bar; komorebic start --bar
