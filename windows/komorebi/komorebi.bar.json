@@ -79,7 +79,9 @@
           //]
         },
         "workspace_layer": {
-          "enable": false
+          "enable": true,
+          "display": "Icon",
+          "show_when_tiling": false
         },
         "focused_window": {
           "enable": false,
@@ -105,14 +107,28 @@
           "display": "IconAndTextOnSelected"
         },
         "configuration_switcher": {
-          "enable": false,
+          "enable": true,
           "configurations": {
-            "home": "C:/Users/---/komorebi.json",
-            "work": "C:/Users/---/komorebi.work.json"
+            "home": "$HOME/komorebi.json",
+            "work": "$Env:USERPROFILE/komorebi.work.json"
           }
         }
       }
     }
+    //    {
+    //      "Date": {
+    //        "enable": true,
+    //        "format": "DayDateMonthYear",
+    //        "label_prefix": "Icon"
+    //      }
+    //    },
+    //    {
+    //      "Time": {
+    //        "enable": true,
+    //        "format": { "Custom": "%H:%M" },
+    //        "label_prefix": "Icon"
+    //      }
+    //    }
   ],
   "right_widgets": [
     {
@@ -134,7 +150,15 @@
       "Time": {
         "enable": true,
         "format": "BinaryCircle",
-        "label_prefix": "Icon"
+        "label_prefix": "Icon",
+        "changing_icon": true
+      }
+    },
+    {
+      "Time": {
+        "enable": false,
+        "format": { "Custom": "%T %Z (Jeezy)" },
+        "timezone": "US/Pacific"
       }
     }
   ]
