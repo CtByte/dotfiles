@@ -107,8 +107,8 @@
         "configuration_switcher": {
           "enable": false,
           "configurations": {
-            "home": "C:/Users/Csaba/komorebi.json",
-            "work": "C:/Users/Csaba/komorebi.work.json"
+            "home": "C:/Users/---/komorebi.json",
+            "work": "C:/Users/---/komorebi.work.json"
           }
         }
       }
