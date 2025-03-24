@@ -37,9 +37,9 @@
     }
   },
   "display_index_preferences": {
-    "0": "DEL4279-5&1047835a&1&UID4354",
-    "1": "DEL4277-5&1047835a&1&UID4352",
-    "2": "AUOC199-4&3138360a&0&UID8388688"
+    "0": "JZWDBH3", // "DEL4279-5&1047835a&1&UID4354",
+    "1": "9H579H3", // "DEL4277-5&1047835a&1&UID4352",
+    "2": "0" // "AUOC199-4&3138360a&0&UID8388688"
   },
   "bar_configurations": [
     "$Env:USERPROFILE/komorebi.bar.json",
@@ -70,24 +70,25 @@
     "right": 0,
     "top": 0
   },
-  //"theme": {
-  //  "palette": "Base16",
-  //  "name": "Ashes",
-  //  "unfocused_border": "Base03",
-  //  "bar_accent": "Base09"
-  //},
+  "theme": {
+    "palette": "Base16",
+    "name": "Ashes",
+    "unfocused_border": "Base03",
+    "bar_accent": "Base09"
+	//"bar_accent": "Base0D"
+  },
   //"theme": {
   //  "palette": "Base16",
   //  "name": "AyuMirage",
   //  "unfocused_border": "Base03",
   //  "bar_accent": "Base0D"
   //},
-  "theme": {
-    "palette": "Catppuccin",
-    "name": "Frappe",
-    "bar_accent": "Maroon",
-    "unfocused_border": "Crust"
-  },
+  //"theme": {
+  //  "palette": "Catppuccin",
+  //  "name": "Frappe",
+  //  "bar_accent": "Maroon",
+  //  "unfocused_border": "Crust"
+  //},
   //"theme": {
   //  "palette": "Base16",
   //  "name": "CatppuccinLatte",
@@ -107,7 +108,14 @@
         },
         {
           "name": "Work",
-          "layout": "UltrawideVerticalStack"
+          "layout": "UltrawideVerticalStack",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "chrome.exe" //,
+              //"matching_strategy": "Equals"
+            }
+          ]
         },
         {
           "name": "Other",
@@ -130,6 +138,18 @@
           "layout": "Columns"
         }
       ]
+    },
+    {
+      "workspaces": [
+        {
+          "name": "I",
+          "layout": "UltrawideVerticalStack"
+        },        
+        {
+          "name": "II",
+          "layout": "Columns"
+        }
+      ]
     }
   ],
   "transparency_ignore_rules": [
@@ -140,7 +160,112 @@
     }
   ],
   "floating_applications": [
+    {
+      "kind": "Exe",
+      "id": "steam",
+      "matching_strategy": "Contains"
+    }
   ],
   "ignore_rules": [
+    //[
+    //  {
+    //    "kind": "Exe",
+    //    "id": "vlc.exe",
+    //    "matching_strategy": "Equals"
+    //  },
+    //  {
+    //    "kind": "Title",
+    //    "id": "Building font cache",
+    //    "matching_strategy": "Equals"
+    //  }
+    //],
+    {
+      "kind": "Exe",
+      "id": "KeePass.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "komorebi-bar.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "zebar.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "test-egui.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "catppuccin_demo.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "Fiddler.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "whkd.exe",
+      "matching_strategy": "Equals"
+    },
+    [
+      {
+        "kind": "Exe",
+        "id": "Ssms.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Class",
+        "id": "WindowsForms10.Window.8.app",
+        "matching_strategy": "StartsWith"
+      }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "ms-teams.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "SharePoint",
+        "matching_strategy": "Equals"
+      }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "ms-teams.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Class",
+        "id": "TeamsNrc",
+        "matching_strategy": "Equals"
+      }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "msedgewebview2.exe",
+        "matching_startegy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "Untitled",
+        "matching_strategy": "Equals"
+      }
+    ],
+    {
+      "kind": "Title",
+      "id": "about:blank?usercontextid=",
+      "matching_strategy": "StartsWith"
+    }
   ]
 }
