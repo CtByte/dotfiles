@@ -1,7 +1,8 @@
 {
-  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.32/schema.json",
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.35/schema.json",
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
+  "window_handling_behaviour": "Async",
   "unmanaged_window_operation_behaviour": "Op",
   "cross_monitor_move_behaviour": "Insert",
   "window_container_behaviour": "Create",
@@ -21,7 +22,6 @@
   },
   "transparency": true,
   "transparency_alpha": 245,
-  //"floating_window_aspect_ratio": [16, 9],
   "resize_delta": 100,
   "stackbar": {
     "height": 35,
@@ -46,15 +46,9 @@
     "$Env:USERPROFILE/komorebi.bar.2.json",
     "$Env:USERPROFILE/komorebi.bar.3.json"
   ],
-  //"animation": {
-  //  "enabled": true,
-  //  "duration": 200,
-  //  "style": "EaseInOutExpo",
-  //  "fps": 60
-  //},
   "animation": {
     "enabled": true,
-    "fps": 165,
+    "fps": 65,
     "duration": {
       "movement": 250,
       "transparency": 150
@@ -75,7 +69,7 @@
     "name": "Ashes",
     "unfocused_border": "Base03",
     "bar_accent": "Base09"
-	//"bar_accent": "Base0D"
+    //"bar_accent": "Base0D"
   },
   //"theme": {
   //  "palette": "Base16",
@@ -100,22 +94,23 @@
       "workspaces": [
         {
           "name": "Personal",
-          "layout": "UltrawideVerticalStack",
-          "window_container_behaviour_rules": {
-            "0": "Create",
-            "4": "Append"
-          }
+          "layout": "BSP"
         },
         {
           "name": "Work",
-          "layout": "UltrawideVerticalStack",
+          "layout": "BSP",
           "initial_workspace_rules": [
             {
               "kind": "Exe",
-              "id": "chrome.exe" //,
-              //"matching_strategy": "Equals"
+              "id": "chrome.exe",
+              "matching_strategy": "Equals"
             }
           ]
+          //,
+          //"window_container_behaviour_rules": {
+          //  "0": "Create",
+          //  "1": "Append"
+          //}
         },
         {
           "name": "Other",
@@ -144,7 +139,7 @@
         {
           "name": "I",
           "layout": "UltrawideVerticalStack"
-        },        
+        },
         {
           "name": "II",
           "layout": "Columns"
@@ -162,36 +157,37 @@
   "floating_applications": [
     {
       "kind": "Exe",
+      "id": "qbittorrent.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
       "id": "steam",
       "matching_strategy": "Contains"
-    }
+    },
+    // "Realtek Audio Console
+    {
+      "kind": "Exe",
+      "id": "ApplicationFrameHost.exe",
+      "matching_strategy": "Equals"
+    },
+    [
+      {
+        "kind": "Exe",
+        "id": "Ssms.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Class",
+        "id": "HwndWrapper[DefaultDomain;;",
+        "matching_strategy": "StartsWith"
+      }
+    ]
   ],
   "ignore_rules": [
-    //[
-    //  {
-    //    "kind": "Exe",
-    //    "id": "vlc.exe",
-    //    "matching_strategy": "Equals"
-    //  },
-    //  {
-    //    "kind": "Title",
-    //    "id": "Building font cache",
-    //    "matching_strategy": "Equals"
-    //  }
-    //],
     {
       "kind": "Exe",
       "id": "KeePass.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "komorebi-bar.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "zebar.exe",
       "matching_strategy": "Equals"
     },
     {
@@ -209,23 +205,6 @@
       "id": "Fiddler.exe",
       "matching_strategy": "Equals"
     },
-    {
-      "kind": "Exe",
-      "id": "whkd.exe",
-      "matching_strategy": "Equals"
-    },
-    [
-      {
-        "kind": "Exe",
-        "id": "Ssms.exe",
-        "matching_strategy": "Equals"
-      },
-      {
-        "kind": "Class",
-        "id": "WindowsForms10.Window.8.app",
-        "matching_strategy": "StartsWith"
-      }
-    ],
     [
       {
         "kind": "Exe",
@@ -266,6 +245,18 @@
       "kind": "Title",
       "id": "about:blank?usercontextid=",
       "matching_strategy": "StartsWith"
-    }
+    },
+    [
+      {
+        "kind": "Exe",
+        "id": "ms-teams.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "Meeting compact view",
+        "matching_strategy": "StartsWith"
+      }
+    ]
   ]
 }
