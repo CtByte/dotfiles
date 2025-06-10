@@ -20,13 +20,13 @@
     "stack": "#ba9770",
     "monocle": "#dfe2f3"
   },
-  "transparency": true,
+  "transparency": false,
   "transparency_alpha": 245,
   "resize_delta": 100,
   "stackbar": {
+    "mode": "Never",
     "height": 35,
     "label": "Title",
-    "mode": "Never",
     "tabs": {
       "width": 300,
       "focused_text": "#bfaa69",
@@ -58,12 +58,12 @@
       "transparency": "Linear"
     }
   },
-  "global_work_area_offset": {
-    "bottom": 0,
-    "left": 0,
-    "right": 0,
-    "top": 0
-  },
+  //"global_work_area_offset": {
+  //  "bottom": 0,
+  //  "left": 0,
+  //  "right": 0,
+  //  "top": 0
+  //},
   "theme": {
     "palette": "Base16",
     "name": "Ashes",
