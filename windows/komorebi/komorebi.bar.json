@@ -10,6 +10,10 @@
   //  }
   //},
   //"position": {
+  //  "start": {
+  //    "x": 0,
+  //    "y": 1900
+  //  },
   //  "end": {
   //    "x": 3840,
   //    "y": 60
@@ -21,6 +25,68 @@
   //    "y": 5
   //  }
   //},
+  "mouse": {
+    // The variable will be resolved
+    //"on_primary_double_click": "komorebic replace-configuration $Env:USERPROFILE/komorebi.json",
+    
+    // This is the same as below but it feels slower
+    // "on_primary_double_click": "komorebic toggle-pause",
+    "on_primary_double_click": {
+      "focus_monitor_at_cursor": false,
+      "ignore_mouse_follows_focus": false,
+      "message": {
+        "type": "TogglePause"
+      }
+    },
+    "on_secondary_click": {
+      "message": {
+        "type": "NewWorkspace"
+      }
+    },
+    "on_middle_click": {
+      "message": {
+        "type": "CloseWorkspace"
+      }
+    },
+    "on_extra2_click": {
+      "message": {
+        "type": "CycleStack",
+        "content": "Next"
+      }
+    },
+    "on_extra1_click": {
+      "message": {
+        "type": "CycleStack",
+        "content": "Previous"
+      }
+    },
+    "vertical_scroll_threshold": 100,
+    "on_scroll_up": {
+      "message": {
+        "type": "CycleFocusWorkspace",
+        "content": "Previous"
+      }
+    },
+    "on_scroll_down": {
+      "message": {
+        "type": "CycleFocusWorkspace",
+        "content": "Next"
+      }
+    },
+    "horizontal_scroll_threshold": 100,
+    "on_scroll_left": {
+      "message": {
+        "type": "CycleStackIndex",
+        "content": "Previous"
+      }
+    },
+    "on_scroll_right": {
+      "message": {
+        "type": "CycleStackIndex",
+        "content": "Next"
+      }
+    }
+  },
   "monitor": 0,
   "height": 60,
   "padding": { "vertical": 15 },
@@ -30,6 +96,13 @@
   //  "name": "Latte",
   //  "accent": "Blue"
   //},
+  "theme": {
+    "palette": "Base16",
+    "name": "Ashes",
+    "accent": "Base09",
+    "auto_select_fill": "Base09",
+    "auto_select_text": "Base02"
+  },
   "max_label_width": 500.0,
   "transparency_alpha": 150,
   "grouping": {
@@ -43,20 +116,30 @@
       "Cpu": {
         "enable": true,
         "data_refresh_interval": 5,
-        "label_prefix": "Icon"
+        "label_prefix": "Icon",
+        "auto_select_over": 10
       }
     },
     {
       "Memory": {
         "enable": true,
         "data_refresh_interval": 5,
-        "label_prefix": "Icon"
+        "label_prefix": "Icon",
+        "auto_select_over": 45
       }
     },
     {
       "Battery": {
         "enable": true,
-        "hide_on_full_charge": true
+        "hide_on_full_charge": true,
+        "auto_select_under": 15
+      }
+    },
+    {
+      "Storage": {
+        "enable": true,
+        "auto_select_over": 95,
+        "auto_hide_under": 94
       }
     },
     {
@@ -86,6 +169,11 @@
         "focused_window": {
           "enable": false,
           "display": "IconAndTextOnSelected"
+        },
+        "locked_container": {
+          "enable": true,
+          "display": "Icon",
+          "show_when_unlocked": false
         }
       }
     }
@@ -107,7 +195,7 @@
           "display": "IconAndTextOnSelected"
         },
         "configuration_switcher": {
-          "enable": true,
+          "enable": false,
           "configurations": {
             "home": "$HOME/komorebi.json",
             "work": "$Env:USERPROFILE/komorebi.work.json"
@@ -115,20 +203,6 @@
         }
       }
     }
-    //    {
-    //      "Date": {
-    //        "enable": true,
-    //        "format": "DayDateMonthYear",
-    //        "label_prefix": "Icon"
-    //      }
-    //    },
-    //    {
-    //      "Time": {
-    //        "enable": true,
-    //        "format": { "Custom": "%H:%M" },
-    //        "label_prefix": "Icon"
-    //      }
-    //    }
   ],
   "right_widgets": [
     {
@@ -141,9 +215,13 @@
         "enable": true,
         "data_refresh_interval": 2,
         "show_default_interface": false,
-        "show_total_data_transmitted": false,
-        "show_network_activity": true,
-        "network_activity_fill_characters": 10
+        "show_total_activity": false,
+        "show_activity": true,
+        "activity_left_padding": 10,
+        "auto_select": {
+          "received_over": 2097152, // 2MiB
+          "transmitted_over": 1048576 // 1MiB
+        }
       }
     },
     {
