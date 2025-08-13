@@ -44,10 +44,12 @@ alt + control + p                 : komorebic promote
 alt + control + m                 : komorebic unstack
 alt + control + return            : komorebic stack-all
 alt + control + n                 : komorebic unstack-all
-alt + control + u                 : komorebic cycle-stack previous
-alt + control + o                 : komorebic cycle-stack next
-alt + control + l                 : komorebic cycle-stack-index next
+#alt + control + u                 : komorebic cycle-stack previous
+#alt + control + o                 : komorebic cycle-stack next
+alt + shift + z                   : komorebic cycle-stack previous
+alt + shift + x                   : komorebic cycle-stack next
 alt + control + j                 : komorebic cycle-stack-index previous
+alt + control + l                 : komorebic cycle-stack-index next
 
 # Resize
 alt + shift + l                   : komorebic resize-axis horizontal increase
@@ -63,6 +65,7 @@ alt + shift + f                   : komorebic toggle-monocle
 alt + shift + r                   : komorebic retile
 alt + p                           : komorebic toggle-pause
 alt + l                           : komorebic toggle-workspace-layer
+alt + k                           : komorebic toggle-lock
 
 # Layouts
 #alt + x                           : komorebic flip-layout horizontal
@@ -76,8 +79,8 @@ alt + shift + 4                   : komorebic focus-workspace 3
 alt + shift + 5                   : komorebic focus-workspace 4
 alt + z                           : komorebic cycle-workspace previous
 alt + x                           : komorebic cycle-workspace next
-alt + shift + z                   : komorebic cycle-monitor previous
-alt + shift + x                   : komorebic cycle-monitor next
+#alt + shift + z                   : komorebic cycle-monitor previous
+#alt + shift + x                   : komorebic cycle-monitor next
 
 # Move windows across workspaces
 alt + control + 1                 : komorebic move-to-workspace 0
