@@ -15,37 +15,17 @@
   "border_offset": -1,
   "border": true,
   "border_style": "Rounded",
-  "border_colours": {
-    "single": "#ba9770",
-    "stack": "#ba9770",
-    "monocle": "#dfe2f3"
-  },
+  //"border_colours": {
+  //  "single": "#ba9770",
+  //  "stack": "#ba9770",
+  //  "monocle": "#dfe2f3"
+  //},
   "transparency": false,
-  "transparency_alpha": 245,
+  "transparency_alpha": 205,
   "resize_delta": 100,
   "stackbar": {
-    "mode": "Never",
-    "height": 35,
-    "label": "Title",
-    "tabs": {
-      "width": 300,
-      "focused_text": "#bfaa69",
-      "unfocused_text": "#dfe2f3",
-      "background": "#121826",
-      "font_family": "JetBrains Mono",
-      "font_size": 34
-    }
+    "mode": "Never"
   },
-  "display_index_preferences": {
-    "0": "JZWDBH3", // "DEL4279-5&1047835a&1&UID4354",
-    "1": "9H579H3", // "DEL4277-5&1047835a&1&UID4352",
-    "2": "0" // "AUOC199-4&3138360a&0&UID8388688"
-  },
-  "bar_configurations": [
-    "$Env:USERPROFILE/komorebi.bar.json",
-    "$Env:USERPROFILE/komorebi.bar.2.json",
-    "$Env:USERPROFILE/komorebi.bar.3.json"
-  ],
   "animation": {
     "enabled": true,
     "fps": 65,
@@ -67,8 +47,10 @@
   "theme": {
     "palette": "Base16",
     "name": "Ashes",
-    "unfocused_border": "Base03",
-    "bar_accent": "Base09"
+    "unfocused_border": "Base02",
+    "bar_accent": "Base09",
+    "single_border": "Base09",
+    "stack_border": "Base03"
     //"bar_accent": "Base0D"
   },
   //"theme": {
@@ -89,6 +71,16 @@
   //  "bar_accent": "Base0D",
   //  "unfocused_border": "Base03"
   //},
+  "display_index_preferences": {
+    "0": "JZWDBH3", // "DEL4279-5&1047835a&1&UID4354",
+    "1": "9H579H3", // "DEL4277-5&1047835a&1&UID4352",
+    "2": "0" // "AUOC199-4&3138360a&0&UID8388688"
+  },
+  "bar_configurations": [
+    "$Env:USERPROFILE/komorebi.bar.json",
+    "$Env:USERPROFILE/komorebi.bar.2.json",
+    "$Env:USERPROFILE/komorebi.bar.3.json"
+  ],
   "monitors": [
     {
       "workspaces": [
@@ -125,11 +117,11 @@
           "layout": "UltrawideVerticalStack"
         },
         {
-          "name": "Code 2",
+          "name": "Chat",
           "layout": "BSP"
         },
         {
-          "name": "Chat",
+          "name": "Status",
           "layout": "Columns"
         }
       ]
@@ -165,31 +157,52 @@
       "id": "steam",
       "matching_strategy": "Contains"
     },
+    {
+      "kind": "Exe",
+      "id": "Fiddler.exe",
+      "matching_strategy": "Equals"
+    },
+	{
+      "kind": "Exe",
+      "id": "KeePass.exe",
+      "matching_strategy": "Equals"
+    },
     // "Realtek Audio Console
     {
       "kind": "Exe",
       "id": "ApplicationFrameHost.exe",
       "matching_strategy": "Equals"
     },
-    [
-      {
-        "kind": "Exe",
-        "id": "Ssms.exe",
-        "matching_strategy": "Equals"
-      },
-      {
-        "kind": "Class",
-        "id": "HwndWrapper[DefaultDomain;;",
-        "matching_strategy": "StartsWith"
-      }
-    ]
-  ],
-  "ignore_rules": [
     {
       "kind": "Exe",
-      "id": "KeePass.exe",
+      "id": "ms-teams.exe",
       "matching_strategy": "Equals"
     },
+    {
+      "kind": "Exe",
+      "id": "SSMS.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "TOTALCMD64.EXE",
+      "matching_strategy": "Equals"
+    }
+    //,
+    //[
+    //  {
+    //    "kind": "Exe",
+    //    "id": "Ssms.exe",
+    //    "matching_strategy": "Equals"
+    //  },
+    //  {
+    //    "kind": "Class",
+    //    "id": "HwndWrapper[DefaultDomain;;",
+    //    "matching_strategy": "StartsWith"
+    //  }
+    //]
+  ],
+  "ignore_rules": [   
     {
       "kind": "Exe",
       "id": "test-egui.exe",
@@ -200,35 +213,30 @@
       "id": "catppuccin_demo.exe",
       "matching_strategy": "Equals"
     },
-    {
-      "kind": "Exe",
-      "id": "Fiddler.exe",
-      "matching_strategy": "Equals"
-    },
-    [
-      {
-        "kind": "Exe",
-        "id": "ms-teams.exe",
-        "matching_strategy": "Equals"
-      },
-      {
-        "kind": "Title",
-        "id": "SharePoint",
-        "matching_strategy": "Equals"
-      }
-    ],
-    [
-      {
-        "kind": "Exe",
-        "id": "ms-teams.exe",
-        "matching_strategy": "Equals"
-      },
-      {
-        "kind": "Class",
-        "id": "TeamsNrc",
-        "matching_strategy": "Equals"
-      }
-    ],
+    //[
+    //  {
+    //    "kind": "Exe",
+    //    "id": "ms-teams.exe",
+    //    "matching_strategy": "Equals"
+    //  },
+    //  {
+    //    "kind": "Title",
+    //    "id": "SharePoint",
+    //    "matching_strategy": "Equals"
+    //  }
+    //],
+    //[
+    //  {
+    //    "kind": "Exe",
+    //    "id": "ms-teams.exe",
+    //    "matching_strategy": "Equals"
+    //  },
+    //  {
+    //    "kind": "Class",
+    //    "id": "TeamsNrc",
+    //    "matching_strategy": "Equals"
+    //  }
+    //],
     [
       {
         "kind": "Exe",
@@ -245,18 +253,19 @@
       "kind": "Title",
       "id": "about:blank?usercontextid=",
       "matching_strategy": "StartsWith"
-    },
-    [
-      {
-        "kind": "Exe",
-        "id": "ms-teams.exe",
-        "matching_strategy": "Equals"
-      },
-      {
-        "kind": "Title",
-        "id": "Meeting compact view",
-        "matching_strategy": "StartsWith"
-      }
-    ]
+    }
+    //,
+    //[
+    //  {
+    //    "kind": "Exe",
+    //    "id": "ms-teams.exe",
+    //    "matching_strategy": "Equals"
+    //  },
+    //  {
+    //    "kind": "Title",
+    //    "id": "Meeting compact view",
+    //    "matching_strategy": "StartsWith"
+    //  }
+    //]
   ]
 }
