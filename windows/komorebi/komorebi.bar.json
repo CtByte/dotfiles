@@ -203,6 +203,20 @@
         }
       }
     }
+    //    {
+    //      "Date": {
+    //        "enable": true,
+    //        "format": "DayDateMonthYear",
+    //        "label_prefix": "Icon"
+    //      }
+    //    },
+    //    {
+    //      "Time": {
+    //        "enable": true,
+    //        "format": { "Custom": "%H:%M" },
+    //        "label_prefix": "Icon"
+    //      }
+    //    }
   ],
   "right_widgets": [
     {
