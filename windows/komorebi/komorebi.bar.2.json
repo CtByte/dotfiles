@@ -28,18 +28,88 @@
   //    "y": 5
   //  }
   //},
+  "mouse": {
+    //"on_primary_double_click": "komorebic replace-configuration $Env:USERPROFILE/komorebi.json",
+    //"on_primary_double_click": "wt powershell -NoExit -Command 'komorebic visible-windows'",
+	"on_primary_double_click": {
+      "focus_monitor_at_cursor": false,
+      "ignore_mouse_follows_focus": false,
+      "message": {
+        "type": "TogglePause"
+      }
+    },
+    "on_secondary_click": {
+      "message": {
+        "type": "NewWorkspace"
+      }
+    },
+    "on_middle_click": {
+      "message": {
+        "type": "CloseWorkspace"
+      }
+    },
+    "on_extra2_click": {
+      "message": {
+        "type": "StackAll"
+      }
+    },
+    "on_extra1_click": {
+      "message": {
+        "type": "UnstackAll"
+      }
+    },
+    "vertical_scroll_threshold": 100,
+    "on_scroll_up": {
+      "message": {
+        "type": "CycleFocusWorkspace",
+        "content": "Previous"
+      }
+    },
+    "on_scroll_down": {
+      "message": {
+        "type": "CycleFocusWorkspace",
+        "content": "Next"
+      }
+    },
+    "horizontal_scroll_threshold": 100,
+    "on_scroll_left": {
+      "message": {
+        "type": "CycleStack",
+        "content": "Previous"
+      }
+    },
+    "on_scroll_right": {
+      "message": {
+        "type": "CycleStack",
+        "content": "Next"
+      }
+    }
+  },
   "monitor": 1,
   "height": 60,
   "padding": { "vertical": 15 },
   // run komorebi-bar --fonts to list fonts installed on your system
   // remember to only use the family here, not the weight (bold, light etc)
   "font_family": "JetBrains Mono",
+  // we have some pre-bundled themes!
+  //"theme": {
+  //  "palette": "Base16",
+  //  "name": "Ashes",
+  //  "accent": "Base09"
+  //},
+  "theme": {
+    "palette": "Base16",
+    "name": "Ashes",
+    "accent": "Base09",
+    "auto_select_fill": "Base09",
+    "auto_select_text": "Base02"
+  },
   "max_label_width": 500.0,
-  "transparency_alpha": 70,
+  "transparency_alpha": 150,
   //"widget_spacing": 10.0,
   "grouping": {
     "kind": "Widget",
-    "style": "DefaultWithShadowB4O1S3",
+    "style": "DefaultWithShadow",
     "transparency_alpha": 170,
     "rounding": 10
   },
@@ -49,14 +119,23 @@
       "Cpu": {
         "enable": true,
         "data_refresh_interval": 5,
-        "label_prefix": "Icon"
+        "label_prefix": "Icon",
+        "auto_select_over": 10
       }
     },
     {
       "Memory": {
         "enable": true,
         "data_refresh_interval": 5,
-        "label_prefix": "Icon"
+        "label_prefix": "Icon",
+        "auto_select_over": 45
+      }
+    },
+    {
+      "Battery": {
+        "enable": true,
+        "hide_on_full_charge": true,
+        "auto_select_under": 15
       }
     },
     {
@@ -64,27 +143,31 @@
         "workspaces": {
           "enable": true,
           "hide_empty_workspaces": false,
-          "display": "Icon"
+          "display": "AllIcons"
         },
         "layout": {
           "enable": true,
           "display": "Icon"
         },
+        "workspace_layer": {
+          "enable": true,
+          "display": "Icon",
+          "show_when_tiling": false
+        },
         "focused_window": {
           "enable": false,
           "display": "IconAndTextOnSelected"
+        },
+        "locked_container": {
+          "enable": true,
+          "display": "Icon",
+          "show_when_unlocked": false
         }
       }
     }
   ],
   "center_widgets": [
     {
-      "Battery": {
-        "enable": true,
-        "hide_on_full_charge": true
-      }
-    },
-    {
       "Komorebi": {
         "workspaces": {
           "enable": false,
@@ -101,13 +184,102 @@
         }
       }
     }
+    //    {
+    //      "Date": {
+    //        "enable": true,
+    //        "format": "DayDateMonthYear",
+    //        "label_prefix": "Icon"
+    //      }
+    //    },
+    //    {
+    //      "Time": {
+    //        "enable": true,
+    //        "format": { "Custom": "%H:%M" },
+    //        "label_prefix": "Icon"
+    //      }
+    //    }
   ],
   // laid out left to right
   "right_widgets": [
+    //{
+    //  "Network": {
+    //    "enable": true,
+    //    "data_refresh_interval": 2,
+    //    "show_network_activity": true,
+    //    "network_activity_fill_characters": 10,
+    //    "label_prefix": "Icon"
+    //  }
+    //}, 
+    //{
+    //  "Cpu": {
+    //    "enable": true,
+    //    "data_refresh_interval": 5,
+    //    "label_prefix": "Icon"
+    //  }
+    //},
+    //{
+    //  "Memory": {
+    //    "enable": true,
+    //    "data_refresh_interval": 5,
+    //    "label_prefix": "Icon"
+    //  }
+    //},
     {
       "Storage": {
-        "enable": true
+        "enable": true,
+        "auto_select_over": 95,
+        "auto_hide_under": 85
+      }
+    },
+    {
+      "Time": {
+        "enable": true,
+        "format": { "Custom": "%H:%M %Z" },
+        "label_prefix": "Icon",
+        "changing_icon": true,
+        "timezone": "US/Pacific"
+      }
+    },
+    {
+      "Time": {
+        "enable": true,
+        "format": { "Custom": "%H:%M %Z" },
+        "label_prefix": "Icon",
+        "changing_icon": true,
+        "timezone": "UTC"
+      }
+    },
+    {
+      "Time": {
+        "enable": true,
+        "format": { "Custom": "%H:%M %Z BKK" },
+        "label_prefix": "Icon",
+        "changing_icon": true,
+        "timezone": "Asia/Bangkok"
+      }
+    },
+    {
+      "Time": {
+        "enable": true,
+        "format": "TwentyFourHour",
+        "label_prefix": "Icon",
+        "changing_icon": true
       }
     }
+    //	,
+    //    {
+    //      "Date": {
+    //        "enable": true,
+    //        "format": "DayDateMonthYear",
+    //        "label_prefix": "Icon"
+    //      }
+    //    },
+    //    {
+    //      "Time": {
+    //        "enable": true,
+    //        "format": "TwelveHour",
+    //        "label_prefix": "Icon"
+    //      }
+    //    }
   ]
 }
