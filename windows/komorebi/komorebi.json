@@ -6,7 +6,7 @@
   "unmanaged_window_operation_behaviour": "Op",
   "cross_monitor_move_behaviour": "Insert",
   "window_container_behaviour": "Create",
-  "mouse_follows_focus": true,
+  "mouse_follows_focus": false,
   "default_workspace_padding": 5,
   "default_container_padding": 5,
   "border_implementation": "Komorebi",
