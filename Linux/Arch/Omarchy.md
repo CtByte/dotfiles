@@ -7,6 +7,8 @@
 
 ## Post-Installation Steps
 
+Things to do after installing Arch/Omarchy:
+
 ---
 
 ### Disable auto-login (if enabled)
@@ -50,13 +52,6 @@ sudo nano /etc/samba/smb.conf
 ```
 Add the following lines at the end of the file:
 ```
-[global]
-   workgroup = WORKGROUP
-   server min protocol = SMB2
-   server max protocol = SMB3
-   map to guest = Bad User
-   security = user
-
 [Shared]
 	path = /home/yourusername/Shared
 	browseable = yes
@@ -67,6 +62,16 @@ Add the following lines at the end of the file:
 	valid users = yourusername
 ```
 
+> Optionally add this to the top as well:
+```
+[global]
+   workgroup = WORKGROUP
+   server min protocol = SMB2
+   server max protocol = SMB3
+   map to guest = Bad User
+   security = user
+```
+
 - Validate the share configuration syntax:
 ```	
 testparm
@@ -74,13 +79,8 @@ testparm
 
 - Set a Samba password for your user:
 ```
-sudo smbpasswd -a your_username
-```
-
-- Test samba locally:
-```
-smbclient -L localhost -U yourusername
-smb: \> ls
+sudo smbpasswd -a YOURUSER # create password
+sudo smbpasswd -e YOURUSER # enable user
 ```
 
 - Check firewall settings to allow Samba traffic:
@@ -102,6 +102,14 @@ sudo ufw reload
 sudo systemctl restart smb nmb
 ```
 
+- Test samba locally:
+```
+smbclient -L localhost -U YOURUSER
+smbclient //localhost/Shared -U YOURUSER
+
+smb: \> ls
+```
+
 - Get the Ipv4 address of your Linux machine:
 ```
 ip addr | grep inet
@@ -115,46 +123,21 @@ Test-NetConnection 192.168.1.xxx -Port 445
 
 ---
 
-One-time setup (Arch/Omarchy)
-# 1) Make the folder
-```
-mkdir -p /home/YOURUSER/Shared
-chmod 0775 /home/YOURUSER/Shared
-chown -R YOURUSER:YOURUSER /home/YOURUSER/Shared
-```
-# 2) (If not done) install & enable services
-```
-sudo pacman -S samba --needed
-sudo systemctl enable --now smb.service nmb.service
-```
-# 3) Create a Samba password for your Linux user
-```
-sudo smbpasswd -a YOURUSER
-sudo smbpasswd -e YOURUSER
-```
-# 4) Check config syntax
-```
-testparm
-```
-# 5) Restart Samba after any change
-```
-sudo systemctl restart smb.service nmb.service
-```
----
-
 ### Hostname Access (Without IP)
+
+> Omarchy is configured to use the system hostname by default. Find the `<hostname>` at `/etc/hostname`.
 
 You can make Windows access \\omarchy (instead of \\192.168.1.xxx) by enabling Avahi/mDNS on Linux:
 ```
-> sudo pacman -S avahi nss-mdns
-> sudo systemctl enable --now avahi-daemon
-> sudo nano /etc/nsswitch.conf
+sudo pacman -S avahi nss-mdns
+sudo systemctl enable --now avahi-daemon
+sudo nano /etc/nsswitch.conf
 ```
 Find the hosts: line and make sure it contains:
 ```
-> hosts: files mdns_minimal [NOTFOUND=return] dns myhostname
+hosts: files mdns_minimal [NOTFOUND=return] dns myhostname
 ```
 Now Windows 10/11 can connect to:
 ```
-> \\omarchy.local\Shared
+\\<hostname>.local\Shared
 ```
