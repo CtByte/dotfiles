@@ -17,7 +17,7 @@
 	```
 	ip a  # to check network interfaces
 	```
-- Use the `archinstall` command to start the guided installer:
+- Start the guided installer:
 	```
 	archinstall
 	```
