@@ -2,8 +2,8 @@
 
 - Boot from the Arch Linux installation media (USB/DVD).
 - Connect to the internet:
-  - For wired connections, you should be connected automatically.
-  - For wireless connections, use `iwctl`:
+	- For wired connections, you should be connected automatically.
+	- For wireless connections, use `iwctl`:
 	```
 	systemctl start iwd
 	iwctl
@@ -13,7 +13,7 @@
 	station wlan0 connect {SSID}
 	exit
 	```
-   - Check if connected with `ping archlinux.org`. The device can also be checked like this:
+	- Check if connected with `ping archlinux.org`. The device can also be checked like this:
 	```
 	ip a  # to check network interfaces
 	```
