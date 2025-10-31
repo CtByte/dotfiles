@@ -6,7 +6,7 @@
   "unmanaged_window_operation_behaviour": "Op",
   "cross_monitor_move_behaviour": "Insert",
   "window_container_behaviour": "Create",
-  "mouse_follows_focus": false,
+  "mouse_follows_focus": true,
   "default_workspace_padding": 5,
   "default_container_padding": 5,
   "border_implementation": "Komorebi",
@@ -187,6 +187,11 @@
       "kind": "Exe",
       "id": "TOTALCMD64.EXE",
       "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "RockNESX.exe",
+      "matching_strategy": "Equals"
     }
     //,
     //[
@@ -202,7 +207,7 @@
     //  }
     //]
   ],
-  "ignore_rules": [   
+  "ignore_rules": [
     {
       "kind": "Exe",
       "id": "test-egui.exe",
@@ -253,19 +258,23 @@
       "kind": "Title",
       "id": "about:blank?usercontextid=",
       "matching_strategy": "StartsWith"
-    }
-    //,
-    //[
-    //  {
-    //    "kind": "Exe",
-    //    "id": "ms-teams.exe",
-    //    "matching_strategy": "Equals"
-    //  },
-    //  {
-    //    "kind": "Title",
-    //    "id": "Meeting compact view",
-    //    "matching_strategy": "StartsWith"
-    //  }
-    //]
+    },
+    [
+      {
+        "kind": "Exe",
+        "id": "vlc.exe.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "VLC media player",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Class",
+        "id": "Qt5QWindowIcon",
+        "matching_strategy": "Equals"
+      }
+    ]
   ]
 }
