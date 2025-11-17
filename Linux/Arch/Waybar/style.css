@@ -1,0 +1,138 @@
+@import "../omarchy/current/theme/waybar.css";
+
+window#waybar {
+  background-color: rgba(24, 24, 27, 0.6);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#waybar * {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: JetBrainsMono, monospace, 'CaskaydiaMono Nerd Font';
+  font-size: 15px;
+
+  opacity: 1;
+  /* background-color: @background; */
+  color: @foreground;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 1px;
+  margin: 2px 2.5px;
+  min-width: 21px;
+  /*border-radius: 6px;*/
+}
+
+#workspaces button.persistent {
+  border-top: 2px solid alpha(@foreground, .4);
+  background: alpha(@background, .7);
+}
+
+#workspaces button.active {
+  border-top: 2px solid alpha(@foreground, .8);
+  background: alpha(@foreground, .2);
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
+}
+
+#workspaces .taskbar-window {
+  padding: 2px;
+}
+
+#workspaces .taskbar-window.active {
+  background-color: alpha(@foreground, .3);
+  /* border-radius: 6px; */
+}
+
+#workspaces .taskbar-window image {
+  margin-top: 1px;
+}
+
+#window {
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* make window module transparent when no windows present */
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+#battery,
+#pulseaudio,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#tray {
+  margin-right: 16px;
+}
+
+#bluetooth {
+  margin-right: 17px;
+}
+
+#network {
+  margin-right: 13px;
+}
+
+#cpu,
+#memory,
+#network.traffic {
+  margin-right: 5px;
+  padding: 0px 5px;
+  border-top: 2px solid alpha(@foreground, .8);
+  background: alpha(@background, .2);
+}
+
+#network.traffic span {
+  border: 1px solid yellow;
+}
+
+#custom-expand-icon {
+  margin-right: 20px;
+}
+
+tooltip {
+  padding: 2px;
+}
+
+#custom-update {
+  font-size: 10px;
+}
+
+#clock {
+  margin-left: 8.75px;
+  border-top: 2px solid alpha(@foreground, .8);
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#custom-screenrecording-indicator {
+  min-width: 12px;
+  margin-left: 8.75px;
+  font-size: 10px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
