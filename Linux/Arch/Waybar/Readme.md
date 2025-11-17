@@ -16,3 +16,5 @@ Restart the waybar
 ```
 pkill waybar && hyprctl dispatch exec waybar
 ```
+
+<img src="assets/image.png">
